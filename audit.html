@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads Performance Audit - Strategic Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #162642 0%, #1a2b47 100%);
+            color: white;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px solid #cc5b27;
+        }
+
+        .logo {
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #cc5b27;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #cc5b27;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-left: 4px solid #cc5b27;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #cc5b27;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .opportunity-alert {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #81C784;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(129, 199, 132, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(129, 199, 132, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(129, 199, 132, 0); }
+        }
+
+        .performance-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #cc5b27;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(204, 91, 39, 0.3);
+        }
+
+        .metric-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: #cccccc;
+        }
+
+        .excellent { color: #4CAF50; }
+        .good { color: #8BC34A; }
+        .warning { color: #FF9800; }
+        .critical { color: #F44336; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(204, 91, 39, 0.3);
+        }
+
+        th {
+            background: rgba(204, 91, 39, 0.8);
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: rgba(204, 91, 39, 0.1);
+        }
+
+        .opportunity-highlight {
+            background: linear-gradient(135deg, #cc5b27, #b84e22);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .action-item {
+            background: rgba(76, 175, 80, 0.2);
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .efficiency-champion {
+            background: rgba(76, 175, 80, 0.2);
+            border-left: 4px solid #4CAF50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .underperformer {
+            background: rgba(255, 152, 0, 0.2);
+            border-left: 4px solid #FF9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="https://res.cloudinary.com/dcnabm5nc/image/upload/v1754585626/lead-guru-new-logo-W-450_oyvumx.webp" alt="Logo" class="logo">
+            <h1>GOOGLE ADS PERFORMANCE AUDIT</h1>
+            <p><strong>Analysis Period:</strong> August 2-31, 2025 (30 Days)</p>
+            <p><strong>Account Performance Status:</strong> SIGNIFICANT OPPORTUNITIES IDENTIFIED</p>
+            <p><strong>Primary Focus:</strong> Branded Search Scaling & Demand Gen Optimization</p>
+        </div>
+
+        <!-- Major Opportunity Alert -->
+        <div class="opportunity-alert">
+            <h2 style="color: white; border: none; padding: 0; margin-bottom: 15px;">🚀 MASSIVE SCALING OPPORTUNITY</h2>
+            <div class="metrics-grid">
+                <div>
+                    <h3 style="color: white;">Branded Search Goldmine</h3>
+                    <p><strong>$0.38 CPA</strong> delivering <strong>26.8% of conversions</strong></p>
+                    <p>Currently only <span style="font-size: 1.5em; font-weight: bold;">1.2% of budget</span></p>
+                </div>
+                <div>
+                    <h3 style="color: white;">Immediate ROI Impact</h3>
+                    <p><strong>22.76% conversion rate</strong> vs <strong>1.36% account average</strong></p>
+                    <p>Scaling opportunity: <span style="font-size: 1.5em; font-weight: bold;">500%+</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="performance-card">
+            <h2>Executive Summary - 30 Day Performance</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value good">$24,409</div>
+                    <div class="metric-label">Total Spend</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value excellent">2,997</div>
+                    <div class="metric-label">Total Conversions</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value good">$8.14</div>
+                    <div class="metric-label">Overall CPA</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$814</div>
+                    <div class="metric-label">Daily Spend</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">99.9</div>
+                    <div class="metric-label">Daily Conversions</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value good">1.36%</div>
+                    <div class="metric-label">Overall Conv Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campaign Performance Analysis -->
+        <div class="performance-card">
+            <h2>Campaign Performance Breakdown</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Campaign</th>
+                        <th>Spend</th>
+                        <th>Spend %</th>
+                        <th>Conversions</th>
+                        <th>Conv %</th>
+                        <th>CPA</th>
+                        <th>Conv Rate</th>
+                        <th>Performance Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: rgba(76, 175, 80, 0.2);">
+                        <td><strong>Branded Search</strong></td>
+                        <td>$305</td>
+                        <td>1.2%</td>
+                        <td>803</td>
+                        <td>26.8%</td>
+                        <td class="excellent">$0.38</td>
+                        <td class="excellent">22.76%</td>
+                        <td class="excellent">CHAMPION</td>
+                    </tr>
+                    <tr style="background: rgba(255, 255, 255, 0.1);">
+                        <td><strong>PMax New Customers</strong></td>
+                        <td>$20,577</td>
+                        <td>84.3%</td>
+                        <td>1,901</td>
+                        <td>63.4%</td>
+                        <td class="good">$10.82</td>
+                        <td>1.12%</td>
+                        <td class="good">VOLUME LEADER</td>
+                    </tr>
+                    <tr style="background: rgba(255, 152, 0, 0.2);">
+                        <td><strong>Demand Gen</strong></td>
+                        <td>$3,528</td>
+                        <td>14.5%</td>
+                        <td>293</td>
+                        <td>9.8%</td>
+                        <td class="warning">$12.03</td>
+                        <td>0.61%</td>
+                        <td class="warning">NEEDS OPTIMIZATION</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Key Insights -->
+        <div class="two-column">
+            <div>
+                <div class="efficiency-champion">
+                    <h3>🏆 Efficiency Champion: Branded Search</h3>
+                    <ul>
+                        <li><strong>CPA Efficiency:</strong> $0.38 vs $8.14 account average (-95%)</li>
+                        <li><strong>Conversion Rate:</strong> 22.76% vs 1.36% account average (+1,574%)</li>
+                        <li><strong>Budget Allocation:</strong> Severely underfunded at only 1.2% of budget</li>
+                        <li><strong>Volume Potential:</strong> Currently generating 26.8% of conversions</li>
+                    </ul>
+                    
+                    <div class="action-item">
+                        <strong>IMMEDIATE ACTION:</strong> Increase branded search budget from $10/day to $50+/day
+                    </div>
+                </div>
+
+                <div class="performance-card">
+                    <h3>PMax Performance Assessment</h3>
+                    <ul>
+                        <li><strong>Volume Leadership:</strong> 63.4% of total conversions</li>
+                        <li><strong>Reasonable CPA:</strong> $10.82 for new customer acquisition</li>
+                        <li><strong>Scale Efficiently:</strong> Good foundation for volume growth</li>
+                        <li><strong>Budget Allocation:</strong> Appropriate at 84.3% of spend</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <div class="underperformer">
+                    <h3>⚠️ Optimization Needed: Demand Gen</h3>
+                    <ul>
+                        <li><strong>Above Average CPA:</strong> $12.03 vs $8.14 account average (+48%)</li>
+                        <li><strong>Low Conversion Rate:</strong> 0.61% vs 1.36% account average (-55%)</li>
+                        <li><strong>Budget Efficiency:</strong> 14.5% spend for only 9.8% conversions</li>
+                        <li><strong>Improvement Potential:</strong> Audience and creative optimization needed</li>
+                    </ul>
+                    
+                    <div class="action-item">
+                        <strong>OPTIMIZATION PLAN:</strong> Audience refinement, creative testing, and bid strategy review
+                    </div>
+                </div>
+
+                <div class="opportunity-highlight">
+                    <h3>Weekly Priority Actions</h3>
+                    <ol>
+                        <li><strong>Monday:</strong> Branded search budget increase to $50/day</li>
+                        <li><strong>Tuesday:</strong> Demand Gen audience analysis and refinement</li>
+                        <li><strong>Wednesday:</strong> Creative testing launch for Demand Gen</li>
+                        <li><strong>Thursday:</strong> Device performance audit</li>
+                        <li><strong>Friday:</strong> Performance review and next week planning</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue Impact Projections -->
+        <div class="performance-card">
+            <h2>Revenue Impact Projections</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value excellent">+400%</div>
+                    <div class="metric-label">Branded Search Scaling Potential</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value good">+200</div>
+                    <div class="metric-label">Additional Daily Conversions</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value excellent">$6,000</div>
+                    <div class="metric-label">Monthly Efficiency Gain</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value good">25%</div>
+                    <div class="metric-label">Projected CPA Improvement</div>
+                </div>
+            </div>
+
+            <div class="opportunity-highlight">
+                <h3>Conservative Scaling Scenario (Next 30 Days)</h3>
+                <div class="two-column">
+                    <div>
+                        <h4>Current Performance:</h4>
+                        <ul>
+                            <li>Daily Spend: $814</li>
+                            <li>Daily Conversions: 99.9</li>
+                            <li>Overall CPA: $8.14</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Projected with Optimizations:</h4>
+                        <ul>
+                            <li>Daily Spend: $900-950</li>
+                            <li>Daily Conversions: 140-160</li>
+                            <li>Target CPA: $6.00-6.50</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="performance-card">
+            <h2>Strategic Action Plan</h2>
+            <div class="action-item">
+                <h4>Week 1 Focus: Branded Search Scaling</h4>
+                <p>Capitalize on the $0.38 CPA goldmine by increasing budget allocation from 1.2% to 5-8% of total spend. Expected impact: +60-80 daily conversions.</p>
+            </div>
+            
+            <div class="action-item">
+                <h4>Week 2 Focus: Demand Gen Optimization</h4>
+                <p>Improve $12.03 CPA through audience refinement and creative testing. Target: Bring CPA down to $8-9 range.</p>
+            </div>
+            
+            <div class="action-item">
+                <h4>Week 3-4 Focus: PMax Enhancement</h4>
+                <p>Fine-tune the volume leader with asset optimization and audience signals. Maintain $10.82 CPA while increasing volume.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; padding: 20px; background: rgba(204, 91, 39, 0.1); border-radius: 10px;">
+                <h3 style="color: #cc5b27;">Bottom Line Assessment</h3>
+                <p><strong>The account shows strong fundamentals with clear optimization opportunities. Branded search represents an immediate high-impact scaling opportunity, while systematic improvements across campaigns can deliver 25%+ efficiency gains within 30 days.</strong></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
