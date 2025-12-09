@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncle Butch's Fudge | Amazon Ads Strategic Audit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rich-chocolate: #2C1810;
+            --dark-cocoa: #3D2317;
+            --warm-caramel: #C4883A;
+            --golden-honey: #D4A84B;
+            --cream: #FDF8F3;
+            --soft-cream: #F9F3EC;
+            --success-green: #1B4332;
+            --success-light: #2D6A4F;
+            --warning-amber: #B45309;
+            --alert-rust: #9B2226;
+            --text-primary: #1A1A1A;
+            --text-secondary: #5C5C5C;
+            --border-light: rgba(44, 24, 16, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--text-primary);
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 50px 70px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        /* Title Slide */
+        .slide-hero {
+            background: linear-gradient(145deg, var(--rich-chocolate) 0%, var(--dark-cocoa) 50%, #4A2C1C 100%);
+            color: var(--cream);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .brand-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--warm-caramel);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.35rem;
+            opacity: 0.85;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .hero-meta {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            font-weight: 400;
+        }
+
+        /* Section Headers */
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 35px;
+            color: var(--rich-chocolate);
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: var(--dark-cocoa);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--rich-chocolate);
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 680px;
+        }
+
+        /* Executive Summary Cards */
+        .exec-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .exec-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 2px 20px rgba(44, 24, 16, 0.04);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exec-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--warm-caramel), var(--golden-honey));
+        }
+
+        .exec-card.success::before { background: var(--success-green); }
+        .exec-card.warning::before { background: var(--warning-amber); }
+        .exec-card.alert::before { background: var(--alert-rust); }
+
+        .exec-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .exec-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--rich-chocolate);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .exec-card.success .exec-value { color: var(--success-green); }
+        .exec-card.warning .exec-value { color: var(--warning-amber); }
+        .exec-card.alert .exec-value { color: var(--alert-rust); }
+
+        .exec-context {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .exec-target {
+            font-size: 0.8rem;
+            color: var(--success-light);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin: 25px 0;
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        /* Data Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(44, 24, 16, 0.04);
+            border: 1px solid var(--border-light);
+        }
+
+        .data-table th {
+            background: var(--rich-chocolate);
+            color: var(--cream);
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .data-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.95rem;
+        }
+
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover td { background: var(--soft-cream); }
+
+        .value-positive { color: var(--success-green); font-weight: 600; }
+        .value-warning { color: var(--warning-amber); font-weight: 600; }
+        .value-negative { color: var(--alert-rust); font-weight: 600; }
+
+        /* Insight Cards */
+        .insight-card {
+            background: white;
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: 0 2px 15px rgba(44, 24, 16, 0.04);
+            border: 1px solid var(--border-light);
+        }
+
+        .insight-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+        }
+
+        .insight-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            background: linear-gradient(135deg, var(--warm-caramel), var(--golden-honey));
+            color: white;
+            padding: 28px 32px;
+            border-radius: 14px;
+            margin: 25px 0;
+        }
+
+        .callout h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .callout p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: none;
+        }
+
+        .callout-dark {
+            background: var(--rich-chocolate);
+        }
+
+        .callout-success {
+            background: linear-gradient(135deg, var(--success-green), var(--success-light));
+        }
+
+        /* Progress Bars */
+        .progress-item {
+            margin-bottom: 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--soft-cream);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(90deg, var(--warm-caramel), var(--golden-honey));
+            transition: width 0.5s ease;
+        }
+
+        .progress-fill.success { background: var(--success-green); }
+        .progress-fill.warning { background: var(--warning-amber); }
+
+        /* Trend Indicator */
+        .trend {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .trend-up { color: var(--success-green); }
+        .trend-down { color: var(--alert-rust); }
+
+        .trend-arrow {
+            font-size: 1.1rem;
+        }
+
+        /* Recommendation List */
+        .rec-list {
+            list-style: none;
+        }
+
+        .rec-list li {
+            padding: 16px 20px;
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            font-size: 0.95rem;
+        }
+
+        .rec-number {
+            background: var(--warm-caramel);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-success { background: #E8F5E8; color: var(--success-green); }
+        .tag-warning { background: #FEF3E2; color: var(--warning-amber); }
+        .tag-alert { background: #FDE8E8; color: var(--alert-rust); }
+        .tag-neutral { background: var(--soft-cream); color: var(--text-secondary); }
+
+        /* Comparison Block */
+        .compare-block {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 30px;
+            align-items: center;
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            border: 1px solid var(--border-light);
+            margin: 25px 0;
+        }
+
+        .compare-item {
+            text-align: center;
+        }
+
+        .compare-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .compare-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--rich-chocolate);
+        }
+
+        .compare-arrow {
+            font-size: 2rem;
+            color: var(--success-green);
+        }
+
+        /* Slide Footer */
+        .slide-footer {
+            margin-top: auto;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .slide-number {
+            font-weight: 600;
+        }
+
+        /* Channel Performance Grid */
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .channel-card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            border: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        .channel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .channel-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .channel-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .channel-metric {
+            text-align: center;
+        }
+
+        .channel-metric-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--rich-chocolate);
+        }
+
+        .channel-metric-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+        }
+
+        /* Funnel Visualization */
+        .funnel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin: 30px 0;
+        }
+
+        .funnel-stage {
+            background: linear-gradient(90deg, var(--warm-caramel), var(--golden-honey));
+            color: white;
+            padding: 18px;
+            text-align: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .funnel-stage:nth-child(1) { width: 100%; }
+        .funnel-stage:nth-child(2) { width: 80%; }
+        .funnel-stage:nth-child(3) { width: 60%; background: var(--success-green); }
+
+        .funnel-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .funnel-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Placement Visual */
+        .placement-visual {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .placement-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .placement-bar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .placement-bar.excellent::after { background: var(--success-green); }
+        .placement-bar.good::after { background: var(--warm-caramel); }
+        .placement-bar.poor::after { background: var(--alert-rust); }
+
+        .placement-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+
+        .placement-acos {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--rich-chocolate);
+        }
+
+        .placement-roas {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Print Styles */
+        @media print {
+            .slide {
+                page-break-after: always;
+                min-height: auto;
+                padding: 30px;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .exec-grid { grid-template-columns: repeat(2, 1fr); }
+            .three-col { grid-template-columns: 1fr; }
+            .channel-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Title -->
+    <section class="slide slide-hero">
+        <div class="brand-label">Uncle Butch's Fudge</div>
+        <h1 class="hero-title">Amazon Ads<br>Strategic Audit</h1>
+        <p class="hero-subtitle">Performance Analysis, Insights, and Cross-Channel Strategy</p>
+        <p class="hero-meta">December 2025 | Prepared by Charles</p>
+    </section>
+
+    <!-- Slide 2: Executive Summary -->
+    <section class="slide">
+        <h2>Executive Summary</h2>
+        <p>Performance snapshot across 90 days of Amazon advertising data, with emphasis on recent 30-day trends and alignment with blended marketing cost targets.</p>
+
+        <div class="exec-grid">
+            <div class="exec-card">
+                <div class="exec-label">90-Day ACOS</div>
+                <div class="exec-value">27.1%</div>
+                <div class="exec-context">Above target, but improving</div>
+                <div class="exec-target">Target: 15%</div>
+            </div>
+            <div class="exec-card success">
+                <div class="exec-label">Last 14 Days ACOS</div>
+                <div class="exec-value">20.0%</div>
+                <div class="exec-context">Down from 31.5%</div>
+                <div class="exec-target">11.5 pts improvement</div>
+            </div>
+            <div class="exec-card success">
+                <div class="exec-label">Week 49 ACOS</div>
+                <div class="exec-value">17.8%</div>
+                <div class="exec-context">Peak holiday performance</div>
+                <div class="exec-target">Nearly at target</div>
+            </div>
+            <div class="exec-card">
+                <div class="exec-label">90-Day ROAS</div>
+                <div class="exec-value">3.69X</div>
+                <div class="exec-context">$180K ad revenue</div>
+                <div class="exec-target">$49K spend</div>
+            </div>
+        </div>
+
+        <div class="callout-success callout">
+            <h4>Key Takeaway</h4>
+            <p>Strong momentum heading into peak season. ACOS dropped 11.5 percentage points in 14 days while sales grew 60%. Week 49 nearly hit the 15% TACOS target. The account is trending in the right direction with clear opportunities to accelerate.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">02</span>
+        </div>
+    </section>
+
+    <!-- Slide 3: Target Alignment -->
+    <section class="slide">
+        <h2>Target Alignment: Blended Marketing Cost</h2>
+        <p>Understanding how Amazon fits into the broader 25% blended marketing cost of sales target across all channels.</p>
+
+        <div class="two-col">
+            <div>
+                <h3>Business Targets</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Target</th>
+                            <th>Breakeven</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Blended MCoS</td>
+                            <td class="value-positive">25%</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td>Amazon TACOS</td>
+                            <td class="value-positive">15%</td>
+                            <td>18%</td>
+                        </tr>
+                        <tr>
+                            <td>Meta/Google ROAS</td>
+                            <td class="value-positive">3X</td>
+                            <td>2.5X</td>
+                        </tr>
+                        <tr>
+                            <td>Monthly Revenue</td>
+                            <td class="value-positive">$400K+</td>
+                            <td>$350K</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h3>Why 15% TACOS Matters</h3>
+                <div class="insight-card">
+                    <p>Amazon takes a 15% commission on all sales. At 15% TACOS + 15% commission = 30% total Amazon cost, matching the breakeven threshold for blended marketing spend.</p>
+                    <p style="margin-top: 15px;">Anything above 18% TACOS puts the entire marketing mix at risk of exceeding the 30% breakeven ceiling.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="compare-block">
+            <div class="compare-item">
+                <div class="compare-label">Previous 14 Days</div>
+                <div class="compare-value" style="color: var(--alert-rust);">31.5%</div>
+            </div>
+            <div class="compare-arrow">→</div>
+            <div class="compare-item">
+                <div class="compare-label">Last 14 Days</div>
+                <div class="compare-value" style="color: var(--success-green);">20.0%</div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">03</span>
+        </div>
+    </section>
+
+    <!-- Slide 4: Sponsored Products Deep Dive -->
+    <section class="slide">
+        <h2>Sponsored Products Performance</h2>
+        <p>Sponsored Products drives 95%+ of Amazon advertising spend. Analysis across 90-day and 30-day windows.</p>
+
+        <div class="exec-grid">
+            <div class="exec-card">
+                <div class="exec-label">30D Spend</div>
+                <div class="exec-value">$21.3K</div>
+                <div class="exec-context">Up from prior period</div>
+            </div>
+            <div class="exec-card">
+                <div class="exec-label">30D Sales</div>
+                <div class="exec-value">$85.7K</div>
+                <div class="exec-context">2,522 orders</div>
+            </div>
+            <div class="exec-card success">
+                <div class="exec-label">30D ACOS</div>
+                <div class="exec-value">24.8%</div>
+                <div class="exec-context">Enabled: 22.8%</div>
+            </div>
+            <div class="exec-card success">
+                <div class="exec-label">30D ROAS</div>
+                <div class="exec-value">4.03X</div>
+                <div class="exec-context">AOV: $33.98</div>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <h3>By Targeting Type</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>ACOS</th>
+                            <th>ROAS</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Manual Targeting</td>
+                            <td class="value-positive">24.5%</td>
+                            <td>4.07X</td>
+                            <td><span class="tag tag-success">Scale</span></td>
+                        </tr>
+                        <tr>
+                            <td>Automatic Targeting</td>
+                            <td class="value-warning">38.4%</td>
+                            <td>2.60X</td>
+                            <td><span class="tag tag-warning">Optimize</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h3>By Match Type (90D)</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Match</th>
+                            <th>ACOS</th>
+                            <th>ROAS</th>
+                            <th>Spend %</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Exact</td>
+                            <td class="value-positive">25.4%</td>
+                            <td>3.93X</td>
+                            <td>61%</td>
+                        </tr>
+                        <tr>
+                            <td>Broad</td>
+                            <td class="value-positive">24.8%</td>
+                            <td>4.04X</td>
+                            <td>2%</td>
+                        </tr>
+                        <tr>
+                            <td>Phrase</td>
+                            <td class="value-warning">32.6%</td>
+                            <td>3.07X</td>
+                            <td>7%</td>
+                        </tr>
+                        <tr>
+                            <td>Auto</td>
+                            <td class="value-warning">30.3%</td>
+                            <td>3.30X</td>
+                            <td>30%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="callout">
+            <h4>Insight</h4>
+            <p>Manual targeting (24.5% ACOS) dramatically outperforms Automatic (38.4%). Shift budget allocation from Auto to Manual Exact match campaigns for immediate efficiency gains.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">04</span>
+        </div>
+    </section>
+
+    <!-- Slide 5: Placement Analysis -->
+    <section class="slide">
+        <h2>Placement Performance</h2>
+        <p>Where ads appear on Amazon significantly impacts efficiency. Top of Search delivers exceptional performance.</p>
+
+        <div class="placement-visual">
+            <div class="placement-bar excellent">
+                <div class="placement-name">Top of Search</div>
+                <div class="placement-acos">18.1%</div>
+                <div class="placement-roas">5.53X ROAS</div>
+            </div>
+            <div class="placement-bar good">
+                <div class="placement-name">Rest of Search</div>
+                <div class="placement-acos">28.9%</div>
+                <div class="placement-roas">3.46X ROAS</div>
+            </div>
+            <div class="placement-bar good">
+                <div class="placement-name">Product Pages</div>
+                <div class="placement-acos">29.3%</div>
+                <div class="placement-roas">3.42X ROAS</div>
+            </div>
+            <div class="placement-bar poor">
+                <div class="placement-name">Off Amazon</div>
+                <div class="placement-acos">N/A</div>
+                <div class="placement-roas">0X ROAS</div>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <h3>Placement Breakdown (30D)</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Placement</th>
+                            <th>CTR</th>
+                            <th>CVR</th>
+                            <th>CPC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Top of Search</td>
+                            <td class="value-positive">4.81%</td>
+                            <td class="value-positive">21.4%</td>
+                            <td>$1.33</td>
+                        </tr>
+                        <tr>
+                            <td>Rest of Search</td>
+                            <td>0.56%</td>
+                            <td>12.0%</td>
+                            <td>$1.10</td>
+                        </tr>
+                        <tr>
+                            <td>Product Pages</td>
+                            <td>0.52%</td>
+                            <td>11.2%</td>
+                            <td>$1.16</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <div class="callout-success callout">
+                    <h4>Opportunity: Top of Search</h4>
+                    <p>Top of Search converts at 21.4% vs 11-12% for other placements. At 18.1% ACOS, this is your most efficient placement and nearly hits the 15% target. Increase bid modifiers to capture more of this traffic.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">05</span>
+        </div>
+    </section>
+
+    <!-- Slide 6: Top Campaign Performance -->
+    <section class="slide">
+        <h2>Top Performing Campaigns</h2>
+        <p>The highest revenue campaigns reveal clear patterns: branded terms and Custom Box ASINs drive efficiency.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Campaign</th>
+                    <th>Sales</th>
+                    <th>Spend</th>
+                    <th>ACOS</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SP - Fudge Custom Box 4 Flavors - Exact Branded - TOS 100</td>
+                    <td>$9,909</td>
+                    <td>$1,342</td>
+                    <td class="value-positive">13.5%</td>
+                    <td><span class="tag tag-success">At Target</span></td>
+                </tr>
+                <tr>
+                    <td>SP - Fudge Custom Box 4 Flavors - Exact - fudge</td>
+                    <td>$9,719</td>
+                    <td>$2,245</td>
+                    <td>23.1%</td>
+                    <td><span class="tag tag-neutral">Budget Capped</span></td>
+                </tr>
+                <tr>
+                    <td>SP - Fudge Custom Box - Exact - fudge</td>
+                    <td>$5,986</td>
+                    <td>$1,405</td>
+                    <td>23.5%</td>
+                    <td><span class="tag tag-neutral">Optimize</span></td>
+                </tr>
+                <tr>
+                    <td>SP - Fudge Custom Box - Exact Branded</td>
+                    <td>$5,484</td>
+                    <td>$800</td>
+                    <td class="value-positive">14.6%</td>
+                    <td><span class="tag tag-success">At Target</span></td>
+                </tr>
+                <tr>
+                    <td>SP - Fudge Custom Box - Exact - fudge</td>
+                    <td>$4,591</td>
+                    <td>$985</td>
+                    <td>21.5%</td>
+                    <td><span class="tag tag-neutral">Budget Capped</span></td>
+                </tr>
+                <tr>
+                    <td>SP - Fudge Custom Box - PAT Defensive</td>
+                    <td>$2,656</td>
+                    <td>$416</td>
+                    <td class="value-positive">15.7%</td>
+                    <td><span class="tag tag-success">Scale</span></td>
+                </tr>
+                <tr>
+                    <td>SP - Chocolate Fudge - Exact - fudge</td>
+                    <td>$2,294</td>
+                    <td>$343</td>
+                    <td class="value-positive">14.9%</td>
+                    <td><span class="tag tag-success">At Target</span></td>
+                </tr>
+                <tr>
+                    <td>SP - Fudge Custom Box - PAT Defensive</td>
+                    <td>$2,108</td>
+                    <td>$377</td>
+                    <td class="value-positive">17.9%</td>
+                    <td><span class="tag tag-success">Scale</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout">
+            <h4>Pattern Identified</h4>
+            <p>Branded campaigns and PAT Defensive campaigns are hitting or beating the 15% target. Generic "fudge" exact match campaigns run 21-24% ACOS but drive significant volume. Scale branded, optimize generic.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">06</span>
+        </div>
+    </section>
+
+    <!-- Slide 7: Sponsored Brands -->
+    <section class="slide">
+        <h2>Sponsored Brands Performance</h2>
+        <p>Sponsored Brands Video (SBV) is a customer acquisition engine, driving 80%+ New-to-Brand orders.</p>
+
+        <div class="exec-grid">
+            <div class="exec-card">
+                <div class="exec-label">30D Spend</div>
+                <div class="exec-value">$2.5K</div>
+                <div class="exec-context">37 campaigns</div>
+            </div>
+            <div class="exec-card">
+                <div class="exec-label">30D Sales</div>
+                <div class="exec-value">$9.6K</div>
+                <div class="exec-context">280 orders</div>
+            </div>
+            <div class="exec-card">
+                <div class="exec-label">30D ACOS</div>
+                <div class="exec-value">26.4%</div>
+                <div class="exec-context">SBV: 25.6%</div>
+            </div>
+            <div class="exec-card success">
+                <div class="exec-label">New-to-Brand</div>
+                <div class="exec-value">80.4%</div>
+                <div class="exec-context">$7.8K NTB sales</div>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <h3>SBV vs SB Standard</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Format</th>
+                            <th>ACOS</th>
+                            <th>ROAS</th>
+                            <th>NTB Orders</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SBV (Video)</td>
+                            <td class="value-positive">25.6%</td>
+                            <td>3.91X</td>
+                            <td>222</td>
+                        </tr>
+                        <tr>
+                            <td>SB Standard</td>
+                            <td class="value-negative">88.2%</td>
+                            <td>1.13X</td>
+                            <td>3</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <div class="callout-success callout">
+                    <h4>SBV is the Winner</h4>
+                    <p>Sponsored Brands Video outperforms Standard by a massive margin (25.6% vs 88.2% ACOS). Consolidate all SB spend into SBV format. The 80% NTB rate makes this your best customer acquisition channel on Amazon.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">07</span>
+        </div>
+    </section>
+
+    <!-- Slide 8: Sponsored Display -->
+    <section class="slide">
+        <h2>Sponsored Display Performance</h2>
+        <p>SD campaigns, particularly PAT Defensive, deliver excellent efficiency for brand protection and remarketing.</p>
+
+        <div class="exec-grid">
+            <div class="exec-card success">
+                <div class="exec-label">30D ACOS</div>
+                <div class="exec-value">18.8%</div>
+                <div class="exec-context">Near target</div>
+            </div>
+            <div class="exec-card success">
+                <div class="exec-label">30D ROAS</div>
+                <div class="exec-value">5.32X</div>
+                <div class="exec-context">$5.1K sales</div>
+            </div>
+            <div class="exec-card success">
+                <div class="exec-label">PAT Defensive ACOS</div>
+                <div class="exec-value">10.9%</div>
+                <div class="exec-context">Below target!</div>
+            </div>
+            <div class="exec-card success">
+                <div class="exec-label">PAT Defensive ROAS</div>
+                <div class="exec-value">9.18X</div>
+                <div class="exec-context">Top performer</div>
+            </div>
+        </div>
+
+        <h3>Top SD Campaigns (30D)</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Campaign</th>
+                    <th>Sales</th>
+                    <th>Spend</th>
+                    <th>ACOS</th>
+                    <th>Orders</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>SD - Fudge Custom Box 4 Flavors - PAT Defensive</td>
+                    <td>$1,029</td>
+                    <td>$112</td>
+                    <td class="value-positive">10.9%</td>
+                    <td>29</td>
+                </tr>
+                <tr>
+                    <td>SD - Fudge Custom Box - PAT Defensive</td>
+                    <td>$1,054</td>
+                    <td>$238</td>
+                    <td>22.6%</td>
+                    <td>29</td>
+                </tr>
+                <tr>
+                    <td>SD - Fudge Custom Box - PAT Defensive</td>
+                    <td>$861</td>
+                    <td>$113</td>
+                    <td class="value-positive">13.1%</td>
+                    <td>23</td>
+                </tr>
+                <tr>
+                    <td>SD - Chocolate Fudge - PAT</td>
+                    <td>$427</td>
+                    <td>$40</td>
+                    <td class="value-positive">9.3%</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>SD - Chocolate Walnut Fudge - PAT</td>
+                    <td>$378</td>
+                    <td>$53</td>
+                    <td class="value-positive">14.1%</td>
+                    <td>10</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="callout">
+            <h4>Opportunity: Re-enable Paused SD Campaigns</h4>
+            <p>49 of 61 SD campaigns are currently paused. Several have strong historical performance. Review and re-enable PAT Defensive campaigns across all top ASINs.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">08</span>
+        </div>
+    </section>
+
+    <!-- Slide 9: Brand Funnel -->
+    <section class="slide">
+        <h2>Brand Funnel Performance</h2>
+        <p>Weekly brand metrics show strong momentum across awareness, consideration, and purchase stages.</p>
+
+        <div class="funnel">
+            <div class="funnel-stage">
+                <div class="funnel-value">3,683</div>
+                <div class="funnel-label">Consideration Shoppers (Week 8)</div>
+            </div>
+            <div class="funnel-stage">
+                <div class="funnel-value">$91,970</div>
+                <div class="funnel-label">Consideration Value Generated</div>
+            </div>
+            <div class="funnel-stage">
+                <div class="funnel-value">919</div>
+                <div class="funnel-label">Purchased Shoppers</div>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <h3>Week-over-Week Trend</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Week 7</th>
+                            <th>Week 8</th>
+                            <th>Change</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Awareness Shoppers</td>
+                            <td>211</td>
+                            <td>222</td>
+                            <td class="value-positive">+5%</td>
+                        </tr>
+                        <tr>
+                            <td>Consideration Shoppers</td>
+                            <td>3,411</td>
+                            <td>3,683</td>
+                            <td class="value-positive">+8%</td>
+                        </tr>
+                        <tr>
+                            <td>Consideration Value</td>
+                            <td>$84,935</td>
+                            <td>$91,970</td>
+                            <td class="value-positive">+8%</td>
+                        </tr>
+                        <tr>
+                            <td>Purchased Shoppers</td>
+                            <td>689</td>
+                            <td>919</td>
+                            <td class="value-positive">+33%</td>
+                        </tr>
+                        <tr>
+                            <td>Purchased Value</td>
+                            <td>$15,623</td>
+                            <td>$25,475</td>
+                            <td class="value-positive">+63%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h3>Return on Engagement</h3>
+                <div class="insight-card">
+                    <h4>Consideration ROE: $24.97</h4>
+                    <p>For every shopper who engaged with Uncle Butch's products, the brand generated nearly $25 in consideration value.</p>
+                </div>
+                <div class="insight-card" style="margin-top: 15px;">
+                    <h4>Purchase ROE: $27.72</h4>
+                    <p>Each purchasing shopper generated $27.72 in revenue, up from $22.67 the prior week.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">09</span>
+        </div>
+    </section>
+
+    <!-- Slide 10: Search Term Analysis -->
+    <section class="slide">
+        <h2>Search Term Analysis</h2>
+        <p>Identifying wasted spend and high-converting terms to optimize keyword strategy.</p>
+
+        <div class="two-col">
+            <div>
+                <h3>Waste Identification (30D)</h3>
+                <div class="exec-card alert" style="margin-bottom: 20px;">
+                    <div class="exec-label">Wasted Spend</div>
+                    <div class="exec-value">$4,615</div>
+                    <div class="exec-context">3,260 non-converting terms</div>
+                </div>
+
+                <h4>Top Wasted Terms</h4>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Search Term</th>
+                            <th>Spend</th>
+                            <th>Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>valley fudge and candy</td>
+                            <td class="value-negative">$25.46</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr>
+                            <td>homemade fudge</td>
+                            <td class="value-negative">$23.35</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr>
+                            <td>b00hk4h6j2 (competitor ASIN)</td>
+                            <td class="value-negative">$20.01</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr>
+                            <td>dark chocolate fudge</td>
+                            <td class="value-negative">$17.16</td>
+                            <td>$0</td>
+                        </tr>
+                        <tr>
+                            <td>pistachio fudge</td>
+                            <td class="value-negative">$16.42</td>
+                            <td>$0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h3>Top Converting Terms</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Search Term</th>
+                            <th>Sales</th>
+                            <th>ACOS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>fudge</td>
+                            <td>$9,646</td>
+                            <td>23.2%</td>
+                        </tr>
+                        <tr>
+                            <td>uncle butch's fudge</td>
+                            <td>$6,926</td>
+                            <td class="value-positive">13.9%</td>
+                        </tr>
+                        <tr>
+                            <td>fudge (variant)</td>
+                            <td>$5,960</td>
+                            <td>23.5%</td>
+                        </tr>
+                        <tr>
+                            <td>uncle butch fudge</td>
+                            <td>$1,821</td>
+                            <td class="value-positive">13.3%</td>
+                        </tr>
+                        <tr>
+                            <td>uncle bucks fudge</td>
+                            <td>$1,466</td>
+                            <td class="value-positive">6.6%</td>
+                        </tr>
+                        <tr>
+                            <td>fudge gift box</td>
+                            <td>$1,441</td>
+                            <td>25.2%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="callout-success callout" style="margin-top: 20px;">
+                    <h4>Branded Terms Win</h4>
+                    <p>Branded searches ("uncle butch's fudge," "uncle bucks fudge") convert at 6-14% ACOS. Expand branded keyword coverage to capture more of this highly efficient traffic.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">10</span>
+        </div>
+    </section>
+
+    <!-- Slide 11: ASIN Performance -->
+    <section class="slide">
+        <h2>ASIN Performance Analysis</h2>
+        <p>Custom Box ASINs drive the bulk of efficient revenue. Individual flavor listings provide search real estate.</p>
+
+        <h3>Top 5 ASINs by Sales (30D)</h3>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ASIN</th>
+                    <th>Type</th>
+                    <th>Sales</th>
+                    <th>Spend</th>
+                    <th>ACOS</th>
+                    <th>AOV</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>B0CN9P8MVT</td>
+                    <td>Custom Box</td>
+                    <td>$28,120</td>
+                    <td>$5,997</td>
+                    <td>21.3%</td>
+                    <td>$38</td>
+                </tr>
+                <tr>
+                    <td>B0C4M16LQ7</td>
+                    <td>Custom Box</td>
+                    <td>$18,483</td>
+                    <td>$3,873</td>
+                    <td>21.0%</td>
+                    <td>$38</td>
+                </tr>
+                <tr>
+                    <td>B0C1DFLHMN</td>
+                    <td>Custom Box</td>
+                    <td>$9,782</td>
+                    <td>$2,302</td>
+                    <td>23.5%</td>
+                    <td>$30</td>
+                </tr>
+                <tr>
+                    <td>B09LJZZ118</td>
+                    <td>Individual</td>
+                    <td>$7,287</td>
+                    <td>$1,793</td>
+                    <td>24.6%</td>
+                    <td>$28</td>
+                </tr>
+                <tr>
+                    <td>B09LJPW69Q</td>
+                    <td>Individual</td>
+                    <td>$5,693</td>
+                    <td>$1,522</td>
+                    <td>26.7%</td>
+                    <td>$29</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="two-col" style="margin-top: 30px;">
+            <div>
+                <h3>Underperforming ASINs</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ASIN</th>
+                            <th>Spend</th>
+                            <th>ACOS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>B0CZ9PYRQ4</td>
+                            <td>$288</td>
+                            <td class="value-negative">49.6%</td>
+                        </tr>
+                        <tr>
+                            <td>B09LJRBWZT</td>
+                            <td>$268</td>
+                            <td class="value-negative">48.2%</td>
+                        </tr>
+                        <tr>
+                            <td>B0CG6RPNSZ</td>
+                            <td>$225</td>
+                            <td class="value-negative">63.9%</td>
+                        </tr>
+                        <tr>
+                            <td>B0C5Y478W4</td>
+                            <td>$202</td>
+                            <td class="value-negative">38.7%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <div class="callout">
+                    <h4>Product Strategy Insight</h4>
+                    <p>Custom Boxes ($30-38 AOV) are driving efficient spend at 21-24% ACOS. Individual listings have higher ACOS but provide search real estate. Consider reducing bids on underperforming ASINs and reallocating to Custom Box campaigns.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">11</span>
+        </div>
+    </section>
+
+    <!-- Slide 12: Cross-Channel Context -->
+    <section class="slide">
+        <h2>Cross-Channel Strategic Context</h2>
+        <p>Amazon performance within the broader multi-channel marketing ecosystem targeting 25% blended MCoS.</p>
+
+        <div class="channel-grid">
+            <div class="channel-card">
+                <div class="channel-header">
+                    <span class="channel-name">Amazon</span>
+                    <span class="tag tag-warning">24.8% ACOS</span>
+                </div>
+                <div class="channel-metrics">
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">$21K</div>
+                        <div class="channel-metric-label">30D Spend</div>
+                    </div>
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">$86K</div>
+                        <div class="channel-metric-label">30D Sales</div>
+                    </div>
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">4.03X</div>
+                        <div class="channel-metric-label">ROAS</div>
+                    </div>
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">+20%</div>
+                        <div class="channel-metric-label">YoY Growth</div>
+                    </div>
+                </div>
+            </div>
+            <div class="channel-card">
+                <div class="channel-header">
+                    <span class="channel-name">Google Ads</span>
+                    <span class="tag tag-neutral">See Google Report</span>
+                </div>
+                <div class="channel-metrics">
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">3X+</div>
+                        <div class="channel-metric-label">ROAS Target</div>
+                    </div>
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">$6-7K</div>
+                        <div class="channel-metric-label">Daily Revenue Goal</div>
+                    </div>
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">PMax</div>
+                        <div class="channel-metric-label">Primary Type</div>
+                    </div>
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">Scale</div>
+                        <div class="channel-metric-label">Priority</div>
+                    </div>
+                </div>
+            </div>
+            <div class="channel-card">
+                <div class="channel-header">
+                    <span class="channel-name">Meta Ads</span>
+                    <span class="tag tag-neutral">See Meta Report</span>
+                </div>
+                <div class="channel-metrics">
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">3X</div>
+                        <div class="channel-metric-label">ROAS Target</div>
+                    </div>
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">2.5X</div>
+                        <div class="channel-metric-label">Scale Flexibility</div>
+                    </div>
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">ASC+</div>
+                        <div class="channel-metric-label">Primary Type</div>
+                    </div>
+                    <div class="channel-metric">
+                        <div class="channel-metric-value">Creative</div>
+                        <div class="channel-metric-label">Focus</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout-dark callout">
+            <h4>Blended MCoS Target: 25%</h4>
+            <p>With Amazon at 24.8% ACOS (30D), the platform is approaching efficiency targets. When combined with Google (3X target) and Meta (3X target), the blended marketing cost should track toward the 25% goal. Amazon's 15% commission must be factored into true cost calculations.</p>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <h3>TikTok Opportunity</h3>
+                <p>Currently dormant but identified as untapped growth channel. Strategy: Drive traffic to website (not TikTok Shop) to control data and experience. Complements brand awareness from Roku and radio campaigns.</p>
+            </div>
+            <div>
+                <h3>Attribution Considerations</h3>
+                <p>With Roku commercials and radio campaigns driving brand awareness, expect Amazon branded search and consideration metrics to lift. Monitor NTB metrics to isolate advertising impact from brand halo effects.</p>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">12</span>
+        </div>
+    </section>
+
+    <!-- Slide 13: Key Findings -->
+    <section class="slide">
+        <h2>Key Findings</h2>
+        
+        <div class="three-col">
+            <div class="insight-card">
+                <h4>Strong Momentum</h4>
+                <p>ACOS dropped 11.5 points in 14 days (31.5% to 20%) while sales grew 60%. Week 49 hit 17.8% ACOS, nearly reaching the 15% target during peak season.</p>
+            </div>
+            <div class="insight-card">
+                <h4>Branded Wins</h4>
+                <p>Branded campaigns consistently hit 13-15% ACOS, meeting or exceeding targets. These are underspent relative to their efficiency.</p>
+            </div>
+            <div class="insight-card">
+                <h4>Placement Opportunity</h4>
+                <p>Top of Search delivers 18.1% ACOS with 21.4% conversion rate vs 11-12% for other placements. Increase bid modifiers.</p>
+            </div>
+            <div class="insight-card">
+                <h4>PAT Defensive Excellence</h4>
+                <p>SD PAT Defensive campaigns run at 10-13% ACOS, below target. Expand this strategy across all top ASINs.</p>
+            </div>
+            <div class="insight-card">
+                <h4>SBV is King</h4>
+                <p>Sponsored Brands Video at 25.6% ACOS drives 80%+ New-to-Brand orders. Standard SB at 88% ACOS should be consolidated into SBV.</p>
+            </div>
+            <div class="insight-card">
+                <h4>Wasted Spend</h4>
+                <p>$4,615 spent on non-converting search terms in 30 days. Implement negative keyword strategy to reclaim this budget.</p>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">13</span>
+        </div>
+    </section>
+
+    <!-- Slide 14: Strategic Recommendations -->
+    <section class="slide">
+        <h2>Strategic Recommendations</h2>
+
+        <div class="two-col">
+            <div>
+                <h3>Immediate Actions (Week 1-2)</h3>
+                <ol class="rec-list">
+                    <li>
+                        <span class="rec-number">1</span>
+                        <span>Increase Top of Search bid modifiers by 50-100% on top performing campaigns to capture more 18% ACOS traffic</span>
+                    </li>
+                    <li>
+                        <span class="rec-number">2</span>
+                        <span>Scale branded campaign budgets by 25-30%. Already at/below 15% target with room to grow</span>
+                    </li>
+                    <li>
+                        <span class="rec-number">3</span>
+                        <span>Implement negative keywords from wasted spend analysis (target top 50 non-converting terms)</span>
+                    </li>
+                    <li>
+                        <span class="rec-number">4</span>
+                        <span>Increase budgets on 4 budget-capped campaigns (Fudge Custom Box Exact at 23% ACOS)</span>
+                    </li>
+                    <li>
+                        <span class="rec-number">5</span>
+                        <span>Re-enable high-performing paused SD PAT Defensive campaigns</span>
+                    </li>
+                </ol>
+            </div>
+            <div>
+                <h3>Short-Term Actions (Week 3-4)</h3>
+                <ol class="rec-list">
+                    <li>
+                        <span class="rec-number">6</span>
+                        <span>Shift 20% of Auto campaign spend to Manual Exact match (24.5% vs 38.4% ACOS)</span>
+                    </li>
+                    <li>
+                        <span class="rec-number">7</span>
+                        <span>Reduce Phrase match bids by 15-20%, reallocate to Exact match</span>
+                    </li>
+                    <li>
+                        <span class="rec-number">8</span>
+                        <span>Pause Off-Amazon placements (zero ROAS)</span>
+                    </li>
+                    <li>
+                        <span class="rec-number">9</span>
+                        <span>Consolidate SB Standard campaigns into SBV format</span>
+                    </li>
+                    <li>
+                        <span class="rec-number">10</span>
+                        <span>Reduce bids on underperforming ASINs (>40% ACOS)</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="callout-success callout">
+            <h4>Expected Impact</h4>
+            <p>Implementing these recommendations should drive ACOS from current 24.8% toward the 15-18% target range within 30-45 days, while maintaining or increasing sales volume. This positions Amazon to contribute efficiently to the 25% blended MCoS goal.</p>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">14</span>
+        </div>
+    </section>
+
+    <!-- Slide 15: Roadmap -->
+    <section class="slide">
+        <h2>30/60/90 Day Roadmap</h2>
+
+        <div class="three-col">
+            <div class="insight-card">
+                <h4>Days 1-30</h4>
+                <p><strong>Focus:</strong> Quick wins and efficiency gains</p>
+                <ul style="margin-top: 15px; padding-left: 20px; color: var(--text-secondary);">
+                    <li>Implement negative keywords</li>
+                    <li>Increase Top of Search bids</li>
+                    <li>Scale branded campaigns</li>
+                    <li>Re-enable SD PAT Defensive</li>
+                    <li>Budget increases on capped campaigns</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Target:</strong> 22% ACOS</p>
+            </div>
+            <div class="insight-card">
+                <h4>Days 31-60</h4>
+                <p><strong>Focus:</strong> Structure optimization</p>
+                <ul style="margin-top: 15px; padding-left: 20px; color: var(--text-secondary);">
+                    <li>Auto to Manual migration</li>
+                    <li>SB Standard to SBV consolidation</li>
+                    <li>ASIN-level bid optimization</li>
+                    <li>Placement modifier refinement</li>
+                    <li>Search term harvesting</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Target:</strong> 19% ACOS</p>
+            </div>
+            <div class="insight-card">
+                <h4>Days 61-90</h4>
+                <p><strong>Focus:</strong> Scale and expansion</p>
+                <ul style="margin-top: 15px; padding-left: 20px; color: var(--text-secondary);">
+                    <li>Expand PAT Defensive across all ASINs</li>
+                    <li>Test new keyword categories</li>
+                    <li>Launch SBV on additional products</li>
+                    <li>Explore roasted nuts category entry</li>
+                    <li>Holiday 2025 preparation</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Target:</strong> 15-17% ACOS</p>
+            </div>
+        </div>
+
+        <div class="callout-dark callout" style="text-align: center;">
+            <h4>North Star Metrics</h4>
+            <p>Amazon TACOS: 15% | Blended MCoS: 25% | Monthly Revenue: $400K+</p>
+        </div>
+
+        <div class="slide-footer">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">15</span>
+        </div>
+    </section>
+
+    <!-- Slide 16: Next Steps -->
+    <section class="slide" style="justify-content: center; align-items: center; text-align: center;">
+        <h2 style="margin-bottom: 40px;">Next Steps</h2>
+        
+        <div style="max-width: 600px; margin: 0 auto;">
+            <div class="insight-card" style="margin-bottom: 20px; text-align: left;">
+                <h4>1. Review and Approve Recommendations</h4>
+                <p>Align on priority actions and any adjustments based on business context</p>
+            </div>
+            <div class="insight-card" style="margin-bottom: 20px; text-align: left;">
+                <h4>2. Begin Implementation</h4>
+                <p>Start with immediate actions: negative keywords, Top of Search bids, branded scaling</p>
+            </div>
+            <div class="insight-card" style="margin-bottom: 20px; text-align: left;">
+                <h4>3. Weekly Performance Sync</h4>
+                <p>Track progress toward TACOS targets and adjust strategy as needed</p>
+            </div>
+            <div class="insight-card" style="text-align: left;">
+                <h4>4. Cross-Channel Integration</h4>
+                <p>Coordinate Amazon strategy with Google, Meta, and upcoming TikTok efforts for unified blended MCoS tracking</p>
+            </div>
+        </div>
+
+        <div class="slide-footer" style="width: 100%; position: absolute; bottom: 50px; left: 0; padding: 0 70px;">
+            <span>Uncle Butch's Fudge | Amazon Strategic Audit</span>
+            <span class="slide-number">16</span>
+        </div>
+    </section>
+
+</body>
+</html>
