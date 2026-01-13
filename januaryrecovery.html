@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncle Butch's Fudge | Performance Recovery Plan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --success: #28a745;
+            --info: #17a2b8;
+            --gold: #d4a574;
+            --cream: #faf8f5;
+            --dark-cream: #f0ebe3;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 50%;
+        }
+        
+        .header h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .status-banner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(220, 53, 69, 0.15);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--danger);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--danger);
+            position: relative;
+        }
+        
+        .metric-card.warning { border-top-color: var(--warning); }
+        .metric-card.success { border-top-color: var(--success); }
+        .metric-card.info { border-top-color: var(--info); }
+        
+        .metric-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.6rem;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .metric-card.danger .metric-value { color: var(--danger); }
+        .metric-card.warning .metric-value { color: #e6a800; }
+        .metric-card.success .metric-value { color: var(--success); }
+        .metric-card.info .metric-value { color: var(--info); }
+        
+        .metric-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .metric-target {
+            font-size: 0.7rem;
+            color: #999;
+            margin-top: 8px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: white;
+        }
+        
+        .icon-diagnosis { background: var(--danger); }
+        .icon-meta { background: #1877f2; }
+        .icon-google { background: #4285f4; }
+        .icon-amazon { background: #ff9900; color: #232f3e; }
+        .icon-tiktok { background: #000; }
+        .icon-promo { background: var(--gold); color: var(--primary); }
+        .icon-timeline { background: var(--primary); }
+        
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            margin-bottom: 15px;
+        }
+        
+        .card-dark {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .card h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .card-dark h3 { color: var(--gold); }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 12px 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        
+        .data-table th {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            font-weight: 700;
+            background: #fafafa;
+        }
+        
+        .card-dark .data-table th {
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.6);
+            border-bottom-color: rgba(255,255,255,0.1);
+        }
+        
+        .card-dark .data-table td {
+            border-bottom-color: rgba(255,255,255,0.1);
+        }
+        
+        .roas-good { color: var(--success); font-weight: 700; }
+        .roas-ok { color: var(--warning); font-weight: 700; }
+        .roas-bad { color: var(--danger); font-weight: 700; }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .tag-scale { background: #d4edda; color: #155724; }
+        .tag-hold { background: #fff3cd; color: #856404; }
+        .tag-cut { background: #f8d7da; color: #721c24; }
+        .tag-pause { background: #721c24; color: white; }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .action-box {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .action-box.scale {
+            background: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid var(--success);
+        }
+        
+        .action-box.cut {
+            background: rgba(220, 53, 69, 0.1);
+            border-left: 4px solid var(--danger);
+        }
+        
+        .action-box.hold {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid var(--warning);
+        }
+        
+        .action-box strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        
+        .action-box p {
+            font-size: 0.85rem;
+            color: #555;
+            margin: 0;
+        }
+        
+        .diagnosis-list {
+            counter-reset: diagnosis;
+        }
+        
+        .diagnosis-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .diagnosis-item:last-child { border-bottom: none; }
+        
+        .diagnosis-number {
+            counter-increment: diagnosis;
+            width: 32px;
+            height: 32px;
+            background: var(--danger);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        
+        .diagnosis-number::before {
+            content: counter(diagnosis);
+        }
+        
+        .diagnosis-content strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .diagnosis-content p {
+            font-size: 0.9rem;
+            color: #555;
+            margin: 0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, var(--gold) 0%, #c9a066 100%);
+            color: var(--primary);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .highlight-box h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+        
+        .highlight-box p {
+            font-size: 0.95rem;
+        }
+        
+        .week-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        
+        .week-table th,
+        .week-table td {
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        .week-table th {
+            background: var(--primary);
+            color: white;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .week-table th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+        
+        .week-table th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+        
+        .week-table td strong {
+            color: var(--primary);
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .impact-card {
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .impact-card.before {
+            background: #f8d7da;
+            border: 2px solid var(--danger);
+        }
+        
+        .impact-card.after {
+            background: #d4edda;
+            border: 2px solid var(--success);
+        }
+        
+        .impact-card h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        
+        .impact-card .value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.2rem;
+            line-height: 1.2;
+        }
+        
+        .impact-card.before .value { color: var(--danger); }
+        .impact-card.after .value { color: var(--success); }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 20px;
+            border-top: 2px solid var(--primary);
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .footer strong {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header">
+        <h1>Performance Recovery Plan</h1>
+        <p class="subtitle">Uncle Butch's Fudge | Week of January 13, 2026</p>
+        <div class="status-banner">
+            <div class="status-dot"></div>
+            <span>Blended ROAS at 2.54X against 4X target. Immediate action required.</span>
+        </div>
+    </div>
+
+    <div class="metrics-grid">
+        <div class="metric-card danger">
+            <div class="metric-value">2.54X</div>
+            <div class="metric-label">Blended ROAS</div>
+            <div class="metric-target">Target: 4X (25% MCoS)</div>
+        </div>
+        <div class="metric-card danger">
+            <div class="metric-value">39.4%</div>
+            <div class="metric-label">Blended MCoS</div>
+            <div class="metric-target">Target: 25% | Ceiling: 30%</div>
+        </div>
+        <div class="metric-card warning">
+            <div class="metric-value">$55.3K</div>
+            <div class="metric-label">Weekly Revenue</div>
+            <div class="metric-target">Target: $100K/week</div>
+        </div>
+        <div class="metric-card warning">
+            <div class="metric-value">$21.8K</div>
+            <div class="metric-label">Weekly Ad Spend</div>
+            <div class="metric-target">Meta: $7.3K | Google: $14.5K</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon icon-diagnosis">!</div>
+            <div class="section-title">Root Cause Diagnosis</div>
+        </div>
+        
+        <div class="card">
+            <div class="diagnosis-list">
+                <div class="diagnosis-item">
+                    <div class="diagnosis-number"></div>
+                    <div class="diagnosis-content">
+                        <strong>Google PMax consuming 69% of Google budget at only 2.06X ROAS</strong>
+                        <p>$10,037 of $14,530 Google spend is in PMax, but it is delivering below the 3X floor. This single campaign is the biggest drag on blended efficiency.</p>
+                    </div>
+                </div>
+                <div class="diagnosis-item">
+                    <div class="diagnosis-number"></div>
+                    <div class="diagnosis-content">
+                        <strong>Branded Search at 6X ROAS only getting 9% of Google budget</strong>
+                        <p>$1,314 spend at 5.99X ROAS with only 81% impression share. Lost IS to rank is 19%. This is the highest efficiency opportunity being underleveraged.</p>
+                    </div>
+                </div>
+                <div class="diagnosis-item">
+                    <div class="diagnosis-number"></div>
+                    <div class="diagnosis-content">
+                        <strong>Meta efficiency below target across 3 of 4 campaigns</strong>
+                        <p>Only TOF Winners (3.65X) is hitting target. Value Optimization (2.51X), Creative Testing (2.53X), and Advantage+ Post IDs (2.42X) are all below 3X floor.</p>
+                    </div>
+                </div>
+                <div class="diagnosis-item">
+                    <div class="diagnosis-number"></div>
+                    <div class="diagnosis-content">
+                        <strong>January seasonal pressure with no promotional hook</strong>
+                        <p>Post-holiday consumer fatigue. Running evergreen campaigns while competitors likely have January sales. No Valentine's Day campaign live despite 32 days out.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon icon-google">G</div>
+            <div class="section-title">Google Ads: Rebalancing Required</div>
+        </div>
+        
+        <div class="card card-dark">
+            <h3>Current Performance (Jan 6-12)</h3>
+            <table class="data-table">
+                <tr>
+                    <th>Campaign</th>
+                    <th>Spend</th>
+                    <th>% of Total</th>
+                    <th>Conversions</th>
+                    <th>Revenue</th>
+                    <th>ROAS</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td><strong>PMax New Customers</strong></td>
+                    <td>$10,037</td>
+                    <td>69%</td>
+                    <td>511</td>
+                    <td>$20,710</td>
+                    <td class="roas-bad">2.06X</td>
+                    <td><span class="tag tag-cut">Reduce</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Branded Search</strong></td>
+                    <td>$1,314</td>
+                    <td>9%</td>
+                    <td>130</td>
+                    <td>$7,869</td>
+                    <td class="roas-good">5.99X</td>
+                    <td><span class="tag tag-scale">Scale</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Demand Gen</strong></td>
+                    <td>$1,796</td>
+                    <td>12%</td>
+                    <td>113</td>
+                    <td>$4,229</td>
+                    <td class="roas-ok">2.35X</td>
+                    <td><span class="tag tag-hold">Optimize</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Shopping</strong></td>
+                    <td>$1,383</td>
+                    <td>10%</td>
+                    <td>75</td>
+                    <td>$3,127</td>
+                    <td class="roas-ok">2.26X</td>
+                    <td><span class="tag tag-hold">Optimize</span></td>
+                </tr>
+                <tr style="background: rgba(255,255,255,0.05);">
+                    <td><strong>TOTAL</strong></td>
+                    <td><strong>$14,530</strong></td>
+                    <td>100%</td>
+                    <td><strong>828</strong></td>
+                    <td><strong>$35,935</strong></td>
+                    <td><strong>2.47X</strong></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="grid-2">
+            <div class="card">
+                <h3 style="color: var(--success);">Scale Immediately</h3>
+                <div class="action-box scale">
+                    <strong>Branded Search: Push from $1.3K to $2.5K weekly</strong>
+                    <p>6X ROAS with only 81% impression share. 19% lost to rank means quality score improvements and higher bids will capture more high-intent branded traffic.</p>
+                </div>
+                <div class="action-box scale">
+                    <strong>Target 95% Branded Impression Share</strong>
+                    <p>Every lost branded impression at 6X efficiency is profit left on the table. Increase Target IS bid strategy aggressively.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--danger);">Reduce or Optimize</h3>
+                <div class="action-box cut">
+                    <strong>PMax: Reduce daily budget by 25-30%</strong>
+                    <p>At 2.06X ROAS, PMax is below the 3X floor. Reduce budget to let algorithm optimize on smaller volume. Review asset groups for underperformers.</p>
+                </div>
+                <div class="action-box hold">
+                    <strong>Demand Gen: Creative refresh needed</strong>
+                    <p>2.35X is below target. Test new creative assets. The "Best Performing Images" ad group is carrying most of the load.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" style="margin-top: 15px;">
+            <h3 style="color: var(--primary);">Key Google Insight: Device Performance</h3>
+            <p style="margin-bottom: 15px;">Mobile is 77% of spend ($11,235) and 81% of conversions (668). This confirms mobile-first optimization is correct. Female 55+ is the largest demographic segment at 29% of impressions.</p>
+            <table class="data-table">
+                <tr>
+                    <th>Device</th>
+                    <th>Spend</th>
+                    <th>Conversions</th>
+                    <th>Conv. Rate</th>
+                </tr>
+                <tr>
+                    <td>Mobile</td>
+                    <td>$11,235 (77%)</td>
+                    <td>668 (81%)</td>
+                    <td>Higher efficiency</td>
+                </tr>
+                <tr>
+                    <td>Desktop</td>
+                    <td>$2,562 (18%)</td>
+                    <td>113 (14%)</td>
+                    <td>Lower efficiency</td>
+                </tr>
+                <tr>
+                    <td>Tablet + TV</td>
+                    <td>$723 (5%)</td>
+                    <td>46 (5%)</td>
+                    <td>Maintain</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon icon-meta">M</div>
+            <div class="section-title">Meta Ads: Consolidate Into Winners</div>
+        </div>
+        
+        <div class="card card-dark">
+            <h3>Current Performance (Jan 6-12)</h3>
+            <table class="data-table">
+                <tr>
+                    <th>Campaign</th>
+                    <th>Spend</th>
+                    <th>Purchases</th>
+                    <th>Revenue</th>
+                    <th>ROAS</th>
+                    <th>CPA</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td><strong>TOF Winners CBO</strong></td>
+                    <td>$1,213</td>
+                    <td>100</td>
+                    <td>$4,428</td>
+                    <td class="roas-good">3.65X</td>
+                    <td>$12.13</td>
+                    <td><span class="tag tag-scale">Scale</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Advantage+ Post IDs</strong></td>
+                    <td>$3,306</td>
+                    <td>191</td>
+                    <td>$8,012</td>
+                    <td class="roas-ok">2.42X</td>
+                    <td>$17.31</td>
+                    <td><span class="tag tag-hold">Optimize</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Creative Testing</strong></td>
+                    <td>$1,405</td>
+                    <td>99</td>
+                    <td>$3,548</td>
+                    <td class="roas-ok">2.53X</td>
+                    <td>$14.19</td>
+                    <td><span class="tag tag-cut">Consolidate</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Value Optimization</strong></td>
+                    <td>$1,347</td>
+                    <td>89</td>
+                    <td>$3,376</td>
+                    <td class="roas-ok">2.51X</td>
+                    <td>$15.13</td>
+                    <td><span class="tag tag-pause">Pause</span></td>
+                </tr>
+                <tr style="background: rgba(255,255,255,0.05);">
+                    <td><strong>TOTAL</strong></td>
+                    <td><strong>$7,271</strong></td>
+                    <td><strong>479</strong></td>
+                    <td><strong>$19,364</strong></td>
+                    <td><strong>2.66X</strong></td>
+                    <td><strong>$15.18</strong></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="grid-2">
+            <div class="card">
+                <h3 style="color: var(--success);">Scale Immediately</h3>
+                <div class="action-box scale">
+                    <strong>TOF Winners CBO: Scale to $2K weekly</strong>
+                    <p>3.65X ROAS is above target. Bakery Interest Winners ad set within this campaign hit 3.61X with purchases up significantly. Push budget here.</p>
+                </div>
+                <div class="action-box scale">
+                    <strong>Top Creative: L8 | W Copy - Video1 - Packaging</strong>
+                    <p>$213 spend, 28 purchases, 4.32X ROAS. This creative in Bakery Interest is the top performer. Duplicate to other ad sets.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--danger);">Pause or Consolidate</h3>
+                <div class="action-box cut">
+                    <strong>Value Optimization: Pause campaign</strong>
+                    <p>2.51X ROAS is below floor. Reallocate the $1,347 weekly budget to TOF Winners which is performing above target.</p>
+                </div>
+                <div class="action-box hold">
+                    <strong>Creative Testing: Keep only top 3 performers</strong>
+                    <p>Pause all ads below 2.5X ROAS after 72 hours of data. Consolidate budget into proven winners.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card" style="margin-top: 15px;">
+            <h3 style="color: var(--primary);">Top Performing Ads (Jan 6-12)</h3>
+            <table class="data-table">
+                <tr>
+                    <th>Ad</th>
+                    <th>Spend</th>
+                    <th>Purchases</th>
+                    <th>Revenue</th>
+                    <th>ROAS</th>
+                </tr>
+                <tr>
+                    <td>L8 | W Copy - Video1 - Packaging (Bakery Interest)</td>
+                    <td>$213</td>
+                    <td>28</td>
+                    <td>$920</td>
+                    <td class="roas-good">4.32X</td>
+                </tr>
+                <tr>
+                    <td>UGC - Video3 > Fudge Collection (5% LAL)</td>
+                    <td>$441</td>
+                    <td>54</td>
+                    <td>$1,964</td>
+                    <td class="roas-good">4.45X</td>
+                </tr>
+                <tr>
+                    <td>[T] TOF/CT - W COPY - VIDEO3 (Value LAL)</td>
+                    <td>$661</td>
+                    <td>61</td>
+                    <td>$2,310</td>
+                    <td class="roas-good">3.49X</td>
+                </tr>
+                <tr>
+                    <td>L8 | (ID) L8 | C-UBF17 - Video24 Revamp</td>
+                    <td>$136</td>
+                    <td>13</td>
+                    <td>$476</td>
+                    <td class="roas-good">3.49X</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon icon-promo">%</div>
+            <div class="section-title">Promotional Strategy: Boost Conversion Rate</div>
+        </div>
+        
+        <div class="highlight-box">
+            <h3>Recommendation: Launch Limited Time Offer This Week</h3>
+            <p>January conversion rates need a promotional hook. A targeted offer can boost CVR 20-40% and justify current traffic costs while efficiency improves.</p>
+        </div>
+        
+        <div class="grid-2" style="margin-top: 20px;">
+            <div class="card">
+                <h3 style="color: var(--primary);">January Options (Choose One)</h3>
+                <div class="action-box hold">
+                    <strong>Option A: Free Shipping Threshold</strong>
+                    <p>"Free Shipping on Orders $50+" - Increases AOV without discounting product price.</p>
+                </div>
+                <div class="action-box hold">
+                    <strong>Option B: Bundle Discount</strong>
+                    <p>"Buy 2 Boxes, Get 10% Off" - Protects margin while driving larger orders.</p>
+                </div>
+                <div class="action-box hold">
+                    <strong>Option C: Flash Sale</strong>
+                    <p>"48 Hour January Sale: 15% Off" - Creates urgency. Run mid-week.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--danger);">Valentine's Day: URGENT</h3>
+                <div class="action-box cut">
+                    <strong>Must Launch by January 20</strong>
+                    <p>32 days until Valentine's Day. Gifting creative should be live NOW. Messaging: "The Sweetest Valentine's Gift" / "Skip the Chocolate Box"</p>
+                </div>
+                <div class="action-box scale">
+                    <strong>Shipping Cutoff Urgency</strong>
+                    <p>"Order by Feb 10 for Valentine's Delivery" creates natural urgency and conversion lift.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon icon-tiktok">T</div>
+            <div class="section-title">TikTok Ads: Accelerate Launch for Incremental Volume</div>
+        </div>
+        
+        <div class="card">
+            <p style="font-size: 1rem; margin-bottom: 15px;">Current channels are under efficiency pressure. TikTok represents untapped incremental volume. Accelerating launch adds a new traffic source while existing channels optimize.</p>
+            
+            <table class="data-table">
+                <tr>
+                    <th>Element</th>
+                    <th>Recommendation</th>
+                </tr>
+                <tr>
+                    <td>Launch Date</td>
+                    <td>This week (as soon as pixel verified)</td>
+                </tr>
+                <tr>
+                    <td>Initial Budget</td>
+                    <td>$100/day test phase</td>
+                </tr>
+                <tr>
+                    <td>Objective</td>
+                    <td>Website Conversions, optimize for Complete Payment</td>
+                </tr>
+                <tr>
+                    <td>Creative</td>
+                    <td>Repurpose top 5 Meta UGC videos</td>
+                </tr>
+                <tr>
+                    <td>Target ROAS (Test)</td>
+                    <td>2X ($21.50 CPR at $43 AOV)</td>
+                </tr>
+                <tr>
+                    <td>Incremental Revenue</td>
+                    <td>$1,400/week at 2X ROAS minimum</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon icon-amazon">A</div>
+            <div class="section-title">Amazon Ads: Efficiency Anchor</div>
+        </div>
+        
+        <div class="card">
+            <h3 style="color: var(--primary);">Strategic Role</h3>
+            <p style="margin-bottom: 15px;">With Meta and Google under efficiency pressure, Amazon's 15% TACOS target becomes the efficiency anchor. If Amazon delivers strong TACOS while other channels recover, it pulls the blended number toward target.</p>
+            
+            <div class="action-box scale">
+                <strong>Priority: Top of Search Placements</strong>
+                <p>Historical data shows 10X+ ROAS at Top of Search. Increase bid modifiers on campaigns at or below 15% ACOS.</p>
+            </div>
+            <div class="action-box scale">
+                <strong>Branded Defense</strong>
+                <p>Ensure maximum impression share on "Uncle Butch" searches. Competitors may be conquesting brand terms.</p>
+            </div>
+            <div class="action-box hold">
+                <strong>High ACOS Audit</strong>
+                <p>Any campaign above 20% ACOS needs immediate bid reduction. Search term negative expansion typically recovers 10-15% of wasted spend.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon icon-timeline">W</div>
+            <div class="section-title">This Week: Day by Day Execution</div>
+        </div>
+        
+        <div class="card">
+            <table class="week-table">
+                <tr>
+                    <th style="width: 80px;">Day</th>
+                    <th>Google Ads</th>
+                    <th>Meta Ads</th>
+                    <th>TikTok / Amazon</th>
+                </tr>
+                <tr>
+                    <td><strong>Mon</strong></td>
+                    <td>Reduce PMax budget 25%. Push Branded Search to $350/day</td>
+                    <td>Pause Value Optimization. Scale TOF Winners to $285/day</td>
+                    <td>Confirm TikTok pixel. Export Amazon reports</td>
+                </tr>
+                <tr>
+                    <td><strong>Tue</strong></td>
+                    <td>Review PMax asset groups for underperformers</td>
+                    <td>Pause Creative Testing ads below 2.5X ROAS</td>
+                    <td>Upload customer list for TikTok LAL creation</td>
+                </tr>
+                <tr>
+                    <td><strong>Wed</strong></td>
+                    <td>Demand Gen creative refresh brief</td>
+                    <td>Launch Valentine's Day angle creative</td>
+                    <td>Launch first TikTok campaign at $100/day</td>
+                </tr>
+                <tr>
+                    <td><strong>Thu</strong></td>
+                    <td>Monitor branded IS growth toward 90%</td>
+                    <td>Duplicate top Bakery Interest ad to other sets</td>
+                    <td>Amazon search term audit and negatives</td>
+                </tr>
+                <tr>
+                    <td><strong>Fri</strong></td>
+                    <td>Full performance review</td>
+                    <td>Full performance review</td>
+                    <td>TikTok first read. Amazon bid adjustments</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="impact-grid">
+            <div class="impact-card before">
+                <h4>Current State (This Week)</h4>
+                <div class="value">2.54X ROAS</div>
+                <div class="value">39.4% MCoS</div>
+                <p style="margin-top: 10px; font-size: 0.85rem;">$21.8K spend / $55.3K revenue</p>
+            </div>
+            <div class="impact-card after">
+                <h4>Target State (Next Week)</h4>
+                <div class="value">3.0X+ ROAS</div>
+                <div class="value">33% MCoS</div>
+                <p style="margin-top: 10px; font-size: 0.85rem;">Similar spend, improved efficiency mix</p>
+            </div>
+        </div>
+        
+        <div class="card" style="margin-top: 20px; text-align: center; padding: 30px;">
+            <p style="font-size: 1.05rem;"><strong>The Path Back:</strong> Reallocate budget from underperformers (PMax, Value Opt) to proven winners (Branded Search, TOF Winners). Add promotional hook to boost CVR. Launch TikTok for incremental volume. This is a 2-3 week recovery requiring consistent execution.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Performance Recovery Plan</strong>Uncle Butch's Fudge</p>
+        <p>Prepared by Charles Piper</p>
+    </div>
+
+</div>
+
+</body>
+</html>
