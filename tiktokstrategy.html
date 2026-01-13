@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Ads Strategy | Uncle Butch's Fudge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-slide: #12121a;
+            --bg-card: #1a1a24;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --accent-tiktok: #00f2ea;
+            --accent-pink: #ff0050;
+            --accent-gold: #ffd700;
+            --accent-green: #00d48a;
+            --border-subtle: rgba(255,255,255,0.08);
+            --gradient-tiktok: linear-gradient(135deg, #00f2ea 0%, #ff0050 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10,10,15,0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: var(--gradient-tiktok);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-tiktok);
+        }
+
+        /* Slide Container */
+        .slide {
+            min-height: 100vh;
+            padding: 8rem 4rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Title Slide */
+        .slide-title {
+            background: radial-gradient(ellipse at top right, rgba(0,242,234,0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom left, rgba(255,0,80,0.1) 0%, transparent 50%),
+                        var(--bg-dark);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero-title .gradient {
+            background: var(--gradient-tiktok);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 3rem;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .meta-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Section Headers */
+        .section-number {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-tiktok);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-number::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-tiktok), transparent);
+            max-width: 200px;
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 3rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(0,242,234,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(0,242,234,0.2) 0%, rgba(255,0,80,0.2) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-tiktok);
+        }
+
+        .metric-value {
+            font-family: 'Sora', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value.tiktok { color: var(--accent-tiktok); }
+        .metric-value.pink { color: var(--accent-pink); }
+        .metric-value.gold { color: var(--accent-gold); }
+        .metric-value.green { color: var(--accent-green); }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .data-table thead {
+            background: rgba(0,242,234,0.1);
+        }
+
+        .data-table th {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--accent-tiktok);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .data-table td {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.95rem;
+        }
+
+        .data-table tbody tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .tag-primary { background: rgba(0,242,234,0.15); color: var(--accent-tiktok); }
+        .tag-success { background: rgba(0,212,138,0.15); color: var(--accent-green); }
+        .tag-warning { background: rgba(255,215,0,0.15); color: var(--accent-gold); }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-tiktok), var(--accent-pink));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-tiktok);
+            transform: translateX(-5px);
+            box-shadow: 0 0 20px var(--accent-tiktok);
+        }
+
+        .timeline-day {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--accent-tiktok);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Creative Section */
+        .creative-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .creative-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .creative-card:hover {
+            border-color: rgba(255,0,80,0.4);
+            transform: scale(1.02);
+        }
+
+        .creative-preview {
+            aspect-ratio: 9/16;
+            background: linear-gradient(135deg, #1a1a24 0%, #2a2a34 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .creative-preview::before {
+            content: 'PREVIEW';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent-pink);
+            letter-spacing: 0.1em;
+        }
+
+        .creative-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .creative-hook {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .creative-meta {
+            padding: 1.25rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .creative-type {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .creative-performance {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Call to Action Box */
+        .cta-box {
+            background: linear-gradient(135deg, rgba(0,242,234,0.1) 0%, rgba(255,0,80,0.1) 100%);
+            border: 1px solid rgba(0,242,234,0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-text {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-items {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .cta-item .check {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-title { font-size: 3rem; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .creative-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-col { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .slide { padding: 6rem 2rem 3rem; }
+            .hero-title { font-size: 2.25rem; }
+            .section-title { font-size: 2rem; }
+            .nav-links { display: none; }
+            .hero-meta { flex-direction: column; gap: 1rem; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .creative-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-brand">TikTok Strategy 2026</div>
+        <ul class="nav-links">
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#targets">Targets</a></li>
+            <li><a href="#creative">Creative</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#structure">Structure</a></li>
+            <li><a href="#action">Action</a></li>
+        </ul>
+    </nav>
+
+    <!-- Slide 1: Title -->
+    <section class="slide slide-title" id="overview">
+        <div class="slide-content">
+            <span class="hero-badge">Q1 2026 Launch Strategy</span>
+            <h1 class="hero-title">
+                <span class="gradient">TikTok Ads</span><br>
+                Launch Playbook
+            </h1>
+            <p class="hero-subtitle">
+                Accelerated launch strategy for Uncle Butch's Fudge. Untapped incremental volume while diversifying channel mix.
+            </p>
+            <div class="hero-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Client</span>
+                    <span class="meta-value">Uncle Butch's Fudge</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Launch Date</span>
+                    <span class="meta-value">January 15, 2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Test Budget</span>
+                    <span class="meta-value">$100/day</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Prepared By</span>
+                    <span class="meta-value">Your Marketing Partners</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 2: Why TikTok Now -->
+    <section class="slide" id="why">
+        <div class="slide-content">
+            <span class="section-number">01 — Strategic Rationale</span>
+            <h2 class="section-title">Why TikTok. Why Now.</h2>
+            <p class="section-subtitle">
+                TikTok represents an untapped channel for incremental growth while existing platforms stabilize and recover.
+            </p>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3 class="card-title">Incremental Volume</h3>
+                    <p class="card-text">Even at conservative 2X ROAS, TikTok adds $1,400/week in new revenue. Every dollar helps during recovery.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">Audience Diversification</h3>
+                    <p class="card-text">Reach new demographics outside Meta and Google ecosystems. TikTok skews younger and more discovery-oriented.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔥</div>
+                    <h3 class="card-title">Cross-Channel Lift</h3>
+                    <p class="card-text">TikTok brand awareness drives branded search and direct traffic. Halo effect improves efficiency across all channels.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💎</div>
+                    <h3 class="card-title">Proven Creative</h3>
+                    <p class="card-text">Top-performing Meta UGC videos can be repurposed for TikTok. No new creative production required for launch.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎁</div>
+                    <h3 class="card-title">Valentine's Day Ready</h3>
+                    <p class="card-text">Launching now builds pixel data before peak gifting season. 25+ days of learning before Valentine's push.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚖️</div>
+                    <h3 class="card-title">Portfolio Balance</h3>
+                    <p class="card-text">Reduces dependency on Meta and Google. Even if TikTok hits 2X while others hit 3X, blended MCoS stays healthy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: Target Metrics -->
+    <section class="slide" id="targets">
+        <div class="slide-content">
+            <span class="section-number">02 — Performance Targets</span>
+            <h2 class="section-title">CPR & ROAS Targets</h2>
+            <p class="section-subtitle">
+                Test phase targets account for pixel learning investment and top-of-funnel role in the customer journey.
+            </p>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value tiktok">$21.50</div>
+                    <div class="metric-label">Target CPR</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value pink">$14.33</div>
+                    <div class="metric-label">Breakeven CPR</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value gold">$17.20</div>
+                    <div class="metric-label">Stretch CPR</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value green">$43.00</div>
+                    <div class="metric-label">Average Order Value</div>
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Test Phase (Wk 1-4)</th>
+                        <th>Growth Phase (Wk 5-8)</th>
+                        <th>Scale Phase (Wk 9+)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Target ROAS</td>
+                        <td><span class="tag tag-primary">2.0X</span></td>
+                        <td><span class="tag tag-warning">2.5X</span></td>
+                        <td><span class="tag tag-success">3.0X</span></td>
+                    </tr>
+                    <tr>
+                        <td>Daily Budget</td>
+                        <td>$100</td>
+                        <td>$200</td>
+                        <td>$300+</td>
+                    </tr>
+                    <tr>
+                        <td>Weekly Revenue Target</td>
+                        <td>$1,400</td>
+                        <td>$3,500</td>
+                        <td>$6,300+</td>
+                    </tr>
+                    <tr>
+                        <td>Expected CPR</td>
+                        <td>$21.50</td>
+                        <td>$17.20</td>
+                        <td>$14.33</td>
+                    </tr>
+                    <tr>
+                        <td>Optimization Focus</td>
+                        <td>Pixel learning</td>
+                        <td>Creative testing</td>
+                        <td>Audience scaling</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cta-box" style="margin-top: 2rem; text-align: left; display: flex; gap: 3rem; align-items: center;">
+                <div>
+                    <h3 style="font-family: 'Sora', sans-serif; font-size: 1.25rem; margin-bottom: 0.5rem;">Why 2X ROAS for Test Phase?</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Pixel needs 50+ conversions to exit learning. Early data is noisy. TikTok drives awareness that converts on other channels. Blended portfolio math still works.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: Creative Strategy -->
+    <section class="slide" id="creative">
+        <div class="slide-content">
+            <span class="section-number">03 — Creative Strategy</span>
+            <h2 class="section-title">Native Creative Formats</h2>
+            <p class="section-subtitle">
+                Repurposing proven Meta UGC winners with TikTok-native hooks and formats. No new production required for launch.
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Hook Example</th>
+                        <th>Meta Performance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Taste Reaction</strong></td>
+                        <td>"POV: You finally try the fudge everyone's talking about"</td>
+                        <td><span class="tag tag-success">4.45X ROAS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unboxing</strong></td>
+                        <td>"Unboxing my custom fudge order from Uncle Butch's"</td>
+                        <td><span class="tag tag-success">4.32X ROAS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>TikTok Made Me Buy</strong></td>
+                        <td>"Things TikTok made me buy: homemade fudge edition"</td>
+                        <td><span class="tag tag-warning">3.65X ROAS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Before/After Reaction</strong></td>
+                        <td>"My face before vs after trying this fudge"</td>
+                        <td><span class="tag tag-primary">To Test</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gift Reveal</strong></td>
+                        <td>"Surprising my mom with homemade fudge"</td>
+                        <td><span class="tag tag-primary">To Test</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="two-col" style="margin-top: 3rem;">
+                <div>
+                    <h3 style="font-family: 'Sora', sans-serif; font-size: 1.5rem; margin-bottom: 1.5rem;">Creative Guidelines</h3>
+                    <div class="card" style="margin-bottom: 1rem;">
+                        <h4 class="card-title">Hook in First 1-2 Seconds</h4>
+                        <p class="card-text">TikTok users scroll fast. Open with visual intrigue or bold statement.</p>
+                    </div>
+                    <div class="card" style="margin-bottom: 1rem;">
+                        <h4 class="card-title">Native Feel Over Polish</h4>
+                        <p class="card-text">UGC-style content outperforms branded ads. Keep it authentic.</p>
+                    </div>
+                    <div class="card">
+                        <h4 class="card-title">Sound On Experience</h4>
+                        <p class="card-text">Unlike Meta, TikTok users expect audio. Use trending sounds when possible.</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-family: 'Sora', sans-serif; font-size: 1.5rem; margin-bottom: 1.5rem;">Top Performing Hooks</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Hook Type</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>POV</td>
+                                <td>"POV: You ordered fudge at 2am"</td>
+                            </tr>
+                            <tr>
+                                <td>Question</td>
+                                <td>"Why is everyone obsessed with this fudge?"</td>
+                            </tr>
+                            <tr>
+                                <td>Challenge</td>
+                                <td>"Trying to eat just one piece..."</td>
+                            </tr>
+                            <tr>
+                                <td>Testimonial</td>
+                                <td>"This changed how I gift"</td>
+                            </tr>
+                            <tr>
+                                <td>Discovery</td>
+                                <td>"I found the best fudge in America"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: Launch Timeline -->
+    <section class="slide" id="timeline">
+        <div class="slide-content">
+            <span class="section-number">04 — Launch Timeline</span>
+            <h2 class="section-title">Week 1 Execution Plan</h2>
+            <p class="section-subtitle">
+                Accelerated launch timeline to capture incremental volume immediately while building pixel data for Valentine's Day.
+            </p>
+
+            <div class="two-col">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-day">Monday, Jan 13</div>
+                        <div class="timeline-title">Technical Setup</div>
+                        <div class="timeline-text">Confirm pixel installation. Verify all events firing correctly (ViewContent, AddToCart, InitiateCheckout, CompletePayment). Test event manager.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-day">Tuesday, Jan 14</div>
+                        <div class="timeline-title">Audience Creation</div>
+                        <div class="timeline-text">Upload customer list (email + phone). Create 1%, 3%, 5% lookalike audiences. Build interest-based audiences (Food & Beverage, Sweets, Gifting).</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-day">Wednesday, Jan 15</div>
+                        <div class="timeline-title">Campaign Launch</div>
+                        <div class="timeline-text">Launch Website Conversions campaign at $100/day. 5 ad groups: Broad, 1% LAL, 3% LAL, Food Interest, Gifting Interest. Top 5 Meta UGC videos.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-day">Thursday, Jan 16</div>
+                        <div class="timeline-title">Initial Monitoring</div>
+                        <div class="timeline-text">Monitor delivery and pacing. Check for policy violations. Review early CTR and CPM signals. No optimization changes.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-day">Friday, Jan 17</div>
+                        <div class="timeline-title">First Read</div>
+                        <div class="timeline-text">Analyze 48-hour data. Identify top ad group by CTR. Pause any zero-delivery ad groups. Prepare Week 2 optimization plan.</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="card" style="background: linear-gradient(135deg, rgba(0,242,234,0.1) 0%, rgba(255,0,80,0.05) 100%); border-color: rgba(0,242,234,0.3);">
+                        <h3 class="card-title" style="color: var(--accent-tiktok);">Launch Checklist</h3>
+                        <div style="margin-top: 1.5rem;">
+                            <div class="cta-item" style="margin-bottom: 1rem;">
+                                <span class="check">☐</span>
+                                <span>TikTok Ads Manager access confirmed</span>
+                            </div>
+                            <div class="cta-item" style="margin-bottom: 1rem;">
+                                <span class="check">☐</span>
+                                <span>Pixel installed on all pages</span>
+                            </div>
+                            <div class="cta-item" style="margin-bottom: 1rem;">
+                                <span class="check">☐</span>
+                                <span>Events firing correctly</span>
+                            </div>
+                            <div class="cta-item" style="margin-bottom: 1rem;">
+                                <span class="check">☐</span>
+                                <span>Customer list uploaded</span>
+                            </div>
+                            <div class="cta-item" style="margin-bottom: 1rem;">
+                                <span class="check">☐</span>
+                                <span>$700/week budget approved</span>
+                            </div>
+                            <div class="cta-item" style="margin-bottom: 1rem;">
+                                <span class="check">☐</span>
+                                <span>UGC videos downloaded and reformatted</span>
+                            </div>
+                            <div class="cta-item">
+                                <span class="check">☐</span>
+                                <span>Landing page mobile-optimized</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: Campaign Structure -->
+    <section class="slide" id="structure">
+        <div class="slide-content">
+            <span class="section-number">05 — Campaign Structure</span>
+            <h2 class="section-title">Account Architecture</h2>
+            <p class="section-subtitle">
+                Clean structure for test phase. Single campaign with multiple ad groups to find winning audience quickly.
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Campaign</th>
+                        <th>Ad Group</th>
+                        <th>Targeting</th>
+                        <th>Budget</th>
+                        <th>Creatives</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="5" style="vertical-align: top; font-weight: 600;">UBF - Website Conversions<br><span style="font-weight: 400; color: var(--text-secondary); font-size: 0.85rem;">Objective: Complete Payment</span></td>
+                        <td>Broad - US</td>
+                        <td>Ages 25-65, All Genders, US</td>
+                        <td>$20/day</td>
+                        <td>5 UGC videos</td>
+                    </tr>
+                    <tr>
+                        <td>LAL 1% Purchasers</td>
+                        <td>1% Lookalike of Purchasers</td>
+                        <td>$20/day</td>
+                        <td>5 UGC videos</td>
+                    </tr>
+                    <tr>
+                        <td>LAL 3% Purchasers</td>
+                        <td>3% Lookalike of Purchasers</td>
+                        <td>$20/day</td>
+                        <td>5 UGC videos</td>
+                    </tr>
+                    <tr>
+                        <td>Interest - Food</td>
+                        <td>Food & Beverage, Sweets, Chocolate</td>
+                        <td>$20/day</td>
+                        <td>5 UGC videos</td>
+                    </tr>
+                    <tr>
+                        <td>Interest - Gifting</td>
+                        <td>Gifts, Holiday Shopping, Presents</td>
+                        <td>$20/day</td>
+                        <td>5 UGC videos</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cards-grid" style="margin-top: 3rem;">
+                <div class="card">
+                    <h3 class="card-title">Optimization Settings</h3>
+                    <p class="card-text" style="margin-bottom: 1rem;"><strong>Bid Strategy:</strong> Lowest Cost (let TikTok optimize)</p>
+                    <p class="card-text" style="margin-bottom: 1rem;"><strong>Delivery Type:</strong> Standard (avoid accelerated during learning)</p>
+                    <p class="card-text"><strong>Optimization Goal:</strong> Complete Payment (not AddToCart)</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Placement Settings</h3>
+                    <p class="card-text" style="margin-bottom: 1rem;"><strong>Placement:</strong> TikTok Feed Only (exclude Pangle initially)</p>
+                    <p class="card-text" style="margin-bottom: 1rem;"><strong>Device:</strong> All Devices</p>
+                    <p class="card-text"><strong>Smart Creative:</strong> Disabled (control creative testing)</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Scaling Rules</h3>
+                    <p class="card-text" style="margin-bottom: 1rem;"><strong>Week 2:</strong> Double budget on ad groups with CPA below $25</p>
+                    <p class="card-text" style="margin-bottom: 1rem;"><strong>Week 3:</strong> Launch new campaign duplicating winner</p>
+                    <p class="card-text"><strong>Week 4:</strong> Test new creative if winners emerging</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: Call to Action -->
+    <section class="slide" id="action">
+        <div class="slide-content" style="text-align: center;">
+            <span class="section-number" style="justify-content: center;">06 — Next Steps</span>
+            <h2 class="section-title">Ready to Launch</h2>
+            <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">
+                We're targeting Wednesday, January 15 for first campaign launch. Here's what we need from you.
+            </p>
+
+            <div class="cta-box">
+                <h3 class="cta-title">Action Items for Nathaniel</h3>
+                <p class="cta-text">Confirm the following items by end of day Tuesday to hit our Wednesday launch target.</p>
+                <div class="cta-items">
+                    <div class="cta-item">
+                        <span class="check" style="color: var(--accent-green);">✓</span>
+                        <span style="text-decoration: line-through; opacity: 0.6;">TikTok Ads Manager access</span>
+                    </div>
+                    <div class="cta-item">
+                        <span class="check">✓</span>
+                        <span>$700/week test budget approved</span>
+                    </div>
+                    <div class="cta-item">
+                        <span class="check">✓</span>
+                        <span>Customer email list exported</span>
+                    </div>
+                    <div class="cta-item">
+                        <span class="check" style="color: var(--accent-green);">✓</span>
+                        <span style="text-decoration: line-through; opacity: 0.6;">Any additional UGC content shared</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards-grid" style="margin-top: 3rem; text-align: left;">
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Weekly Reporting</h3>
+                    <p class="card-text">Every Friday: Full performance report with CPR, ROAS, top creative, and next week's optimization plan.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💬</div>
+                    <h3 class="card-title">Communication</h3>
+                    <p class="card-text">Real-time updates in Slack. Immediate flags if anything goes off-track. Full transparency on performance.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">Success Criteria</h3>
+                    <p class="card-text">Week 4 decision point: If 2X+ ROAS, scale to $200/day. If below 1.5X, pause and regroup on creative.</p>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+</body>
+</html>
