@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncle Butch's Fudge - Strategic Optimization Action Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+        .date-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+        .alert-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+            border-left: 4px solid #ef4444;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .alert-box h3 {
+            color: #fca5a5;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .alert-box p {
+            color: #e8e8e8;
+        }
+        .success-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));
+            border-left: 4px solid #22c55e;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .success-box h3 {
+            color: #86efac;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        .meta-icon { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .google-icon { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .amazon-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .priority-icon { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .section h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .metric-card {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        .metric-label {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .metric-change {
+            font-size: 0.9rem;
+            margin-top: 8px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        .positive { background: rgba(34, 197, 94, 0.2); color: #86efac; }
+        .negative { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+        .neutral { background: rgba(148, 163, 184, 0.2); color: #94a3b8; }
+        .action-list {
+            list-style: none;
+        }
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .action-item:last-child {
+            border-bottom: none;
+        }
+        .action-priority {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .priority-1 { background: #ef4444; color: #fff; }
+        .priority-2 { background: #f59e0b; color: #fff; }
+        .priority-3 { background: #3b82f6; color: #fff; }
+        .action-content h4 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        .action-content p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .action-impact {
+            margin-left: auto;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .impact-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+        .impact-value {
+            color: #22c55e;
+            font-weight: 600;
+        }
+        .winner-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .scaling-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .scaling-table th, .scaling-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .scaling-table th {
+            color: #94a3b8;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+        .scaling-table td {
+            color: #e8e8e8;
+        }
+        .roas-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .roas-excellent { background: rgba(34, 197, 94, 0.2); color: #86efac; }
+        .roas-good { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+        .roas-target { background: rgba(148, 163, 184, 0.2); color: #94a3b8; }
+        .pending-section {
+            background: linear-gradient(135deg, rgba(148, 163, 184, 0.1), rgba(148, 163, 184, 0.05));
+            border: 1px dashed rgba(148, 163, 184, 0.3);
+        }
+        .pending-badge {
+            display: inline-block;
+            background: rgba(148, 163, 184, 0.2);
+            color: #94a3b8;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Uncle Butch's Fudge</h1>
+            <p class="subtitle">Strategic Optimization Action Plan | Fast Volume Recovery</p>
+            <span class="date-badge">January 20, 2026 | Prepared by Charles Piper, YMP</span>
+        </header>
+
+        <div class="alert-box">
+            <h3>Client Concern: YoY Volume Gap</h3>
+            <p>Nathaniel flagged concern about performance trending substantially under last year. This document outlines immediate tactical actions across all paid channels to accelerate volume recovery while maintaining ROAS targets.</p>
+        </div>
+
+        <div class="success-box">
+            <h3>Key Finding: Amazon Channel Down YoY, Optimizations Working</h3>
+            <p>Meta: +161% revenue YoY. Google: +143% revenue YoY. Amazon total revenue: -14.7% YoY ($34,520 vs $40,467). No ads YoY comparison available so cannot attribute gap to ads specifically. However, TOS bid optimizations from last week are working with ACOS trending down from 29.1% to 24.8%. TACOS at 13.54% gives headroom to scale Custom Box campaigns aggressively.</p>
+        </div>
+
+        <!-- META ADS SECTION -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon meta-icon">M</div>
+                <div>
+                    <h2>Meta Ads</h2>
+                    <span style="color: #86efac; font-size: 0.9rem;">Strong performer, ready to scale</span>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">$12,903</div>
+                    <div class="metric-label">MTD Spend</div>
+                    <span class="metric-change positive">+103% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$49,210</div>
+                    <div class="metric-label">MTD Revenue</div>
+                    <span class="metric-change positive">+161% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3.81X</div>
+                    <div class="metric-label">ROAS</div>
+                    <span class="metric-change positive">vs 2.96X last year</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">1,067</div>
+                    <div class="metric-label">Purchases</div>
+                    <span class="metric-change positive">+153% YoY</span>
+                </div>
+            </div>
+
+            <h3 style="color: #fff; margin-bottom: 15px;">Scaling Opportunities Identified</h3>
+            <div style="margin-bottom: 20px;">
+                <span class="winner-badge">11.12X ROAS Advantage+ ad set underspending</span>
+                <span class="winner-badge">5% Customer Lookalike at 4.10X</span>
+                <span class="winner-badge">Review Image1 creative at 10.23X</span>
+                <span class="winner-badge">Video24 Revamp at 5.79X</span>
+            </div>
+
+            <table class="scaling-table">
+                <thead>
+                    <tr>
+                        <th>Asset</th>
+                        <th>Current Spend</th>
+                        <th>ROAS</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5% Customer Lookalike</td>
+                        <td>$3,439</td>
+                        <td><span class="roas-badge roas-excellent">4.10X</span></td>
+                        <td>Scale budget +50% immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Advantage+ (11X ad set)</td>
+                        <td>$454</td>
+                        <td><span class="roas-badge roas-excellent">11.12X</span></td>
+                        <td>Increase daily budget 3X</td>
+                    </tr>
+                    <tr>
+                        <td>Review Image1 Creative</td>
+                        <td>$1,279</td>
+                        <td><span class="roas-badge roas-excellent">10.23X</span></td>
+                        <td>Duplicate to additional audiences</td>
+                    </tr>
+                    <tr>
+                        <td>Video24 Revamp</td>
+                        <td>$299</td>
+                        <td><span class="roas-badge roas-excellent">5.79X</span></td>
+                        <td>Test in TOF Winners at higher spend</td>
+                    </tr>
+                    <tr>
+                        <td>TOF Winners CBO</td>
+                        <td>$3,873</td>
+                        <td><span class="roas-badge roas-excellent">4.38X</span></td>
+                        <td>Scale +25% this week</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color: #fff; margin: 25px 0 15px;">Immediate Actions</h3>
+            <ul class="action-list">
+                <li class="action-item">
+                    <span class="action-priority priority-1">1</span>
+                    <div class="action-content">
+                        <h4>Scale 5% Customer Lookalike by 50%</h4>
+                        <p>This audience is driving 369 purchases at 4.10X with 739% YoY growth. Primary scaling lever with proven volume capacity.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">+150 purchases/week</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-1">2</span>
+                    <div class="action-content">
+                        <h4>Triple daily budget on 11.12X Advantage+ ad set</h4>
+                        <p>Currently only spending $454 at exceptional efficiency. Massive scaling headroom available.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">+100 purchases/week</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-2">3</span>
+                    <div class="action-content">
+                        <h4>Duplicate Review Image1 creative into TOF Winners</h4>
+                        <p>At 10.23X ROAS with 175 purchases, this creative has proven conversion power and deserves broader testing.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">+75 purchases/week</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-2">4</span>
+                    <div class="action-content">
+                        <h4>Increase TOF Winners budget +25%</h4>
+                        <p>Running at 4.38X ROAS with $9.38 CPA. Already above target, safe to push harder.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">+50 purchases/week</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- GOOGLE ADS SECTION -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon google-icon">G</div>
+                <div>
+                    <h2>Google Ads</h2>
+                    <span style="color: #f59e0b; font-size: 0.9rem;">Budget allocation issue identified, fixing now</span>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">$21,490</div>
+                    <div class="metric-label">MTD Spend</div>
+                    <span class="metric-change positive">+217% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$60,044</div>
+                    <div class="metric-label">MTD Revenue</div>
+                    <span class="metric-change positive">+143% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">2.79X</div>
+                    <div class="metric-label">ROAS</div>
+                    <span class="metric-change negative">vs 3.65X last year</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">1,360</div>
+                    <div class="metric-label">Conversions</div>
+                    <span class="metric-change positive">+102% YoY</span>
+                </div>
+            </div>
+
+            <div class="alert-box" style="margin-top: 20px;">
+                <h3>Root Cause: Budget Allocation Imbalance</h3>
+                <p>PMax is consuming 61% of budget at 2.25X ROAS while Branded Search at 7.40X ROAS receives only 9%. Branded impression share dropped from 95.72% to 79.69%, losing 20% of high intent traffic to competitors.</p>
+            </div>
+
+            <h3 style="color: #fff; margin: 25px 0 15px;">Campaign Performance</h3>
+            <table class="scaling-table">
+                <thead>
+                    <tr>
+                        <th>Campaign</th>
+                        <th>Spend</th>
+                        <th>Budget Share</th>
+                        <th>ROAS</th>
+                        <th>Issue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PMax</td>
+                        <td>$13,109</td>
+                        <td>61%</td>
+                        <td><span class="roas-badge roas-target">2.25X</span></td>
+                        <td style="color: #fca5a5;">Over-funded, lowest efficiency</td>
+                    </tr>
+                    <tr>
+                        <td>Branded Search</td>
+                        <td>$1,990</td>
+                        <td>9%</td>
+                        <td><span class="roas-badge roas-excellent">7.40X</span></td>
+                        <td style="color: #fca5a5;">Severely under-funded, losing 20% IS</td>
+                    </tr>
+                    <tr>
+                        <td>Shopping</td>
+                        <td>$3,958</td>
+                        <td>18%</td>
+                        <td><span class="roas-badge roas-target">2.24X</span></td>
+                        <td style="color: #fca5a5;">Losing 68% impression share to rank</td>
+                    </tr>
+                    <tr>
+                        <td>Demand Gen</td>
+                        <td>$2,432</td>
+                        <td>11%</td>
+                        <td><span class="roas-badge roas-good">2.89X</span></td>
+                        <td style="color: #86efac;">Good efficiency, budget limited</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color: #fff; margin: 25px 0 15px;">Wasted Spend on Zero-Conversion Terms</h3>
+            <div style="margin-bottom: 20px;">
+                <span class="winner-badge" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">"fudge" generic: $357</span>
+                <span class="winner-badge" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">"sees candy": $85</span>
+                <span class="winner-badge" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">"fudge near me": $61</span>
+                <span class="winner-badge" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">"dubai chocolate": $41</span>
+                <span class="winner-badge" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">"swiss colony": $35</span>
+            </div>
+            <p style="color: #94a3b8;">Total waste: $600+ per week on terms with zero conversions. Adding as account-level negatives.</p>
+
+            <h3 style="color: #fff; margin: 25px 0 15px;">Immediate Actions</h3>
+            <ul class="action-list">
+                <li class="action-item">
+                    <span class="action-priority priority-1">1</span>
+                    <div class="action-content">
+                        <h4>Reduce PMax from $640/day to $400/day</h4>
+                        <p>Taking too much budget at lowest ROAS. Reallocating to higher performers.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">+0.3X ROAS lift</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-1">2</span>
+                    <div class="action-content">
+                        <h4>Increase Branded Search from $350/day to $600/day</h4>
+                        <p>Recover lost impression share from 79.69% back to 95%+. At 7.40X ROAS this is the highest value traffic.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">+50 conversions/week</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-1">3</span>
+                    <div class="action-content">
+                        <h4>Add account-level negative keywords</h4>
+                        <p>Block generic terms (fudge, chocolate, candy), competitors (sees candy, swiss colony, mackinac), and non-intent terms (near me, recipe).</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">Save $600+/week</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-2">4</span>
+                    <div class="action-content">
+                        <h4>Increase Shopping budget to $700/day with lower TROAS</h4>
+                        <p>Currently losing 68% of impressions to rank. Need to bid more aggressively to capture available demand.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">+40% impression share</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- AMAZON ADS SECTION -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon amazon-icon">A</div>
+                <div>
+                    <h2>Amazon Ads</h2>
+                    <span style="color: #22c55e; font-size: 0.9rem;">TACOS below target, room to scale</span>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">$4,672</div>
+                    <div class="metric-label">MTD Ad Spend</div>
+                    <span class="metric-change neutral">+26% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$34,520</div>
+                    <div class="metric-label">Total Revenue</div>
+                    <span class="metric-change negative">-14.7% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">13.54%</div>
+                    <div class="metric-label">TACOS</div>
+                    <span class="metric-change positive">Below 15% target</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3.78X</div>
+                    <div class="metric-label">ROAS</div>
+                    <span class="metric-change neutral">26.43% ACOS</span>
+                </div>
+            </div>
+
+            <div class="success-box" style="margin-top: 20px;">
+                <h3>TOS Optimizations Working, Scaling Headroom Confirmed</h3>
+                <p>TOS bid fixes from last week are working. ACOS trending down from 29.1% to 24.8%. Top of Search delivering 11.5% ACOS while Product Pages sit at 26%. TACOS at 13.54% is below the 15% floor giving approximately $500 additional daily spend headroom.</p>
+            </div>
+
+            <h3 style="color: #fff; margin: 25px 0 15px;">Portfolio Performance</h3>
+            <table class="scaling-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Spend</th>
+                        <th>ACOS</th>
+                        <th>ROAS</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Custom Box (B0DXHGSYH6)</td>
+                        <td>$1,575</td>
+                        <td><span class="roas-badge roas-good">22.3%</span></td>
+                        <td>4.48X</td>
+                        <td style="color: #86efac;">Scale +30%</td>
+                    </tr>
+                    <tr>
+                        <td>Custom Box 4 Flavors</td>
+                        <td>$1,399</td>
+                        <td><span class="roas-badge roas-good">22.7%</span></td>
+                        <td>4.41X</td>
+                        <td style="color: #86efac;">Scale +30%</td>
+                    </tr>
+                    <tr>
+                        <td>Dark Chocolate Fudge</td>
+                        <td>$25</td>
+                        <td><span class="roas-badge roas-excellent">10.6%</span></td>
+                        <td>9.41X</td>
+                        <td style="color: #86efac;">Scale 5X budget</td>
+                    </tr>
+                    <tr>
+                        <td>Chocolate Pecan Fudge</td>
+                        <td>$193</td>
+                        <td><span class="roas-badge roas-good">24.6%</span></td>
+                        <td>4.07X</td>
+                        <td style="color: #86efac;">Scale +25%</td>
+                    </tr>
+                    <tr>
+                        <td>Peanut Butter Fudge</td>
+                        <td>$192</td>
+                        <td><span class="roas-badge" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">64.1%</span></td>
+                        <td>1.56X</td>
+                        <td style="color: #fca5a5;">Cut bids 50%</td>
+                    </tr>
+                    <tr>
+                        <td>Maple Walnut Fudge</td>
+                        <td>$215</td>
+                        <td><span class="roas-badge" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">48.1%</span></td>
+                        <td>2.08X</td>
+                        <td style="color: #fca5a5;">Cut bids 40%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color: #fff; margin: 25px 0 15px;">Budget Waste Identified</h3>
+            <div style="margin-bottom: 20px;">
+                <span class="winner-badge" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">Generic Chocolate: 272% ACOS</span>
+                <span class="winner-badge" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">Maple Walnut Generic: 197% ACOS</span>
+                <span class="winner-badge" style="background: rgba(239, 68, 68, 0.2); color: #fca5a5;">Zero-conv campaigns: $200+/week</span>
+            </div>
+
+            <h3 style="color: #fff; margin: 25px 0 15px;">Immediate Actions</h3>
+            <ul class="action-list">
+                <li class="action-item">
+                    <span class="action-priority priority-1">1</span>
+                    <div class="action-content">
+                        <h4>Scale Custom Box campaigns by 30%</h4>
+                        <p>Both Custom Box portfolios driving 67% of ad revenue at 4.4X ROAS. TACOS headroom allows aggressive scaling.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">+$300/week revenue</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-1">2</span>
+                    <div class="action-content">
+                        <h4>5X budget on Dark Chocolate Fudge campaigns</h4>
+                        <p>Running 9.41X ROAS at only $25 spend. Massively under-funded winner.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">+$150/week revenue</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-1">3</span>
+                    <div class="action-content">
+                        <h4>Pause zero-conversion campaigns</h4>
+                        <p>Multiple campaigns with $10+ spend and zero orders. Immediate waste elimination.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">Save $200/week</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-2">4</span>
+                    <div class="action-content">
+                        <h4>Cut bids on high ACOS campaigns (above 80%)</h4>
+                        <p>Generic and broad campaigns dragging down blended ACOS. Cut bids 50% or pause.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">-5% ACOS improvement</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-2">5</span>
+                    <div class="action-content">
+                        <h4>Launch Valentine's Day gifting campaigns</h4>
+                        <p>25 days out from Valentine's Day. Gift Box and Custom Box campaigns need seasonal push.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Expected Impact</div>
+                        <div class="impact-value">Seasonal volume boost</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- PRIORITY ACTIONS SUMMARY -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon priority-icon">!</div>
+                <div>
+                    <h2>Immediate Priority Actions</h2>
+                    <span style="color: #fca5a5; font-size: 0.9rem;">Execute within 48 hours</span>
+                </div>
+            </div>
+
+            <h3 style="color: #3b82f6; margin-bottom: 15px;">Meta Ads</h3>
+            <ul class="action-list">
+                <li class="action-item">
+                    <span class="action-priority priority-1">1</span>
+                    <div class="action-content">
+                        <h4>Scale 5% Customer Lookalike by 50%</h4>
+                        <p>Highest confidence scaling lever. 4.10X ROAS with proven volume capacity.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Timeline</div>
+                        <div class="impact-value">Today</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-1">2</span>
+                    <div class="action-content">
+                        <h4>Triple budget on 11.12X Advantage+ ad set</h4>
+                        <p>Exceptional efficiency with significant scaling headroom.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Timeline</div>
+                        <div class="impact-value">Today</div>
+                    </div>
+                </li>
+            </ul>
+
+            <h3 style="color: #22c55e; margin: 25px 0 15px;">Google Ads</h3>
+            <ul class="action-list">
+                <li class="action-item">
+                    <span class="action-priority priority-1">1</span>
+                    <div class="action-content">
+                        <h4>Reduce PMax budget from $640 to $400/day</h4>
+                        <p>Taking 61% of spend at lowest ROAS. Reallocate to higher performers.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Timeline</div>
+                        <div class="impact-value">Today</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-1">2</span>
+                    <div class="action-content">
+                        <h4>Increase Branded Search from $350 to $600/day</h4>
+                        <p>7.40X ROAS but losing 20% impression share. Highest value traffic available.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Timeline</div>
+                        <div class="impact-value">Today</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-1">3</span>
+                    <div class="action-content">
+                        <h4>Add account-level negative keywords</h4>
+                        <p>Block generic and competitor terms wasting $600+/week with zero conversions.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Timeline</div>
+                        <div class="impact-value">Today</div>
+                    </div>
+                </li>
+            </ul>
+
+            <h3 style="color: #f59e0b; margin: 25px 0 15px;">Amazon Ads (Primary YoY Recovery Lever)</h3>
+            <ul class="action-list">
+                <li class="action-item">
+                    <span class="action-priority priority-1">1</span>
+                    <div class="action-content">
+                        <h4>Scale Custom Box campaigns aggressively (+30%)</h4>
+                        <p>Running 22-23% ACOS with 4.4X ROAS. TACOS at 13.54% gives $500+ headroom before hitting 15% floor.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Timeline</div>
+                        <div class="impact-value">Today</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-1">2</span>
+                    <div class="action-content">
+                        <h4>5X budget on Dark Chocolate Fudge</h4>
+                        <p>9.41X ROAS at only $25 spend. Massively under-funded winner.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Timeline</div>
+                        <div class="impact-value">Today</div>
+                    </div>
+                </li>
+                <li class="action-item">
+                    <span class="action-priority priority-1">3</span>
+                    <div class="action-content">
+                        <h4>Pause high ACOS portfolios (Peanut Butter 64%, Vanilla 65%)</h4>
+                        <p>Reallocate budget from underperformers to proven winners.</p>
+                    </div>
+                    <div class="action-impact">
+                        <div class="impact-label">Timeline</div>
+                        <div class="impact-value">Today</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>Prepared by Charles Piper | Your Marketing Partners</p>
+            <p style="margin-top: 10px;">Complete cross-channel analysis | Meta, Google, and Amazon</p>
+        </footer>
+    </div>
+</body>
+</html>
