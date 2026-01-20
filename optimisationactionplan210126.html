@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncle Butch's Fudge - Strategic Optimization Action Plan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e8e8e8;
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 40px;
+        }
+        h1 { font-size: 2.5rem; color: #fff; margin-bottom: 10px; font-weight: 600; }
+        .subtitle { color: #94a3b8; font-size: 1.1rem; }
+        .date-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+        .priority-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .priority-critical { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+        .priority-high { background: rgba(251, 146, 60, 0.2); color: #fdba74; }
+        .priority-medium { background: rgba(250, 204, 21, 0.2); color: #fde047; }
+        .alert-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+            border-left: 4px solid #ef4444;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .alert-box h3 { color: #fca5a5; font-size: 1.1rem; margin-bottom: 10px; }
+        .success-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));
+            border-left: 4px solid #22c55e;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .success-box h3 { color: #86efac; font-size: 1.1rem; margin-bottom: 10px; }
+        .info-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+            border-left: 4px solid #3b82f6;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .info-box h3 { color: #93c5fd; font-size: 1.1rem; margin-bottom: 10px; }
+        .section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        .meta-icon { background: linear-gradient(135deg, #1877f2, #0d65d9); }
+        .google-icon { background: linear-gradient(135deg, #ea4335, #fbbc05); }
+        .amazon-icon { background: linear-gradient(135deg, #ff9900, #ff6600); }
+        .section-title { font-size: 1.4rem; color: #fff; font-weight: 600; }
+        .section-subtitle { color: #94a3b8; font-size: 0.9rem; margin-top: 4px; }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .metric-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .metric-value { font-size: 1.8rem; font-weight: 700; color: #fff; }
+        .metric-label { color: #94a3b8; font-size: 0.85rem; margin-top: 5px; }
+        .metric-change { font-size: 0.8rem; margin-top: 8px; display: block; }
+        .metric-change.positive { color: #86efac; }
+        .metric-change.negative { color: #fca5a5; }
+        .metric-change.neutral { color: #94a3b8; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        th {
+            background: rgba(255,255,255,0.05);
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+        td { color: #e8e8e8; }
+        .roas-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .roas-excellent { background: rgba(34, 197, 94, 0.2); color: #86efac; }
+        .roas-good { background: rgba(59, 130, 246, 0.2); color: #93c5fd; }
+        .roas-warning { background: rgba(251, 146, 60, 0.2); color: #fdba74; }
+        .roas-poor { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+        .action-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .action-title { font-weight: 600; color: #fff; font-size: 1.05rem; }
+        .action-steps { margin-left: 20px; }
+        .action-steps li {
+            color: #cbd5e1;
+            margin-bottom: 8px;
+            padding-left: 8px;
+        }
+        .step-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        .checklist { list-style: none; }
+        .checklist li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .subsection {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .subsection-title {
+            color: #60a5fa;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .tag-today { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+        .tag-week { background: rgba(251, 146, 60, 0.2); color: #fdba74; }
+        .tag-ongoing { background: rgba(34, 197, 94, 0.2); color: #86efac; }
+        .campaign-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+        .campaign-name { font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .campaign-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        .campaign-metric span { color: #fff; font-weight: 500; }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 40px;
+            color: #64748b;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .two-column { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Uncle Butch's Fudge</h1>
+            <p class="subtitle">Strategic Optimization Action Plan</p>
+            <span class="date-badge">January 20, 2026</span>
+        </header>
+
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="success-box">
+            <h3>Executive Summary: Spend Gap Not Efficiency Gap</h3>
+            <p><strong>Meta:</strong> -40.9% revenue YoY ($70,116 vs $118,557) but current ROAS is 3.50X vs 2.62X last year. <strong>Google:</strong> +51.7% revenue YoY. <strong>Amazon:</strong> -14.7% revenue YoY. The fix is replicating 2025 Meta campaign structures into the active UBF account. At $45K spend with current efficiency, Meta revenue reaches $150K+.</p>
+        </div>
+
+        <!-- TARGET METRICS -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">Target Metrics & KPIs</div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">$400K+</div>
+                    <div class="metric-label">Monthly Revenue Target</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">25%</div>
+                    <div class="metric-label">Blended Marketing Cost</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3X+</div>
+                    <div class="metric-label">Meta/Google ROAS Target</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">15-18%</div>
+                    <div class="metric-label">Amazon TACOS Target</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== META ADS SECTION ==================== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon meta-icon">M</div>
+                <div>
+                    <div class="section-title">Meta Ads</div>
+                    <div class="section-subtitle">Primary Gap Driver - Rebuild Priority</div>
+                </div>
+                <span class="priority-badge priority-critical">Critical Priority</span>
+            </div>
+
+            <!-- Current Performance -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">$70,116</div>
+                    <div class="metric-label">2026 MTD Revenue</div>
+                    <span class="metric-change negative">-40.9% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$20,027</div>
+                    <div class="metric-label">2026 MTD Spend</div>
+                    <span class="metric-change negative">vs $45,290 in 2025</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">1,541</div>
+                    <div class="metric-label">2026 MTD Purchases</div>
+                    <span class="metric-change negative">vs 3,163 in 2025</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3.50X</div>
+                    <div class="metric-label">2026 ROAS</div>
+                    <span class="metric-change positive">vs 2.62X in 2025</span>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h3>The Opportunity</h3>
+                <p>Current efficiency is 33% better than 2025. At $45K spend with 3.50X ROAS = $157K revenue. The campaigns that worked last year need to be rebuilt in the active UBF account.</p>
+            </div>
+
+            <!-- Current Campaign Performance -->
+            <div class="subsection">
+                <div class="subsection-title">📊 Current Active Campaigns (2026)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign</th>
+                            <th>Spend</th>
+                            <th>Revenue</th>
+                            <th>Purchases</th>
+                            <th>ROAS</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>YMP - Advantage+ - Post IDs</td>
+                            <td>$9,454</td>
+                            <td>$33,424</td>
+                            <td>684</td>
+                            <td><span class="roas-badge roas-excellent">3.54X</span></td>
+                            <td style="color: #86efac;">Active - Scale</td>
+                        </tr>
+                        <tr>
+                            <td>YMP - TOF Winners - CBO</td>
+                            <td>$4,044</td>
+                            <td>$17,433</td>
+                            <td>425</td>
+                            <td><span class="roas-badge roas-excellent">4.31X</span></td>
+                            <td style="color: #86efac;">Active - Scale</td>
+                        </tr>
+                        <tr>
+                            <td>YMP - Creative Testing</td>
+                            <td>$3,969</td>
+                            <td>$13,211</td>
+                            <td>281</td>
+                            <td><span class="roas-badge roas-excellent">3.33X</span></td>
+                            <td style="color: #86efac;">Active - Monitor</td>
+                        </tr>
+                        <tr>
+                            <td>YMP - Advantage+ Value - Post IDs</td>
+                            <td>$2,560</td>
+                            <td>$6,049</td>
+                            <td>151</td>
+                            <td><span class="roas-badge roas-warning">2.36X</span></td>
+                            <td style="color: #fde047;">Inactive - Review</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 2025 Campaigns to Replicate -->
+            <div class="subsection">
+                <div class="subsection-title">🔄 2025 Campaign Structures to Replicate</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign</th>
+                            <th>2025 Spend</th>
+                            <th>2025 Revenue</th>
+                            <th>Purchases</th>
+                            <th>ROAS</th>
+                            <th>Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Advantage+ US Campaign</strong></td>
+                            <td>$28,323</td>
+                            <td>$68,634</td>
+                            <td>1,829</td>
+                            <td><span class="roas-badge roas-good">2.42X</span></td>
+                            <td><span class="tag tag-today">Today</span></td>
+                        </tr>
+                        <tr>
+                            <td>ASC Catalogue - Website</td>
+                            <td>$5,665</td>
+                            <td>$15,054</td>
+                            <td>415</td>
+                            <td><span class="roas-badge roas-good">2.66X</span></td>
+                            <td><span class="tag tag-week">This Week</span></td>
+                        </tr>
+                        <tr>
+                            <td>TOF Creative Testing - ABO</td>
+                            <td>$3,606</td>
+                            <td>$11,965</td>
+                            <td>304</td>
+                            <td><span class="roas-badge roas-excellent">3.32X</span></td>
+                            <td><span class="tag tag-week">This Week</span></td>
+                        </tr>
+                        <tr>
+                            <td>LIN (5) Best-Sellers - ABO</td>
+                            <td>$3,747</td>
+                            <td>$11,586</td>
+                            <td>290</td>
+                            <td><span class="roas-badge roas-excellent">3.09X</span></td>
+                            <td><span class="tag tag-week">This Week</span></td>
+                        </tr>
+                        <tr>
+                            <td>TOF Manual Audience - ABO</td>
+                            <td>$2,726</td>
+                            <td>$6,438</td>
+                            <td>178</td>
+                            <td><span class="roas-badge roas-good">2.36X</span></td>
+                            <td><span class="tag tag-week">This Week</span></td>
+                        </tr>
+                        <tr>
+                            <td>M/BOF Retargeting - CBO</td>
+                            <td>$1,222</td>
+                            <td>$4,880</td>
+                            <td>147</td>
+                            <td><span class="roas-badge roas-excellent">3.99X</span></td>
+                            <td><span class="tag tag-today">Today</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- DETAILED ACTION ITEMS -->
+            <h3 style="color: #fff; margin: 30px 0 20px;">Detailed Action Plan</h3>
+
+            <!-- Action 1: Advantage+ US Rebuild -->
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">1. Rebuild Advantage+ US Campaign Structure</div>
+                    <span class="tag tag-today">Execute Today</span>
+                </div>
+                <p style="color: #94a3b8; margin-bottom: 15px;">This campaign drove 58% of 2025 Meta revenue ($68K of $118K). Must replicate structure with proven post IDs.</p>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div><strong>Campaign Setup:</strong> Create new Advantage+ Shopping Campaign in UBF account. Name: "YMP - Advantage+ US - Rebuild"</div></li>
+                    <li><div class="checkbox"></div><div><strong>Objective:</strong> Sales - Purchase conversion event</div></li>
+                    <li><div class="checkbox"></div><div><strong>Budget:</strong> Start at $500/day (will scale to $1,500/day over 2 weeks)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Conversion Location:</strong> Website only (not Website & Shop)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Pixel:</strong> Ensure UBF pixel is selected with Purchase as primary event</div></li>
+                    <li><div class="checkbox"></div><div><strong>Geographic Targeting:</strong> United States only</div></li>
+                    <li><div class="checkbox"></div><div><strong>Existing Customer Budget Cap:</strong> Set to 20% to prioritize new customer acquisition</div></li>
+                    <li><div class="checkbox"></div><div><strong>Creative:</strong> Use existing post IDs from current YMP - Advantage+ - Post IDs campaign (top 5-8 performers)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Attribution:</strong> 7-day click, 1-day view</div></li>
+                    <li><div class="checkbox"></div><div><strong>Bid Strategy:</strong> Maximum volume (not cost cap initially)</div></li>
+                </ul>
+            </div>
+
+            <!-- Action 2: BOF Retargeting -->
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">2. Build BOF Retargeting Layer</div>
+                    <span class="tag tag-today">Execute Today</span>
+                </div>
+                <p style="color: #94a3b8; margin-bottom: 15px;">Retargeting ran at 3.99X ROAS in 2025. Essential for capturing warm traffic from other channels.</p>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div><strong>Campaign Type:</strong> Manual Sales Campaign (not Advantage+)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Budget:</strong> CBO at $150/day</div></li>
+                    <li><div class="checkbox"></div><div><strong>Ad Set 1 - Cart Abandoners:</strong> Website Custom Audience - AddToCart last 7 days, exclude Purchase last 7 days</div></li>
+                    <li><div class="checkbox"></div><div><strong>Ad Set 2 - Checkout Abandoners:</strong> Website Custom Audience - InitiateCheckout last 14 days, exclude Purchase last 14 days</div></li>
+                    <li><div class="checkbox"></div><div><strong>Ad Set 3 - Product Viewers:</strong> Website Custom Audience - ViewContent last 14 days, exclude AddToCart last 14 days</div></li>
+                    <li><div class="checkbox"></div><div><strong>Ad Set 4 - Past Purchasers:</strong> Website Custom Audience - Purchase 30-180 days (repeat purchase angle)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Creative Strategy:</strong> Urgency messaging, social proof, testimonials. Different creative per ad set.</div></li>
+                    <li><div class="checkbox"></div><div><strong>Frequency Cap:</strong> 3 impressions per day per ad set</div></li>
+                    <li><div class="checkbox"></div><div><strong>Placement:</strong> Advantage+ placements with manual review after 3 days</div></li>
+                </ul>
+            </div>
+
+            <!-- Action 3: ASC Catalogue -->
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">3. Rebuild ASC Catalogue Campaign</div>
+                    <span class="tag tag-week">This Week</span>
+                </div>
+                <p style="color: #94a3b8; margin-bottom: 15px;">Catalogue campaign drove $15K at 2.66X ROAS. Dynamic product ads pull from feed automatically.</p>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div><strong>Pre-requisite:</strong> Verify product catalogue is connected to UBF ad account and synced with Shopify</div></li>
+                    <li><div class="checkbox"></div><div><strong>Campaign Type:</strong> Advantage+ Shopping Campaign (Catalogue)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Budget:</strong> $300/day</div></li>
+                    <li><div class="checkbox"></div><div><strong>Product Set:</strong> All products initially, then segment to best sellers after 7 days data</div></li>
+                    <li><div class="checkbox"></div><div><strong>Creative:</strong> Dynamic creative with catalogue images, prices, product names</div></li>
+                    <li><div class="checkbox"></div><div><strong>Primary Text Options:</strong> 3-5 variations highlighting custom boxes, freshness, quality</div></li>
+                    <li><div class="checkbox"></div><div><strong>Landing Page:</strong> Deep link to product pages (not collection)</div></li>
+                </ul>
+            </div>
+
+            <!-- Action 4: TOF Creative Testing -->
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">4. Rebuild TOF Creative Testing Structure</div>
+                    <span class="tag tag-week">This Week</span>
+                </div>
+                <p style="color: #94a3b8; margin-bottom: 15px;">Creative testing at 3.32X ROAS. Essential for finding winning ads to feed into scaling campaigns.</p>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div><strong>Campaign Type:</strong> Manual Sales Campaign - ABO (Ad Set Budget Optimization)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Structure:</strong> 1 ad set per creative concept, $30-50/day per ad set</div></li>
+                    <li><div class="checkbox"></div><div><strong>Total Budget:</strong> $200-300/day across all test ad sets</div></li>
+                    <li><div class="checkbox"></div><div><strong>Audience:</strong> Broad targeting (US, 25-65, no interests) - let Meta optimize</div></li>
+                    <li><div class="checkbox"></div><div><strong>Test Framework:</strong> Test one variable at a time (hook, format, angle, CTA)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Success Criteria:</strong> 3+ purchases at 2.5X+ ROAS within $100 spend = winner</div></li>
+                    <li><div class="checkbox"></div><div><strong>Graduation Process:</strong> Winners move to Advantage+ as post IDs within 48 hours</div></li>
+                    <li><div class="checkbox"></div><div><strong>Kill Criteria:</strong> $50 spend with 0 purchases OR $100 spend under 2X ROAS = pause</div></li>
+                </ul>
+            </div>
+
+            <!-- Action 5: LIN Best Sellers -->
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">5. Rebuild LIN Best-Sellers Campaign</div>
+                    <span class="tag tag-week">This Week</span>
+                </div>
+                <p style="color: #94a3b8; margin-bottom: 15px;">Interest-based targeting at 3.09X ROAS. Targets users with affinity for fudge, candy, gifting.</p>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div><strong>Campaign Type:</strong> Manual Sales Campaign - ABO</div></li>
+                    <li><div class="checkbox"></div><div><strong>Budget:</strong> $250/day total, split across ad sets</div></li>
+                    <li><div class="checkbox"></div><div><strong>Ad Set 1 - Fudge Interest:</strong> Interest: Fudge, Chocolate, Confectionery. $75/day</div></li>
+                    <li><div class="checkbox"></div><div><strong>Ad Set 2 - Gifting Interest:</strong> Interest: Gift baskets, Gift giving, Holiday shopping. $75/day</div></li>
+                    <li><div class="checkbox"></div><div><strong>Ad Set 3 - Bakery/Sweets:</strong> Interest: Bakery, Candy, Desserts, Sweet foods. $50/day</div></li>
+                    <li><div class="checkbox"></div><div><strong>Ad Set 4 - 5% LAL Purchasers:</strong> 5% Lookalike of website purchasers (180 days). $50/day</div></li>
+                    <li><div class="checkbox"></div><div><strong>Age Range:</strong> 25-65 (exclude under 25 - low AOV)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Creative:</strong> Product-focused ads highlighting Custom Boxes as hero product</div></li>
+                </ul>
+            </div>
+
+            <!-- Action 6: Scale Current Winners -->
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">6. Scale Current Top Performers</div>
+                    <span class="tag tag-today">Execute Today</span>
+                </div>
+                <p style="color: #94a3b8; margin-bottom: 15px;">Current campaigns are efficient. Scale incrementally while maintaining ROAS.</p>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div><strong>YMP - Advantage+ - Post IDs:</strong> Increase budget from current to $600/day (+25% phase 1)</div></li>
+                    <li><div class="checkbox"></div><div><strong>YMP - TOF Winners - CBO:</strong> Increase budget from $250 to $350/day (+40%)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Scaling Rule:</strong> Max 20-25% budget increase per 3-4 days to protect learning phase</div></li>
+                    <li><div class="checkbox"></div><div><strong>Monitor:</strong> If ROAS drops below 3X after 48 hours, hold budget and assess</div></li>
+                    <li><div class="checkbox"></div><div><strong>YMP - Creative Testing:</strong> Keep budget stable, focus on finding new winners</div></li>
+                    <li><div class="checkbox"></div><div><strong>YMP - Advantage+ Value:</strong> Review after 7 days. If still under 2.5X, pause and reallocate budget</div></li>
+                </ul>
+            </div>
+
+            <!-- Budget Trajectory -->
+            <div class="subsection">
+                <div class="subsection-title">📈 Meta Ads Budget Trajectory</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Daily Budget Target</th>
+                            <th>Key Milestones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Week 1 (Now)</td>
+                            <td>$1,200/day</td>
+                            <td>Advantage+ rebuild live, BOF retargeting live, scale current winners</td>
+                        </tr>
+                        <tr>
+                            <td>Week 2</td>
+                            <td>$1,800/day</td>
+                            <td>ASC Catalogue live, TOF Creative Testing live, LIN Best Sellers live</td>
+                        </tr>
+                        <tr>
+                            <td>Week 3</td>
+                            <td>$2,400/day</td>
+                            <td>Scale all campaigns 25% if ROAS holds above 3X</td>
+                        </tr>
+                        <tr>
+                            <td>Week 4</td>
+                            <td>$3,000/day</td>
+                            <td>Target: $45K+ spend for the month, $150K+ revenue trajectory</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== GOOGLE ADS SECTION ==================== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon google-icon">G</div>
+                <div>
+                    <div class="section-title">Google Ads</div>
+                    <div class="section-subtitle">Only Channel Up YoY - Optimize Allocation</div>
+                </div>
+                <span class="priority-badge priority-high">High Priority</span>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">$60,440</div>
+                    <div class="metric-label">2026 MTD Revenue</div>
+                    <span class="metric-change positive">+51.7% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$21,490</div>
+                    <div class="metric-label">2026 MTD Spend</div>
+                    <span class="metric-change positive">+32.6% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">1,371</div>
+                    <div class="metric-label">2026 Conversions</div>
+                    <span class="metric-change positive">+69.9% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">2.81X</div>
+                    <div class="metric-label">2026 ROAS</div>
+                    <span class="metric-change positive">vs 2.46X in 2025</span>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h3>Bright Spot: Google is Performing</h3>
+                <p>Revenue up 51.7% with improved ROAS. However, budget allocation is suboptimal. PMax consuming 61% of budget at lowest efficiency while Branded Search at 7.40X receives only 9%.</p>
+            </div>
+
+            <!-- Campaign Performance -->
+            <div class="subsection">
+                <div class="subsection-title">📊 Campaign Performance & Allocation</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign</th>
+                            <th>Current Spend</th>
+                            <th>Budget Share</th>
+                            <th>ROAS</th>
+                            <th>Issue</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PMax</td>
+                            <td>$13,109</td>
+                            <td>61%</td>
+                            <td><span class="roas-badge roas-warning">2.25X</span></td>
+                            <td style="color: #fca5a5;">Over-allocated, lowest efficiency</td>
+                            <td>$640 → $450/day</td>
+                        </tr>
+                        <tr>
+                            <td>Branded Search</td>
+                            <td>$1,990</td>
+                            <td>9%</td>
+                            <td><span class="roas-badge roas-excellent">7.40X</span></td>
+                            <td style="color: #fca5a5;">Severely underfunded, 79.69% IS</td>
+                            <td>$350 → $600/day</td>
+                        </tr>
+                        <tr>
+                            <td>Shopping</td>
+                            <td>$3,958</td>
+                            <td>18%</td>
+                            <td><span class="roas-badge roas-warning">2.24X</span></td>
+                            <td style="color: #fca5a5;">Losing 68% IS to rank</td>
+                            <td>Phase to $700/day</td>
+                        </tr>
+                        <tr>
+                            <td>Demand Gen</td>
+                            <td>$2,432</td>
+                            <td>11%</td>
+                            <td><span class="roas-badge roas-good">2.89X</span></td>
+                            <td style="color: #86efac;">Performing well</td>
+                            <td>Monitor, hold</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Google Action Items -->
+            <h3 style="color: #fff; margin: 30px 0 20px;">Detailed Action Plan</h3>
+
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">1. Branded Search Budget Increase</div>
+                    <span class="tag tag-today">Execute Today</span>
+                </div>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div><strong>Current Budget:</strong> $350/day → <strong>New Budget:</strong> $600/day (+71%)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Rationale:</strong> 7.40X ROAS with 79.69% impression share. Losing 20% of high-intent branded traffic.</div></li>
+                    <li><div class="checkbox"></div><div><strong>Risk Level:</strong> Low. Branded search has stable efficiency. Users searching brand name have high intent.</div></li>
+                    <li><div class="checkbox"></div><div><strong>Target:</strong> 90%+ impression share within 5-7 days</div></li>
+                    <li><div class="checkbox"></div><div><strong>Bid Strategy:</strong> Keep current. If using Target Impression Share, increase target to 95%.</div></li>
+                </ul>
+            </div>
+
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">2. Shopping Campaign Budget Increase (Phased)</div>
+                    <span class="tag tag-today">Execute Today</span>
+                </div>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div><strong>Phase 1 (Today):</strong> Current → $600/day</div></li>
+                    <li><div class="checkbox"></div><div><strong>Phase 2 (Day 4):</strong> $600 → $700/day if ROAS holds above 2X</div></li>
+                    <li><div class="checkbox"></div><div><strong>TROAS Setting:</strong> Keep at 220% (campaign is hitting target, issue is budget not bids)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Rationale:</strong> Losing 68% impression share to rank = budget constrained, not bid constrained</div></li>
+                    <li><div class="checkbox"></div><div><strong>Monitor:</strong> If ROAS drops below 2X after 48 hours, hold at $600 and assess</div></li>
+                </ul>
+            </div>
+
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">3. PMax Budget Reduction</div>
+                    <span class="tag tag-today">Execute Today</span>
+                </div>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div><strong>Current Budget:</strong> $640/day → <strong>New Budget:</strong> $450/day (-30%)</div></li>
+                    <li><div class="checkbox"></div><div><strong>Rationale:</strong> Lowest ROAS at 2.25X but consuming 61% of budget. Reallocate to higher performers.</div></li>
+                    <li><div class="checkbox"></div><div><strong>Why Not Pause:</strong> PMax drives awareness and feeds remarketing. Reduce, don't eliminate.</div></li>
+                    <li><div class="checkbox"></div><div><strong>Asset Group Review:</strong> Check asset group performance. Pause any groups under 1.5X ROAS.</div></li>
+                    <li><div class="checkbox"></div><div><strong>Audience Signals:</strong> Add customer list and website visitors as audience signals if not already.</div></li>
+                </ul>
+            </div>
+
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">4. Negative Keywords - Waste Elimination</div>
+                    <span class="tag tag-today">Execute Today</span>
+                </div>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div><strong>Add Account-Level Negatives:</strong> Generic "fudge", "sees candy", "swiss colony", "dubai chocolate"</div></li>
+                    <li><div class="checkbox"></div><div><strong>Search Terms Review:</strong> Pull last 30 days, sort by cost descending, add negatives for 0-conversion terms over $20 spend</div></li>
+                    <li><div class="checkbox"></div><div><strong>Estimated Savings:</strong> $600+/week from zero-conversion terms</div></li>
+                    <li><div class="checkbox"></div><div><strong>Competitor Terms:</strong> Negative exact match all competitor brand names</div></li>
+                    <li><div class="checkbox"></div><div><strong>Review Schedule:</strong> Weekly search terms review every Monday</div></li>
+                </ul>
+            </div>
+
+            <!-- Budget Reallocation Summary -->
+            <div class="subsection">
+                <div class="subsection-title">💰 Budget Reallocation Summary</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign</th>
+                            <th>Current Daily</th>
+                            <th>New Daily</th>
+                            <th>Change</th>
+                            <th>Expected Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Branded Search</td>
+                            <td>$350</td>
+                            <td>$600</td>
+                            <td style="color: #86efac;">+$250</td>
+                            <td>Capture 20% lost impression share at 7.40X ROAS</td>
+                        </tr>
+                        <tr>
+                            <td>Shopping</td>
+                            <td>~$400</td>
+                            <td>$700</td>
+                            <td style="color: #86efac;">+$300</td>
+                            <td>Recover rank-lost impressions (phased)</td>
+                        </tr>
+                        <tr>
+                            <td>PMax</td>
+                            <td>$640</td>
+                            <td>$450</td>
+                            <td style="color: #fca5a5;">-$190</td>
+                            <td>Reallocate from lowest efficiency</td>
+                        </tr>
+                        <tr>
+                            <td>Demand Gen</td>
+                            <td>~$250</td>
+                            <td>$250</td>
+                            <td>-</td>
+                            <td>Hold steady, performing well</td>
+                        </tr>
+                        <tr style="background: rgba(255,255,255,0.05);">
+                            <td><strong>Total</strong></td>
+                            <td><strong>~$1,640</strong></td>
+                            <td><strong>$2,000</strong></td>
+                            <td style="color: #86efac;"><strong>+$360</strong></td>
+                            <td><strong>Better allocation, higher efficiency</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== AMAZON ADS SECTION ==================== -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon amazon-icon">A</div>
+                <div>
+                    <div class="section-title">Amazon Ads</div>
+                    <div class="section-subtitle">TACOS Headroom - Scale Aggressively</div>
+                </div>
+                <span class="priority-badge priority-high">High Priority</span>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">$34,520</div>
+                    <div class="metric-label">2026 MTD Revenue</div>
+                    <span class="metric-change negative">-14.7% YoY</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$4,672</div>
+                    <div class="metric-label">2026 MTD Spend</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">13.54%</div>
+                    <div class="metric-label">TACOS</div>
+                    <span class="metric-change positive">Below 15% target</span>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">26.43%</div>
+                    <div class="metric-label">ACOS</div>
+                    <span class="metric-change positive">Down from 29.1%</span>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h3>TOS Optimizations Working - Ready to Scale</h3>
+                <p>ACOS trending down from 29.1% to 26.43%. Top of Search delivering 11.5% ACOS vs Product Pages at 26%. TACOS at 13.54% gives ~$500 additional daily spend headroom before hitting 15% floor.</p>
+            </div>
+
+            <!-- Campaigns to Scale -->
+            <div class="subsection">
+                <div class="subsection-title">📈 Campaigns to Scale (+30% Budget)</div>
+                <div class="campaign-card">
+                    <div class="campaign-name">SP - B0DXHGSYH6 - Fudge Custom Box - Exact Branded</div>
+                    <div class="campaign-metrics">
+                        <span>Spend: <span>$130</span></span>
+                        <span>ROAS: <span>8.9X</span></span>
+                        <span>ACOS: <span>11.2%</span></span>
+                        <span>Orders: <span>35</span></span>
+                    </div>
+                </div>
+                <div class="campaign-card">
+                    <div class="campaign-name">SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact Branded - TOS 100</div>
+                    <div class="campaign-metrics">
+                        <span>Spend: <span>$409</span></span>
+                        <span>ROAS: <span>6.8X</span></span>
+                        <span>ACOS: <span>14.8%</span></span>
+                        <span>Orders: <span>76</span></span>
+                    </div>
+                </div>
+                <div class="campaign-card">
+                    <div class="campaign-name">SP - B0DXHGSYH6 - Fudge Custom Box - Phrase - Flavour</div>
+                    <div class="campaign-metrics">
+                        <span>Spend: <span>$22</span></span>
+                        <span>ROAS: <span>9.0X</span></span>
+                        <span>ACOS: <span>11.1%</span></span>
+                        <span>Orders: <span>5</span></span>
+                    </div>
+                </div>
+                <div class="campaign-card">
+                    <div class="campaign-name">SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Phrase - Gift</div>
+                    <div class="campaign-metrics">
+                        <span>Spend: <span>$28</span></span>
+                        <span>ROAS: <span>5.3X</span></span>
+                        <span>ACOS: <span>18.8%</span></span>
+                        <span>Orders: <span>4</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Campaigns to Scale 5X -->
+            <div class="subsection">
+                <div class="subsection-title">🚀 Campaigns to Scale 5X (Massively Underfunded)</div>
+                <div class="campaign-card">
+                    <div class="campaign-name">SP - B0BG13N4ZJ - Dark Chocolate Fudge - Exact - chocolate fudge</div>
+                    <div class="campaign-metrics">
+                        <span>Spend: <span>$22</span></span>
+                        <span>ROAS: <span>7.4X</span></span>
+                        <span>ACOS: <span>13.5%</span></span>
+                        <span>Orders: <span>4</span></span>
+                    </div>
+                </div>
+                <div class="campaign-card">
+                    <div class="campaign-name">SP - B0BG13N4ZJ - Dark Chocolate Fudge - PAT Defensive</div>
+                    <div class="campaign-metrics">
+                        <span>Spend: <span>$3</span></span>
+                        <span>ROAS: <span>24.3X</span></span>
+                        <span>ACOS: <span>4.1%</span></span>
+                        <span>Orders: <span>2</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Campaigns to Pause -->
+            <div class="subsection">
+                <div class="subsection-title">⛔ Campaigns to Pause (Zero Conversions)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign</th>
+                            <th>Spend</th>
+                            <th>Orders</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact - maple fudge - PP 100</td>
+                            <td>$32</td>
+                            <td>0</td>
+                            <td style="color: #fca5a5;">Pause</td>
+                        </tr>
+                        <tr>
+                            <td>SP - B0BRBZD588 - Vanilla Fudge - Exact - vanilla fudge candy</td>
+                            <td>$26</td>
+                            <td>0</td>
+                            <td style="color: #fca5a5;">Pause</td>
+                        </tr>
+                        <tr>
+                            <td>SP - B0BG1D86G5 - Chocolate Fudge - Exact - Generic 1 - ROS 30</td>
+                            <td>$26</td>
+                            <td>0</td>
+                            <td style="color: #fca5a5;">Pause</td>
+                        </tr>
+                        <tr>
+                            <td>SP - B0BLZWCPVY - Birthday Cake Fudge - PAT Defensive</td>
+                            <td>$20</td>
+                            <td>0</td>
+                            <td style="color: #fca5a5;">Pause</td>
+                        </tr>
+                        <tr>
+                            <td>SP - B0C94SCMVP - Salted Caramel Vanilla - Exact - salted caramel fudge</td>
+                            <td>$18</td>
+                            <td>0</td>
+                            <td style="color: #fca5a5;">Pause</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- High ACOS Campaigns -->
+            <div class="subsection">
+                <div class="subsection-title">⛔ Campaigns to Pause (High ACOS)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign</th>
+                            <th>Spend</th>
+                            <th>ACOS</th>
+                            <th>ROAS</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SP - B0BG1D86G5 - Chocolate Fudge - Exact - Generic - fudge candy</td>
+                            <td>$70</td>
+                            <td>271.9%</td>
+                            <td><span class="roas-badge roas-poor">0.37X</span></td>
+                            <td style="color: #fca5a5;">Pause</td>
+                        </tr>
+                        <tr>
+                            <td>SP - B0BG3G9SF7 - Maple Walnut Fudge - Exact - maple fudge</td>
+                            <td>$51</td>
+                            <td>197.1%</td>
+                            <td><span class="roas-badge roas-poor">0.51X</span></td>
+                            <td style="color: #fca5a5;">Pause</td>
+                        </tr>
+                        <tr>
+                            <td>SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact 8</td>
+                            <td>$40</td>
+                            <td>108.4%</td>
+                            <td><span class="roas-badge roas-poor">0.92X</span></td>
+                            <td style="color: #fca5a5;">Pause</td>
+                        </tr>
+                        <tr>
+                            <td>SP - B0BFXKY5DX - Peanut Butter Fudge - Phrase - Generic</td>
+                            <td>$27</td>
+                            <td>105.9%</td>
+                            <td><span class="roas-badge roas-poor">0.94X</span></td>
+                            <td style="color: #fca5a5;">Pause</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Amazon Action Items -->
+            <h3 style="color: #fff; margin: 30px 0 20px;">Detailed Action Plan</h3>
+
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">1. Scale Custom Box Campaigns</div>
+                    <span class="tag tag-today">Execute Today</span>
+                </div>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div>Increase daily budgets by 30% on all Custom Box campaigns listed above</div></li>
+                    <li><div class="checkbox"></div><div>Verify TOS bid modifier is at 100% on all branded campaigns</div></li>
+                    <li><div class="checkbox"></div><div>Keep Product Pages modifier at 0% (let dynamic bidding handle)</div></li>
+                    <li><div class="checkbox"></div><div>Monitor ACOS daily for first 5 days after increase</div></li>
+                </ul>
+            </div>
+
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">2. Scale Dark Chocolate Campaigns 5X</div>
+                    <span class="tag tag-today">Execute Today</span>
+                </div>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div>Dark Chocolate Exact: $22 → $110/day budget</div></li>
+                    <li><div class="checkbox"></div><div>Dark Chocolate PAT Defensive: $3 → $15/day budget</div></li>
+                    <li><div class="checkbox"></div><div>At 24.3X ROAS, this portfolio has massive scaling headroom</div></li>
+                </ul>
+            </div>
+
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">3. Pause Zero Conversion & High ACOS Campaigns</div>
+                    <span class="tag tag-today">Execute Today</span>
+                </div>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div>Pause all 5 zero conversion campaigns listed above</div></li>
+                    <li><div class="checkbox"></div><div>Pause all 4 high ACOS campaigns (above 100% ACOS)</div></li>
+                    <li><div class="checkbox"></div><div>Estimated weekly savings: $310+ reallocated to winners</div></li>
+                </ul>
+            </div>
+
+            <div class="action-item">
+                <div class="action-header">
+                    <div class="action-title">4. Valentine's Day Campaigns</div>
+                    <span class="tag tag-week">This Week</span>
+                </div>
+                <ul class="checklist">
+                    <li><div class="checkbox"></div><div>Create Valentine's themed Sponsored Products campaigns targeting gift keywords</div></li>
+                    <li><div class="checkbox"></div><div>Keywords: valentine fudge gift, chocolate gift for her, fudge gift box valentine</div></li>
+                    <li><div class="checkbox"></div><div>Focus on Custom Gift Box SKUs</div></li>
+                    <li><div class="checkbox"></div><div>Budget: $50/day starting, scale based on performance</div></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TIMELINE SUMMARY -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">📅 Implementation Timeline</div>
+            </div>
+            
+            <div class="two-column">
+                <div class="subsection">
+                    <div class="subsection-title">Today (January 20)</div>
+                    <ul class="checklist">
+                        <li><div class="checkbox"></div><div><strong>Meta:</strong> Rebuild Advantage+ US campaign</div></li>
+                        <li><div class="checkbox"></div><div><strong>Meta:</strong> Build BOF Retargeting campaign</div></li>
+                        <li><div class="checkbox"></div><div><strong>Meta:</strong> Scale current winners +25-40%</div></li>
+                        <li><div class="checkbox"></div><div><strong>Google:</strong> Branded Search $350 → $600</div></li>
+                        <li><div class="checkbox"></div><div><strong>Google:</strong> Shopping phased to $600</div></li>
+                        <li><div class="checkbox"></div><div><strong>Google:</strong> PMax $640 → $450</div></li>
+                        <li><div class="checkbox"></div><div><strong>Google:</strong> Add account-level negatives</div></li>
+                        <li><div class="checkbox"></div><div><strong>Amazon:</strong> Scale Custom Box campaigns 30%</div></li>
+                        <li><div class="checkbox"></div><div><strong>Amazon:</strong> Scale Dark Chocolate 5X</div></li>
+                        <li><div class="checkbox"></div><div><strong>Amazon:</strong> Pause zero/high ACOS campaigns</div></li>
+                    </ul>
+                </div>
+                <div class="subsection">
+                    <div class="subsection-title">This Week (Jan 21-24)</div>
+                    <ul class="checklist">
+                        <li><div class="checkbox"></div><div><strong>Meta:</strong> Launch ASC Catalogue campaign</div></li>
+                        <li><div class="checkbox"></div><div><strong>Meta:</strong> Launch TOF Creative Testing</div></li>
+                        <li><div class="checkbox"></div><div><strong>Meta:</strong> Launch LIN Best-Sellers campaign</div></li>
+                        <li><div class="checkbox"></div><div><strong>Google:</strong> Shopping phase 2 to $700 (if ROAS holds)</div></li>
+                        <li><div class="checkbox"></div><div><strong>Amazon:</strong> Launch Valentine's campaigns</div></li>
+                        <li><div class="checkbox"></div><div><strong>All:</strong> Friday performance review</div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- MONITORING METRICS -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-title">📊 Key Metrics to Monitor</div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Channel</th>
+                        <th>Metric</th>
+                        <th>Current</th>
+                        <th>Target (7 Days)</th>
+                        <th>Alert Threshold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Meta</td>
+                        <td>Daily Spend</td>
+                        <td>~$1,050</td>
+                        <td>$1,500+</td>
+                        <td>If ROAS drops below 3X</td>
+                    </tr>
+                    <tr>
+                        <td>Meta</td>
+                        <td>ROAS</td>
+                        <td>3.50X</td>
+                        <td>3.3X+</td>
+                        <td>If drops below 2.8X, review</td>
+                    </tr>
+                    <tr>
+                        <td>Google</td>
+                        <td>Branded Impression Share</td>
+                        <td>79.69%</td>
+                        <td>90%+</td>
+                        <td>If not climbing, increase budget</td>
+                    </tr>
+                    <tr>
+                        <td>Google</td>
+                        <td>Blended ROAS</td>
+                        <td>2.81X</td>
+                        <td>3X+</td>
+                        <td>If drops below 2.5X</td>
+                    </tr>
+                    <tr>
+                        <td>Amazon</td>
+                        <td>TACOS</td>
+                        <td>13.54%</td>
+                        <td>15-16%</td>
+                        <td>If exceeds 18%, pull back</td>
+                    </tr>
+                    <tr>
+                        <td>Amazon</td>
+                        <td>Daily Revenue</td>
+                        <td>~$1,800</td>
+                        <td>$2,200+</td>
+                        <td>If declining, review pauses</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p><strong>Uncle Butch's Fudge - Strategic Optimization Action Plan</strong></p>
+            <p>Prepared by Charles | Your Marketing Partners | January 20, 2026</p>
+            <p style="margin-top: 10px;">Review scheduled: Friday, January 24, 2026</p>
+        </div>
+    </div>
+</body>
+</html>
