@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uncle Butch's Fudge — Meta Performance and Scaling Strategy | Your Marketing Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --amber: #e8820a;
+  --amber-dim: rgba(232,130,10,0.12);
+  --amber-border: rgba(232,130,10,0.22);
+  --bg: #0d0805;
+  --bg2: #120b06;
+  --surface: #181008;
+  --surface2: #1e1409;
+  --border: rgba(255,255,255,0.06);
+  --text: #ede8e0;
+  --muted: #8a7060;
+  --muted2: #5a4535;
+  --red: #e84c3c;
+  --warn: #e8a020;
+  --green: #27c87a;
+  --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(13,8,5,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand { display: flex; align-items: center; gap: 10px; }
+.nav-diamond {
+  width: 20px; height: 20px;
+  background: var(--amber);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  flex-shrink: 0;
+}
+.nav-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+.nav-link {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--amber);
+  border-color: var(--amber-border);
+  background: var(--amber-dim);
+}
+.page { padding-top: 56px; }
+section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+section + section { border-top: 1px solid var(--border); }
+.eyebrow {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.15; }
+h1 { font-size: clamp(44px, 6vw, 72px); color: var(--white); }
+h2 { font-size: clamp(30px, 4vw, 44px); color: var(--white); margin-bottom: 40px; }
+h3 { font-size: 22px; color: var(--white); margin-bottom: 16px; }
+h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+p { color: var(--muted); line-height: 1.8; }
+p + p { margin-top: 12px; }
+strong { color: var(--text); font-weight: 600; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; }
+.card.amber { border-color: var(--amber-border); background: rgba(232,130,10,0.04); }
+.card.red { border-color: rgba(232,76,60,0.25); background: rgba(232,76,60,0.03); }
+.card.warn { border-color: rgba(232,160,32,0.25); background: rgba(232,160,32,0.03); }
+.card.green { border-color: rgba(39,200,122,0.2); background: rgba(39,200,122,0.02); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 22px 24px; }
+.stat-val { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--white); line-height: 1; margin-bottom: 4px; }
+.stat-val.t { color: var(--amber); }
+.stat-val.r { color: var(--red); }
+.stat-val.a { color: var(--warn); }
+.stat-val.g { color: var(--green); }
+.stat-label { font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.stat-sub { font-size: 12px; color: var(--muted2); margin-top: 4px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.badge.critical { background: rgba(232,76,60,0.15); color: var(--red); }
+.badge.high { background: rgba(232,160,32,0.15); color: var(--warn); }
+.badge.medium { background: rgba(232,130,10,0.12); color: var(--amber); }
+.badge.good { background: rgba(39,200,122,0.12); color: var(--green); }
+.badge .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.badge.pulse .dot { animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.data-table td {
+  padding: 11px 14px;
+  font-size: 13px;
+  color: var(--text);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  vertical-align: middle;
+}
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+.data-table .good { color: var(--green); font-weight: 600; }
+.data-table .bad { color: var(--red); font-weight: 600; }
+.data-table .ok { color: var(--warn); font-weight: 600; }
+.data-table .dim { color: var(--muted); }
+.roas-pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+.roas-g { background: rgba(39,200,122,0.12); color: var(--green); }
+.roas-a { background: rgba(232,160,32,0.15); color: var(--warn); }
+.roas-r { background: rgba(232,76,60,0.12); color: var(--red); }
+ul.check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+ul.check-list li { padding-left: 20px; position: relative; font-size: 13px; color: var(--muted); line-height: 1.6; }
+ul.check-list li::before { content: '->'; position: absolute; left: 0; color: var(--amber); font-size: 11px; }
+ul.check-list.red li::before { color: var(--red); content: 'x'; }
+ul.check-list.amber li::before { color: var(--warn); content: '!'; }
+ul.check-list.green li::before { color: var(--green); content: 'v'; }
+ul.check-list li strong { color: var(--text); }
+.divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+.highlight {
+  background: var(--amber-dim);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.highlight strong { color: var(--text); }
+.highlight.red { background: rgba(232,76,60,0.06); border-color: var(--red); }
+.highlight.warn { background: rgba(232,160,32,0.06); border-color: var(--warn); }
+.highlight.green { background: rgba(39,200,122,0.06); border-color: var(--green); }
+.bar-wrap { display: flex; align-items: center; gap: 10px; }
+.bar-track { flex: 1; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; background: var(--amber); }
+.bar-fill.r { background: var(--red); }
+.bar-fill.a { background: var(--warn); }
+.bar-fill.g { background: var(--green); }
+.bar-pct { font-size: 11px; color: var(--muted); min-width: 36px; text-align: right; }
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px; top: 6px; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--amber) 0%, transparent 100%);
+}
+.tl-item { position: relative; padding-bottom: 28px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute;
+  left: -28px; top: 4px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+}
+.tl-dot.done { background: var(--amber); }
+.tl-dot.active { background: rgba(232,130,10,0.2); animation: tl-pulse 2s infinite; }
+@keyframes tl-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(232,130,10,0.4)} 50%{box-shadow:0 0 0 5px rgba(232,130,10,0)} }
+.tl-dot-inner { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); }
+.tl-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.tl-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.5px; }
+.tl-status { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; }
+.tl-status.done { background: rgba(39,200,122,0.12); color: var(--green); }
+.tl-status.active { background: rgba(232,160,32,0.15); color: var(--warn); }
+.tl-status.pending { background: var(--surface); color: var(--muted); }
+.tl-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.tl-body strong { color: var(--text); }
+#cover {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  border-top: none;
+}
+#cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 80% 40%, rgba(232,130,10,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 40% at 10% 80%, rgba(232,130,10,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+#cover .grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232,130,10,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,130,10,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+.cover-content { position: relative; z-index: 2; max-width: 720px; }
+.cover-meta { display: flex; gap: 40px; margin-top: 52px; padding-top: 40px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.cover-meta-item { display: flex; flex-direction: column; gap: 3px; }
+.cover-meta-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted2); }
+.cover-meta-val { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); }
+.cover-bg-text {
+  position: absolute;
+  right: -20px; bottom: -40px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 220px;
+  color: rgba(232,130,10,0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+.status-row { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.two-col.asym { grid-template-columns: 1.4fr 0.6fr; }
+.phase-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.phase-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px 22px; }
+.phase-card.active { border-color: var(--amber-border); background: rgba(232,130,10,0.03); }
+.phase-num { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--amber); opacity: 0.18; line-height: 1; margin-bottom: 4px; }
+.phase-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #000;
+  background: var(--amber);
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.phase-tag.p2 { background: var(--warn); }
+.phase-tag.p3 { background: transparent; color: var(--green); border: 1px solid rgba(39,200,122,0.3); }
+.phase-tag.p4 { background: transparent; color: var(--amber); border: 1px solid var(--amber-border); }
+.phase-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 4px; letter-spacing: 0.3px; }
+.phase-timeline { font-size: 11px; color: var(--muted2); margin-bottom: 16px; }
+.phase-kpi { font-size: 11px; color: var(--amber); font-weight: 600; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+.fix-row { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+.fix-row:last-child { border-bottom: none; }
+.fix-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.fix-tag.now { background: rgba(232,76,60,0.2); color: var(--red); }
+.fix-tag.week { background: rgba(232,160,32,0.15); color: var(--warn); }
+.fix-tag.month { background: rgba(232,130,10,0.1); color: var(--amber); }
+.fix-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.fix-text strong { color: var(--text); }
+.opp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.opp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 22px 20px; display: flex; flex-direction: column; }
+.opp-n { font-family: 'DM Serif Display', serif; font-size: 52px; color: var(--amber); opacity: 0.12; line-height: 1; }
+.opp-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; text-transform: uppercase; color: var(--white); letter-spacing: 0.5px; margin-bottom: 8px; }
+.opp-body { font-size: 12px; color: var(--muted); line-height: 1.6; flex: 1; }
+.opp-body strong { color: var(--text); }
+.opp-action { font-size: 11px; color: var(--amber); font-weight: 600; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+.verdict { background: linear-gradient(135deg, rgba(232,130,10,0.07) 0%, rgba(232,130,10,0.02) 100%); border: 1px solid var(--amber-border); border-radius: 12px; padding: 28px 32px; display: flex; gap: 20px; align-items: flex-start; }
+.verdict-body h3 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--amber); margin-bottom: 8px; }
+.verdict-body p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+.verdict-body p strong { color: var(--text); }
+.creative-row { display: grid; grid-template-columns: 2.4fr 1fr 1fr 1fr; gap: 0; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 13px; align-items: center; }
+.creative-row.head { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); padding: 8px 16px 10px; border-bottom: 1px solid var(--border); }
+.creative-row:last-child { border-bottom: none; }
+.cname { font-weight: 500; color: var(--text); }
+.csub { font-size: 11px; color: var(--muted2); margin-top: 2px; }
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4, .two-col, .two-col.asym, .phase-row, .opp-grid { grid-template-columns: 1fr; }
+  section { padding: 60px 20px; }
+  .topnav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .cover-bg-text { display: none; }
+  .creative-row { grid-template-columns: 1fr 1fr; }
+  .creative-row.head { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav" id="topnav">
+  <div class="nav-brand">
+    <div class="nav-diamond"></div>
+    <span class="nav-name">Your Marketing Partners</span>
+  </div>
+  <div class="nav-links">
+    <a href="#cover" class="nav-link">Overview</a>
+    <a href="#situation" class="nav-link">Situation</a>
+    <a href="#performance" class="nav-link">Performance</a>
+    <a href="#yoy" class="nav-link">Year on Year</a>
+    <a href="#diagnosis" class="nav-link">Diagnosis</a>
+    <a href="#creatives" class="nav-link">Creatives</a>
+    <a href="#actions" class="nav-link">Actions</a>
+    <a href="#roadmap" class="nav-link">Roadmap</a>
+    <a href="#model" class="nav-link">Revenue Model</a>
+    <a href="#ugc" class="nav-link">UGC Pipeline</a>
+    <a href="#requirements" class="nav-link">Requirements</a>
+    <a href="#opportunities" class="nav-link">Opportunities</a>
+    <a href="#verdict" class="nav-link">Verdict</a>
+  </div>
+</nav>
+
+<div class="page">
+
+<section id="cover" style="border-top:none;">
+  <div class="grid-bg"></div>
+  <div class="cover-content">
+    <div class="eyebrow">Meta Ads — Critical Recovery Plan</div>
+    <h1>Uncle Butch's Fudge<br><em style="color:var(--amber)">Scaling Strategy</em></h1>
+    <p style="font-size:17px;margin-top:20px;color:var(--muted);">30-day performance deep dive. Root cause analysis. A week-by-week execution plan to reach $8,000 per day in blended revenue.</p>
+    <div class="status-row">
+      <span class="badge critical pulse"><span class="dot"></span>Blended ROAS 1.93x — Below Floor</span>
+      <span class="badge critical pulse"><span class="dot"></span>85% of Budget on Sub-2x Creatives</span>
+      <span class="badge high pulse"><span class="dot"></span>Daily Revenue $2,577 — Target $8,000</span>
+      <span class="badge high"><span class="dot"></span>UGC Pipeline Empty — 6 Weeks Flagged</span>
+    </div>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><span class="cover-meta-label">Period Analysed</span><span class="cover-meta-val">Mar 14 – Apr 12, 2026</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Total Spend</span><span class="cover-meta-val">$40,150</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Revenue Generated</span><span class="cover-meta-val">$77,329</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Ad Account</span><span class="cover-meta-val">1044455086655030</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Prepared By</span><span class="cover-meta-val">Charles Piper · YMP</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Date</span><span class="cover-meta-val">13 April 2026</span></div>
+    </div>
+  </div>
+  <div class="cover-bg-text">UBF</div>
+</section>
+
+<section id="situation">
+  <div class="eyebrow">Context</div>
+  <h2>The Situation</h2>
+  <div class="grid-4" style="margin-bottom:32px;">
+    <div class="stat-box"><div class="stat-val r">$2,577</div><div class="stat-label">Current Daily Revenue</div><div class="stat-sub">68% below the $8K target</div></div>
+    <div class="stat-box"><div class="stat-val r">1.93x</div><div class="stat-label">Blended ROAS</div><div class="stat-sub">All 3 campaigns below the 2.5x floor</div></div>
+    <div class="stat-box"><div class="stat-val a">$1,338</div><div class="stat-label">Daily Ad Spend</div><div class="stat-sub">Budget is not the constraint</div></div>
+    <div class="stat-box"><div class="stat-val">$48.27</div><div class="stat-label">Average Order Value</div><div class="stat-sub">1,602 purchases in 30 days</div></div>
+  </div>
+  <div class="two-col">
+    <div>
+      <h4>What Nathaniel Needs</h4>
+      <div class="highlight red" style="margin-bottom:14px;">
+        <strong>Capital injection fell through.</strong> The business needs $8,000 per day in blended revenue to cover operating costs. Every day this target is not reached creates compounding financial pressure on the business.
+      </div>
+      <div class="highlight warn" style="margin-bottom:14px;">
+        <strong>Confirmed targets:</strong> $8K per day blended revenue floor. 3x ROAS minimum on Meta, 2.5x acceptable floor. 25% blended marketing cost of sales across all channels. $400K monthly floor, $500K stretch.
+      </div>
+      <div class="highlight">
+        <strong>What we control:</strong> Meta is running $1,338 per day at 1.93x. At 3x ROAS on $1,333 per day, Meta generates $4,000 per day. Amazon and Google cover the remaining $4,000. The budget is already at the right level. We need ROAS, not more spend.
+      </div>
+    </div>
+    <div>
+      <h4>Revenue Gap — The Math</h4>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span style="color:var(--muted);">Current Meta daily revenue</span><span style="color:var(--red);">$2,577</span></div>
+          <div class="bar-wrap"><div class="bar-track"><div class="bar-fill r" style="width:32%;"></div></div><span class="bar-pct">32%</span></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span style="color:var(--muted);">Meta contribution needed at $8K target</span><span style="color:var(--warn);">$4,000</span></div>
+          <div class="bar-wrap"><div class="bar-track"><div class="bar-fill a" style="width:50%;"></div></div><span class="bar-pct">50%</span></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;"><span style="color:var(--muted);">Total blended revenue target</span><span style="color:var(--green);">$8,000</span></div>
+          <div class="bar-wrap"><div class="bar-track"><div class="bar-fill g" style="width:100%;"></div></div><span class="bar-pct">100%</span></div>
+        </div>
+        <div style="background:rgba(232,130,10,0.06);border:1px solid var(--amber-border);border-radius:8px;padding:14px;font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px;">
+          Meta at <strong>3x ROAS on $1,333 per day</strong> generates exactly $4,000 per day. The spend is already at that level. Fix the ROAS and the Meta side of the target is solved without any budget increase.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="performance">
+  <div class="eyebrow">Mar 14 – Apr 12, 2026</div>
+  <h2>30-Day Performance Review</h2>
+  <table class="data-table" style="margin-bottom:24px;">
+    <thead>
+      <tr><th>Campaign</th><th>Spend</th><th>Revenue</th><th>ROAS</th><th>Purchases</th><th>CPP</th><th>CPM</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>TOF Winners CBO</strong></td><td>$14,332</td><td>$26,075</td><td><span class="roas-pill roas-r">1.82x</span></td><td>535</td><td class="bad">$26.79</td><td class="dim">$15.64</td><td><span class="badge critical">Below Floor</span></td></tr>
+      <tr><td><strong>Advantage+ Post IDs</strong></td><td>$14,042</td><td>$25,219</td><td><span class="roas-pill roas-r">1.80x</span></td><td>567</td><td class="bad">$24.77</td><td class="dim">$25.39</td><td><span class="badge critical">Below Floor</span></td></tr>
+      <tr><td><strong>RTG Sales</strong></td><td>$11,776</td><td>$26,035</td><td><span class="roas-pill roas-a">2.21x</span></td><td>500</td><td class="ok">$23.55</td><td class="dim">$16.25</td><td><span class="badge high">Below Target</span></td></tr>
+    </tbody>
+  </table>
+  <div class="highlight red" style="margin-bottom:28px;">
+    <strong>All three campaigns are below the 2.5x floor simultaneously.</strong> This is not a campaign structure problem and it is not a targeting problem. It is a creative problem concentrated in the L8 Lookalike and Advantage+ placements. These same campaigns delivered 4x to 8x ROAS in December 2025 and January 2026. The structure is sound. The creatives have fatigued.
+  </div>
+  <h4>Ad Set Efficiency Breakdown</h4>
+  <table class="data-table" style="margin-top:12px;">
+    <thead><tr><th>Ad Set</th><th>Spend</th><th>ROAS</th><th>CPM</th><th>Signal</th></tr></thead>
+    <tbody>
+      <tr><td><strong>L8 — 5% Customer Lookalike</strong></td><td>$13,117</td><td><span class="roas-pill roas-r">1.67x</span></td><td class="dim">$15.39</td><td class="bad">Primary drag — fatigued creative on a proven audience</td></tr>
+      <tr><td><strong>Bakery Interest Winners</strong></td><td>$5,585</td><td><span class="roas-pill roas-r">1.83x</span></td><td class="dim">$21.51</td><td class="bad">Previously delivered 4.76x to 6.13x with the right creative</td></tr>
+      <tr><td><strong>Cart Abandoners</strong></td><td>$1,650</td><td><span class="roas-pill roas-r">1.42x</span></td><td class="dim">$13.40</td><td class="bad">Wrong creative format for this audience's intent level</td></tr>
+      <tr><td><strong>Green Screen Videos</strong></td><td>$893</td><td><span class="roas-pill roas-a">2.91x</span></td><td class="dim">$21.06</td><td class="good">Highest efficiency in account — severely underfunded</td></tr>
+      <tr><td><strong>Product Viewers</strong></td><td>$583</td><td><span class="roas-pill roas-a">2.67x</span></td><td class="dim">$13.81</td><td class="ok">Holding efficiency — underallocated relative to performance</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="yoy">
+  <div class="eyebrow">Benchmarking</div>
+  <h2>Year-Over-Year Context</h2>
+  <div class="grid-4" style="margin-bottom:32px;">
+    <div class="stat-box"><div class="stat-val r">$40,150</div><div class="stat-label">2026 Period Spend</div><div class="stat-sub">Down 44% vs $71,709 in 2025</div></div>
+    <div class="stat-box"><div class="stat-val r">$77,329</div><div class="stat-label">2026 Period Revenue</div><div class="stat-sub">Down 50% vs $153,408 in 2025</div></div>
+    <div class="stat-box"><div class="stat-val r">1.93x</div><div class="stat-label">2026 Blended ROAS</div><div class="stat-sub">Below 2025 at 2.14x — worse on less spend</div></div>
+    <div class="stat-box"><div class="stat-val a">-$1,052</div><div class="stat-label">Daily Spend Gap vs 2025</div><div class="stat-sub">$1,338 now vs $2,390 per day in 2025</div></div>
+  </div>
+  <div class="two-col">
+    <div>
+      <h4>2025 Campaign Structure — Same Period</h4>
+      <table class="data-table">
+        <thead><tr><th>Campaign (2025)</th><th>Spend</th><th>Revenue</th><th>ROAS</th><th>Purchases</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Advantage+ US Campaign</strong></td><td>$26,713</td><td>$47,347</td><td><span class="roas-pill roas-a">1.77x</span></td><td>1,183</td></tr>
+          <tr><td><strong>TOF Creative Testing ABO</strong></td><td>$16,347</td><td>$39,053</td><td><span class="roas-pill roas-a">2.39x</span></td><td>1,017</td></tr>
+          <tr><td><strong>ASC Catalogue</strong></td><td>$12,474</td><td>$30,847</td><td><span class="roas-pill roas-a">2.47x</span></td><td>763</td></tr>
+          <tr><td><strong>LIN Best Sellers</strong></td><td>$8,755</td><td>$20,518</td><td><span class="roas-pill roas-a">2.34x</span></td><td>533</td></tr>
+          <tr><td><strong>LIN ASC Website and Shop</strong></td><td>$3,865</td><td>$9,521</td><td><span class="roas-pill roas-a">2.46x</span></td><td>236</td></tr>
+          <tr><td><strong>BOF Retargeting CBO</strong></td><td>$213</td><td>$593</td><td><span class="roas-pill roas-a">2.78x</span></td><td>16</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="highlight warn">
+        <strong>Volume is the primary gap.</strong> In 2025 the account spent $2,390 per day and generated 3,894 purchases in this period. Today it is spending $1,338 per day with 1,602 purchases. The 44% spend reduction produced a 50% purchase reduction, and efficiency has also deteriorated.
+      </div>
+      <div class="highlight red">
+        <strong>ROAS also declined.</strong> The 2025 structure delivered 2.14x blended on the same period. 2026 is at 1.93x. The account was already not at the 3x target in 2025, but the direction has moved the wrong way since then.
+      </div>
+      <div class="highlight green">
+        <strong>The ceiling has been proven.</strong> December 2025 delivered 6.81x blended ROAS. Valentine's week in February 2026 delivered $73,073 in seven days. The account, the audience, and the product are all capable of hitting the targets. The only variable that changed is creative freshness.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="diagnosis">
+  <div class="eyebrow">Root Cause Analysis</div>
+  <h2>Why ROAS Collapsed</h2>
+  <div class="grid-3" style="margin-bottom:32px;">
+    <div class="card red">
+      <span class="badge critical" style="margin-bottom:12px;"><span class="dot"></span>Root Cause 1</span>
+      <h3 style="font-size:18px;">Creative Fatigue</h3>
+      <p style="margin-top:8px;">Video3, Car Review Shortened, and JAN25 PostID are 6 to 12 month old assets running against audiences that have seen them repeatedly. CPMs are rising as Meta struggles to find new reach, and CVR is falling as the message loses impact. Green Screen Video 2 achieves $13.85 CPP in the same campaigns where Video3 costs $28.86. That gap is entirely creative.</p>
+    </div>
+    <div class="card red">
+      <span class="badge critical" style="margin-bottom:12px;"><span class="dot"></span>Root Cause 2</span>
+      <h3 style="font-size:18px;">Budget Misallocation</h3>
+      <p style="margin-top:8px;">$34,137 — 85% of total period spend — is sitting on creatives running below 2x ROAS. Only $766 is on creatives running above 3x. The algorithm is being instructed to put the majority of the budget behind its least efficient assets. This is the single largest mechanical cause of the ROAS collapse and it is entirely fixable today.</p>
+    </div>
+    <div class="card warn">
+      <span class="badge high" style="margin-bottom:12px;">Root Cause 3</span>
+      <h3 style="font-size:18px;">Empty UGC Pipeline</h3>
+      <p style="margin-top:8px;">Fresh UGC has been identified as the primary scaling unlock in client communications for six consecutive weeks. Without new creative the algorithm has no efficient path to scale and recycles fatigued assets because there is nothing better to test. This is the structural bottleneck that holds everything else back.</p>
+    </div>
+  </div>
+  <h4>Budget Allocation — Where the Money Is Going</h4>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin-top:12px;">
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;"><span style="color:var(--muted);">Creatives below 2x ROAS — $34,137 of spend</span><span style="color:var(--red);">85%</span></div>
+        <div class="bar-wrap"><div class="bar-track" style="height:10px;"><div class="bar-fill r" style="width:85%;"></div></div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;"><span style="color:var(--muted);">Creatives 2x to 3x range — $4,247 of spend</span><span style="color:var(--warn);">11%</span></div>
+        <div class="bar-wrap"><div class="bar-track" style="height:10px;"><div class="bar-fill a" style="width:11%;"></div></div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;"><span style="color:var(--muted);">Creatives above 3x ROAS — $766 of spend</span><span style="color:var(--green);">2%</span></div>
+        <div class="bar-wrap"><div class="bar-track" style="height:10px;"><div class="bar-fill g" style="width:2%;"></div></div></div>
+      </div>
+    </div>
+    <div style="margin-top:18px;padding:14px;background:rgba(232,76,60,0.06);border-radius:8px;border:1px solid rgba(232,76,60,0.15);font-size:13px;color:var(--muted);line-height:1.6;">
+      If the $34,137 in drain budget ran at the proven winner average of 4.64x ROAS it would generate <strong>$158,396 in revenue</strong> instead of $59,068. The budget misallocation alone is responsible for approximately <strong>$99,000 in lost monthly revenue</strong> at the current spend level.
+    </div>
+  </div>
+</section>
+
+<section id="creatives">
+  <div class="eyebrow">Creative Intelligence</div>
+  <h2>Creative Audit — Kill, Scale, Build</h2>
+  <div class="grid-3" style="margin-bottom:32px;">
+    <div class="stat-box"><div class="stat-val r">$21,645</div><div class="stat-label">Kill Budget — Sub-1.5x</div><div class="stat-sub">Recoverable by pausing worst performers today</div></div>
+    <div class="stat-box"><div class="stat-val a">$766</div><div class="stat-label">Scale Budget — Above 3x</div><div class="stat-sub">Winners running 4.50x to 4.82x — starved of spend</div></div>
+    <div class="stat-box"><div class="stat-val g">5 to 8</div><div class="stat-label">New UGC Creatives Needed</div><div class="stat-sub">60-second phone reactions — 7-day delivery target</div></div>
+  </div>
+  <h4>Kill List — Pause Immediately</h4>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:12px;margin-bottom:28px;">
+    <div class="creative-row head"><div>Creative</div><div>Spend</div><div>ROAS</div><div>Action</div></div>
+    <div class="creative-row" style="background:rgba(232,76,60,0.03);"><div><div class="cname">Video3 UGC — L8 Lookalike</div><div class="csub">Fudge collection destination. Highest individual spend in account. Frequency saturated.</div></div><div>$5,916</div><div><span class="roas-pill roas-r">1.56x</span></div><div><span class="badge critical">Pause Today</span></div></div>
+    <div class="creative-row"><div><div class="cname">Video1 Packaging — Large Ad Set</div><div class="csub">Same creative runs at 4.82x in a smaller placement that has not saturated. Large placement is the problem.</div></div><div>$5,055</div><div><span class="roas-pill roas-r">1.90x</span></div><div><span class="badge critical">Pause Today</span></div></div>
+    <div class="creative-row" style="background:rgba(232,76,60,0.03);"><div><div class="cname">Car Review Shortened — A+ Placement</div><div class="csub">Ran 3.95x in February. Now 1.45x after overscaling. Classic frequency fatigue pattern.</div></div><div>$3,926</div><div><span class="roas-pill roas-r">1.45x</span></div><div><span class="badge critical">Pause Today</span></div></div>
+    <div class="creative-row"><div><div class="cname">VIDEO3 — Advantage+ Placement</div><div class="csub">Parallel placement of the same fatigued Video3 creative. Running identically poorly.</div></div><div>$3,839</div><div><span class="roas-pill roas-r">1.84x</span></div><div><span class="badge critical">Pause Today</span></div></div>
+    <div class="creative-row" style="background:rgba(232,76,60,0.03);"><div><div class="cname">Street Interview 3 and 4</div><div class="csub">Both confirmed fatigued across multiple reporting windows. No recovery signal.</div></div><div>$500</div><div><span class="roas-pill roas-r">1.04–1.42x</span></div><div><span class="badge critical">Pause Today</span></div></div>
+  </div>
+  <div class="two-col">
+    <div>
+      <h4>Scale List — Push Budget Now</h4>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+        <div class="creative-row head"><div>Creative</div><div>Spend</div><div>ROAS</div><div>Action</div></div>
+        <div class="creative-row" style="background:rgba(39,200,122,0.03);"><div><div class="cname">Green Screen Video 2</div><div class="csub">Lowest CPP in the account at $13.85. Format is proven. Running right now.</div></div><div>$443</div><div><span class="roas-pill roas-g">4.50x</span></div><div><span class="badge good">3x Budget</span></div></div>
+        <div class="creative-row"><div><div class="cname">Video1 Packaging — Small Set</div><div class="csub">Same creative as large set. Small placement has no saturation. Running at full efficiency.</div></div><div>$322</div><div><span class="roas-pill roas-g">4.82x</span></div><div><span class="badge good">3x Budget</span></div></div>
+        <div class="creative-row" style="background:rgba(39,200,122,0.03);"><div><div class="cname">Best Seller Carousel</div><div class="csub">Strong for retargeting. Social proof format converts well on warm audiences.</div></div><div>$342</div><div><span class="roas-pill roas-a">2.90x</span></div><div><span class="badge medium">2x Budget</span></div></div>
+      </div>
+    </div>
+    <div>
+      <h4>Build List — New UGC Angles</h4>
+      <div class="card" style="padding:20px;">
+        <p style="font-size:13px;margin-bottom:14px;">Green Screen Video 2 is running 4.50x right now. The format works. We need volume of new executions in the same proven style with different hooks, not a different format entirely.</p>
+        <ul class="check-list green">
+          <li><strong>Unboxing Reaction — 60-second phone video.</strong> Real person, first impression, no scripting required.</li>
+          <li><strong>Taste Test — First Bite.</strong> Product reaction format. Consistently high CTR in this category.</li>
+          <li><strong>Gift Reveal — Custom Box Opening.</strong> Gifting angle supports AOV and seasonal relevance for May.</li>
+          <li><strong>Green Screen V3 and V4.</strong> New hook variations on the proven format. Build these within 24 hours.</li>
+          <li><strong>Review Image Static Set.</strong> Review Image1 delivered 7.44x ROAS in January. Pull three new reviews and rebuild in the same format.</li>
+        </ul>
+        <div style="margin-top:14px;padding:10px 14px;background:rgba(232,130,10,0.08);border-radius:6px;font-size:12px;color:var(--muted);">
+          <strong style="color:var(--amber);">Fast-track sourcing:</strong> Ship boxes to 6 to 8 personal or business contacts. Ask for a 60-second honest reaction video sent as a phone recording. Zero production cost, 7-day delivery window.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="actions">
+  <div class="eyebrow">Next 72 Hours</div>
+  <h2>Immediate Action Plan</h2>
+  <div class="two-col">
+    <div>
+      <h4>Day 1 — Kill, Consolidate, Redirect</h4>
+      <div>
+        <div class="fix-row">
+          <span class="fix-tag now">Today</span>
+          <div class="fix-text"><strong>Pause Video3, Car Review, JAN25 PostID, Street Interview 3 and 4.</strong> These five creatives account for $14,180 in spend at 1.04x to 1.84x ROAS. Pausing them removes the single largest drag on blended ROAS. Thirty days of data is definitive on this call.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag now">Today</span>
+          <div class="fix-text"><strong>Triple the Green Screen Video 2 daily budget.</strong> Running 4.50x at approximately $14 per day. Take it to $45 per day minimum within the existing ad set. This is the most validated efficient creative in the account right now and the clearest immediate action available.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag now">Today</span>
+          <div class="fix-text"><strong>Route all TOF campaigns to the Variety Box landing page.</strong> Confirmed 13.13% CVR on the LP vs 6.30% on the homepage. Any TOF creative still pointed at the homepage or a collection page needs to be updated today. This costs nothing and effectively doubles the conversion rate of every click immediately.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag now">Today</span>
+          <div class="fix-text"><strong>Pause Video1 Packaging in the large L8 Lookalike ad set only.</strong> The same creative runs at 4.82x in a smaller placement because it has not hit frequency saturation there. Pausing only the large L8 set lets the smaller placement absorb the reallocated budget at its current efficiency.</div>
+        </div>
+      </div>
+      <h4 style="margin-top:24px;">Day 2 — Retargeting Rebalance</h4>
+      <div>
+        <div class="fix-row">
+          <span class="fix-tag week">Day 2</span>
+          <div class="fix-text"><strong>Shift RTG budget from Cart Abandoners to Checkout Abandoners.</strong> Cart Abandoners running 1.42x. Checkout Abandoners have consistently delivered 2.80x or better. Move $500 per week across. The intent signal from a checkout abandoner is materially stronger and the creative-to-intent match is better.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag week">Day 2</span>
+          <div class="fix-text"><strong>Launch Best Seller Carousel into the Checkout Abandoners ad set.</strong> Running 2.90x ROAS in TOF. Retargeting audiences convert this social proof format at a higher rate than cold traffic because they already have brand awareness and need a final push, not an introduction.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h4>Day 3 — Build the Next Scaling Layer</h4>
+      <div>
+        <div class="fix-row">
+          <span class="fix-tag week">Day 3</span>
+          <div class="fix-text"><strong>Build a new Bakery Interest ad set with Green Screen Video 2 as the lead creative.</strong> Bakery Interest has delivered 4.76x to 6.13x ROAS with the right creative. It is at 1.83x now because of fatigued assets, not an exhausted audience. New ad set, fresh creative, same targeting — proven formula for this account.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag week">Day 3</span>
+          <div class="fix-text"><strong>Ship 6 to 8 product boxes to begin UGC sourcing.</strong> Personal contacts, business connections. Ask for a 60-second phone reaction video. No scripts, no production requirements. This is the most important single action for sustained scaling beyond this week.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag week">Day 3</span>
+          <div class="fix-text"><strong>Build Green Screen V3 and V4 using existing brand assets and TikTok review overlays.</strong> Two new executions in the proven format can be completed internally in under 24 hours. These go straight into Creative Testing at $20 per day each with a 48-hour ROAS gate before any budget increase.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag week">Day 3</span>
+          <div class="fix-text"><strong>Audit every active ad destination URL and verify all TOF traffic is going to the Variety Box LP.</strong> Run through every live ad, confirm the destination, and document it. Nothing in TOF should be going to the homepage or a product collection page after Day 1.</div>
+        </div>
+      </div>
+      <div class="highlight" style="margin-top:16px;">
+        <strong>Expected 72-hour outcome:</strong> Pausing the primary drains and redirecting spend to Green Screen Video 2 with correct LP routing should move blended ROAS from 1.93x toward 2.3x to 2.5x within 72 hours as the algorithm recalibrates toward efficient delivery. That is the foundation the Week 2 scaling push requires.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="eyebrow">Strategic Roadmap</div>
+  <h2>4-Week Scaling Plan</h2>
+  <div class="phase-row">
+    <div class="phase-card active">
+      <div class="phase-num">01</div>
+      <div><span class="phase-tag">Week 1 — Apr 13–19</span></div>
+      <div class="phase-title">Triage and Stabilise</div>
+      <div class="phase-timeline">Target ROAS: 2.3x to 2.5x</div>
+      <ul class="check-list" style="font-size:12px;">
+        <li>Kill all sub-2x creatives in one session</li>
+        <li>Redirect freed budget to Green Screen V2 and Video1 small set</li>
+        <li>Standardise all LP destinations to Variety Box landing page</li>
+        <li>Rebalance RTG toward Checkout Abandoners</li>
+        <li>Ship UGC sourcing boxes to contacts</li>
+        <li>Build Green Screen V3 and V4 internally</li>
+      </ul>
+      <div class="phase-kpi">Spend: $1,300 to $1,500 per day</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">02</div>
+      <div><span class="phase-tag p2">Week 2 — Apr 20–26</span></div>
+      <div class="phase-title">Prove Efficiency</div>
+      <div class="phase-timeline">Target ROAS: 2.5x to 3.0x</div>
+      <ul class="check-list" style="font-size:12px;">
+        <li>First 25% budget step-up once blended hits 2.5x</li>
+        <li>Launch new Bakery Interest ad set with fresh UGC creatives</li>
+        <li>Deploy first new UGC batch into Creative Testing</li>
+        <li>Scale Green Screen V2 to $100 per day if holding 3x</li>
+        <li>Rebuild Advantage+ with new creative mix only</li>
+        <li>No step-ups on any campaign below 2.5x — no exceptions</li>
+      </ul>
+      <div class="phase-kpi">Spend: $1,500 to $1,800 per day</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">03</div>
+      <div><span class="phase-tag p3">Week 3 — Apr 27–May 3</span></div>
+      <div class="phase-title">Scale the Winners</div>
+      <div class="phase-timeline">Target ROAS: 3.0x and above</div>
+      <ul class="check-list" style="font-size:12px;">
+        <li>25% budget increases every 3 days on campaigns above 3x</li>
+        <li>Scale TOF Winners CBO to $700 to $800 per day if holding</li>
+        <li>Launch second UGC wave into Advantage+ and Bakery Interest</li>
+        <li>Reintroduce L8 Lookalike with new creative only — not recycled</li>
+        <li>Begin Mother's Day offer planning for May 11</li>
+      </ul>
+      <div class="phase-kpi">Spend: $1,800 to $2,200 per day</div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">04</div>
+      <div><span class="phase-tag p4">Week 4 — May 4–10</span></div>
+      <div class="phase-title">Push to Target</div>
+      <div class="phase-timeline">Target: $4K Meta per day</div>
+      <ul class="check-list" style="font-size:12px;">
+        <li>$2,667 per day Meta spend at 3x equals $4K daily Meta revenue</li>
+        <li>Mother's Day offer live May 11 — campaign built by Apr 28</li>
+        <li>Full campaign matrix: TOF Winners, A+, RTG, Bakery Interest</li>
+        <li>Creative testing pipeline producing 3 to 5 new assets per week</li>
+        <li>Channel review with Amazon and Google for blended $8K total</li>
+      </ul>
+      <div class="phase-kpi">Spend: $2,200 to $2,667 per day</div>
+    </div>
+  </div>
+  <div class="highlight warn" style="margin-top:24px;">
+    <strong>Non-negotiable scaling rule:</strong> Budget increases in 20% to 25% steps only, maximum once every 3 days. ROAS must hold above 2.5x before each step-up is approved. No exceptions. Sharp budget increases are what cause algorithm disruption and ROAS deterioration — this is how the account has lost performance before.
+  </div>
+</section>
+
+<section id="model">
+  <div class="eyebrow">Financial Model</div>
+  <h2>Path to $8,000 Per Day</h2>
+  <div class="two-col" style="margin-bottom:32px;">
+    <div>
+      <h4>Meta Revenue Scenarios</h4>
+      <table class="data-table" style="margin-top:12px;">
+        <thead><tr><th>Scenario</th><th>Daily Spend</th><th>ROAS</th><th>Daily Rev</th><th>Monthly Rev</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge critical">Today</span></td><td>$1,338</td><td><span class="roas-pill roas-r">1.93x</span></td><td class="bad">$2,582</td><td class="bad">$77,460</td></tr>
+          <tr><td><span class="badge high">Floor</span></td><td>$1,500</td><td><span class="roas-pill roas-a">2.5x</span></td><td class="ok">$3,750</td><td class="ok">$112,500</td></tr>
+          <tr><td><span class="badge medium">Week 2</span></td><td>$1,500</td><td><span class="roas-pill roas-a">3.0x</span></td><td class="ok">$4,500</td><td class="ok">$135,000</td></tr>
+          <tr><td><span class="badge medium">Week 3</span></td><td>$2,000</td><td><span class="roas-pill roas-g">3.0x</span></td><td class="good">$6,000</td><td class="good">$180,000</td></tr>
+          <tr><td><span class="badge good">Week 4</span></td><td>$2,667</td><td><span class="roas-pill roas-g">3.0x</span></td><td class="good">$8,001</td><td class="good">$240,030</td></tr>
+          <tr><td><span class="badge good">Stretch</span></td><td>$3,500</td><td><span class="roas-pill roas-g">3.5x</span></td><td class="good">$12,250</td><td class="good">$367,500</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="highlight green">
+        <strong>The budget is already there.</strong> At current spend of $1,338 per day, Meta hits the $4,000 per day target at exactly 3x ROAS. No budget increase is needed in Week 1 or Week 2. Fix the ROAS on existing spend first and scale spend only once efficiency is confirmed.
+      </div>
+      <div class="highlight">
+        <strong>The account has proven it can do this.</strong> December 2025 delivered 6.81x blended ROAS. January 31 to February 6 delivered $33,410 in a single week at 3.15x. Valentine's week delivered $73,073 at 2.88x ROAS on $25,000 weekly spend. This is not a theoretical ceiling — the account has hit it repeatedly.
+      </div>
+    </div>
+  </div>
+  <h4>Historical Revenue Proof Points</h4>
+  <div class="grid-3" style="margin-top:12px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;">
+      <div style="font-family:'Syne',sans-serif;font-size:10px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">Dec 7–13, 2025</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:28px;color:var(--white);">$33,385</div>
+      <div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:4px;">6.81x blended ROAS</div>
+      <div style="font-size:12px;color:var(--muted);">5% Customer Lookalike at 7.92x. TOF Winners at 8.73x. Same account structure, different creatives.</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;">
+      <div style="font-family:'Syne',sans-serif;font-size:10px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">Jan 31 – Feb 6, 2026</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:28px;color:var(--white);">$33,410</div>
+      <div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:4px;">3.15x ROAS</div>
+      <div style="font-size:12px;color:var(--muted);">RTG at 4.27x. TOF Winners at 4.14x. Account delivering above the 3x target at meaningful spend levels.</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;">
+      <div style="font-family:'Syne',sans-serif;font-size:10px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">Feb 8–14, 2026</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:28px;color:var(--white);">$73,073</div>
+      <div style="font-size:13px;color:var(--amber);font-weight:600;margin-bottom:4px;">2.88x ROAS on $25K spend</div>
+      <div style="font-size:12px;color:var(--muted);">Valentine's week. The account absorbs $3,500 per day spend profitably. The infrastructure works at scale.</div>
+    </div>
+  </div>
+</section>
+
+<section id="ugc">
+  <div class="eyebrow">Creative System</div>
+  <h2>UGC Pipeline — The Primary Unlock</h2>
+  <div class="two-col">
+    <div>
+      <h4>Why This Has to Happen Now</h4>
+      <div class="highlight red" style="margin-bottom:14px;">
+        <strong>Flagged for six consecutive weeks in client communications without resolution.</strong> January 10: "Fresh UGC is the unlock." January 20: "UGC brief getting locked this week." February 3: "Flagged multiple weeks running." February 26: "Number one priority action." March 3: "Primary lever for sustained scaling." The diagnosis has been correct every single week. The execution has to follow this week.
+      </div>
+      <div class="highlight" style="margin-bottom:14px;">
+        <strong>Green Screen Video 2 is live proof the format still works.</strong> Running 4.50x at $13.85 CPP inside the same campaigns that are averaging 1.93x blended. The issue is not the audience and it is not the account structure. The issue is creative volume. One creative is working. Everything else has fatigued. The solution is to build more of what is working, faster.
+      </div>
+      <h4 style="margin-top:24px;">Proven Creative Formats</h4>
+      <table class="data-table" style="margin-top:12px;">
+        <thead><tr><th>Format</th><th>Best ROAS</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Green Screen UGC Review Overlay</strong></td><td><span class="roas-pill roas-g">4.50x</span></td><td class="dim">Proven right now. Build V3 and V4 immediately.</td></tr>
+          <tr><td><strong>Unboxing Reaction — Phone Video</strong></td><td><span class="roas-pill roas-g">5.45x</span></td><td class="dim">VBox Unboxing hit 5.45x in February with the lowest CPM in account history.</td></tr>
+          <tr><td><strong>Review Image — Static</strong></td><td><span class="roas-pill roas-g">7.44x</span></td><td class="dim">Review Image1 at 7.44x in January. Fast to produce, consistently high ROAS.</td></tr>
+          <tr><td><strong>Best Seller Carousel</strong></td><td><span class="roas-pill roas-a">2.90x</span></td><td class="dim">Works in retargeting. Social proof format converts warm audiences reliably.</td></tr>
+          <tr><td><strong>Packaging Video — Lifestyle</strong></td><td><span class="roas-pill roas-g">4.82x</span></td><td class="dim">Small ad set running 4.82x. Needs new cut variations before further scaling.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h4>7-Day UGC Fast-Track Plan</h4>
+      <div class="timeline" style="margin-top:12px;">
+        <div class="tl-item">
+          <div class="tl-dot active"></div>
+          <div class="tl-header"><div class="tl-title">Ship 6 to 8 product boxes</div><span class="tl-status active">Today</span></div>
+          <div class="tl-body">Personal contacts, business connections, local community. Include a note asking for a 60-second honest reaction video sent as a phone recording. No scripts. No production requirements. The more natural the better. Aim for people who genuinely like food and have not tried the product before.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-header"><div class="tl-title">Request TikTok UGC library access</div><span class="tl-status pending">Days 1 to 2</span></div>
+          <div class="tl-body">The previous agency confirmed TikTok reviews are available. This is an existing library that can be pulled directly into Meta creative with no additional sourcing time. Send an invite to charliepiperppc@gmail.com or share the Dropbox link directly with the team.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-header"><div class="tl-title">Build Green Screen V3 and V4</div><span class="tl-status pending">Days 2 to 3</span></div>
+          <div class="tl-body"><strong>Three new hook variations on the proven format:</strong> price angle ("You can try every flavour for under $50"), variety angle ("Over 40 flavours — this is what happens when you try all of them"), and gifting angle ("The best thing you can send someone who has everything"). Three executions, same format, built in under 24 hours.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-header"><div class="tl-title">Build three new Review Image statics</div><span class="tl-status pending">Days 3 to 4</span></div>
+          <div class="tl-body">Pull three existing customer reviews with the strongest emotional language. Build in the Review Image1 format that delivered 7.44x in January. Fast to produce, zero production cost, and historically among the best performing creative types in the account.</div>
+        </div>
+        <div class="tl-item" style="padding-bottom:0;">
+          <div class="tl-dot"></div>
+          <div class="tl-header"><div class="tl-title">Launch into Creative Testing at $20 per day each</div><span class="tl-status pending">Days 5 to 7</span></div>
+          <div class="tl-body">All new creatives into a dedicated Creative Testing campaign. 48-hour ROAS gate: below 2x on meaningful click volume gets paused. Above 3x gets 48 hours to confirm before being scaled into TOF Winners and Advantage+.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="requirements">
+  <div class="eyebrow">What We Need From You</div>
+  <h2>Client-Side Requirements</h2>
+  <div class="two-col">
+    <div>
+      <h4>Urgent — Within 48 Hours</h4>
+      <div>
+        <div class="fix-row">
+          <span class="fix-tag now">Critical</span>
+          <div class="fix-text"><strong>Confirm the Variety Box landing page is live and fully functional on mobile.</strong> This is the highest-leverage destination in the account at 13.13% CVR. Any loading issues, checkout errors, or mobile breakages here are direct revenue losses at scale. A quick test and confirmation is all that is needed.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag now">Critical</span>
+          <div class="fix-text"><strong>Share access to the TikTok UGC library.</strong> The handover notes from the previous agency confirm a file of TikTok UGC reviews exists. Access allows immediate repurposing of existing content as paid Meta ads with no additional sourcing time. Share the Dropbox or Drive link, or invite charliepiperppc@gmail.com.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag week">This Week</span>
+          <div class="fix-text"><strong>Confirm a Mother's Day offer for May 11.</strong> Campaigns need to be live by May 1 to allow a 10-day learning window before the peak gifting date. A named tasting box with a 72-hour hard deadline performs better than a straight discount because it avoids the flash sale fatigue pattern while still creating genuine urgency.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag week">Ongoing</span>
+          <div class="fix-text"><strong>24-hour creative approval turnaround.</strong> As new UGC comes in from the sourcing pipeline, delays in approval directly stall the testing cadence. A 24-hour response window on creative approvals keeps the scaling plan on schedule.</div>
+        </div>
+        <div class="fix-row">
+          <span class="fix-tag week">This Week</span>
+          <div class="fix-text"><strong>Confirm inventory availability at higher volume levels.</strong> At $2,667 per day Meta spend and 3x ROAS, order volume will increase significantly. Confirm there is no fulfillment constraint on custom box inventory before scaling reach that level.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h4>Our Commitments In Return</h4>
+      <div class="card green" style="margin-bottom:14px;">
+        <ul class="check-list green">
+          <li><strong>Daily campaign monitoring.</strong> Every active campaign reviewed every day. Any creative falling below 2.5x ROAS with 30 or more purchases gets paused the same day it is identified.</li>
+          <li><strong>Incremental scaling only.</strong> Budget increases in 20% to 25% steps, maximum once every 3 days. ROAS must confirm above 2.5x before each step-up. No exceptions and no workarounds.</li>
+          <li><strong>Data-validated reporting.</strong> All figures validated against campaign-level source data before any client communication. No estimated or inferred numbers. Triple Whale cross-referenced for blended attribution accuracy.</li>
+          <li><strong>Weekly performance reviews.</strong> Every Friday: performance snapshot, what changed, why, what is next. Direct and data-first with no vague language or qualifications.</li>
+          <li><strong>Proactive creative production.</strong> UGC brief produced, sourcing managed, and new assets in testing every week. Creative fatigue will not build again without being addressed.</li>
+        </ul>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;">
+        <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:12px;">Summary — What We Are Asking For</div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:13px;align-items:start;">
+          <span style="color:var(--red);">1</span><span style="color:var(--muted);">LP confirmation and mobile test — 48 hours</span>
+          <span style="color:var(--red);">2</span><span style="color:var(--muted);">TikTok UGC library access — 48 hours</span>
+          <span style="color:var(--warn);">3</span><span style="color:var(--muted);">Mother's Day offer confirmed — this week</span>
+          <span style="color:var(--warn);">4</span><span style="color:var(--muted);">Creative approval turnaround of 24 hours ongoing</span>
+          <span style="color:var(--warn);">5</span><span style="color:var(--muted);">Inventory confirmation at scale — this week</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="opportunities">
+  <div class="eyebrow">Growth Leverage</div>
+  <h2>Additional Revenue Opportunities</h2>
+  <div class="opp-grid">
+    <div class="opp-card" style="border-color:var(--amber-border);">
+      <div class="opp-n">01</div>
+      <div class="opp-title">Mother's Day Bundle</div>
+      <div class="opp-body">May 11. Peak gifting occasion for this product category. A named tasting box with a hard 72-hour window performs better than a percentage discount because it creates urgency without conditioning the audience to wait for sales. The December flash sale hit <strong>6.9x ROAS</strong> on a single day. A structured seasonal offer at scale can push a full week above $70K as Valentine's demonstrated in February.</div>
+      <div class="opp-action">-> Confirm offer details this week for Apr 28 campaign launch</div>
+    </div>
+    <div class="opp-card">
+      <div class="opp-n">02</div>
+      <div class="opp-title">Retargeting Stack Build</div>
+      <div class="opp-body">The current RTG campaign is running a single blended ad set. A properly structured sequence — website visitor, cart abandoner, checkout abandoner, past purchaser — with distinct creative at each stage converts at <strong>3x to 8x the CPP of cold traffic</strong>. Checkout Abandoners delivered 2.80x when tested in February. This layer is currently underleveraged and requires relatively minimal budget to build properly.</div>
+      <div class="opp-action">-> Build retargeting stack by Day 2 of Week 2</div>
+    </div>
+    <div class="opp-card">
+      <div class="opp-n">03</div>
+      <div class="opp-title">Variety Box LP Optimisation</div>
+      <div class="opp-body">The LP already converts at 13.13% vs 6.30% on the homepage. Continuous CRO on this page — headline test, hero image, testimonial placement, urgency indicators — compounds returns across every dollar of Meta and Google spend simultaneously. A 20% improvement in LP CVR lifts Meta ROAS by approximately 0.4x at current traffic levels, equivalent to adding <strong>$500 to $700 per day</strong> in revenue with zero budget increase.</div>
+      <div class="opp-action">-> Brief LP CRO test calendar this month</div>
+    </div>
+    <div class="opp-card">
+      <div class="opp-n">04</div>
+      <div class="opp-title">Amazon Bid Strategy Upgrade</div>
+      <div class="opp-body">Custom Box branded campaigns are converting at 9x to 10x ROAS but severely underspending daily budgets because Dynamic Bids Down Only blocks top-of-search placement. Moving SP campaigns to Dynamic Bids Up and Down has been approved. This is demand that already exists on Amazon — the current bid strategy is simply preventing the account from capturing it.</div>
+      <div class="opp-action">-> Execute bid strategy upgrade on SP campaigns immediately</div>
+    </div>
+    <div class="opp-card">
+      <div class="opp-n">05</div>
+      <div class="opp-title">Google Branded Search</div>
+      <div class="opp-body">Branded Search is delivering 9x or better ROAS but is chronically budget-capped and currently affected by a billing issue causing delivery gaps. Competitors are actively bidding on Uncle Butch's brand terms. Every impression lost to a competitor from a branded search is a warm buyer who already knows the brand. Resolving billing and fully funding Branded Search is both defensive and directly revenue-generating.</div>
+      <div class="opp-action">-> Resolve Google billing and raise Branded Search budget today</div>
+    </div>
+    <div class="opp-card">
+      <div class="opp-n">06</div>
+      <div class="opp-title">Nuts Category Launch</div>
+      <div class="opp-body">Nathaniel has flagged roasted and candied nuts as a future product category. When that launches it creates a new creative angle — "from the makers of Uncle Butch's Fudge" — that gives existing audiences a reason to engage again and opens natural bundle opportunities with the existing fudge range. Planning the creative approach in advance means it can launch immediately when the product is ready, without a delay.</div>
+      <div class="opp-action">-> Brief creative angle when product timeline is confirmed</div>
+    </div>
+  </div>
+</section>
+
+<section id="verdict">
+  <div class="eyebrow">Audit Conclusion</div>
+  <h2>Summary Verdict</h2>
+  <div class="grid-3" style="margin-bottom:32px;">
+    <div class="card red">
+      <h4 style="color:var(--red);">Critical Problems</h4>
+      <ul class="check-list red" style="margin-top:8px;">
+        <li>Blended ROAS at 1.93x — all three campaigns below the 2.5x floor</li>
+        <li>85% of spend on sub-2x creatives for the full 30-day period</li>
+        <li>UGC pipeline empty after six weeks of escalating flags</li>
+        <li>Daily revenue at $2,577 against an $8,000 target</li>
+        <li>YoY spend down 44%, revenue down 50% — wrong direction on both</li>
+      </ul>
+    </div>
+    <div class="card warn">
+      <h4 style="color:var(--warn);">Risks to Manage</h4>
+      <ul class="check-list amber" style="margin-top:8px;">
+        <li>Creative fatigue will rebuild without a weekly testing cadence — not a one-time fix</li>
+        <li>Budget step-ups before ROAS confirms will cause further algorithm disruption</li>
+        <li>Flash sale fatigue is real — offer strategy must use named bundles with hard deadlines</li>
+        <li>Google billing gap is leaving high-ROAS branded search spend uncaptured</li>
+        <li>Amazon bid strategy upgrade approved but not yet executed</li>
+      </ul>
+    </div>
+    <div class="card green">
+      <h4 style="color:var(--green);">Strong Foundations</h4>
+      <ul class="check-list green" style="margin-top:8px;">
+        <li>December 2025: 6.81x blended ROAS — same account, same audiences, different creatives</li>
+        <li>Valentine's week February 2026: $73,073 in seven days at 2.88x on $25K spend</li>
+        <li>Green Screen Video 2 running 4.50x right now inside the 1.93x blended account</li>
+        <li>Variety Box LP confirmed at 13.13% CVR — 2x better than any alternative destination</li>
+        <li>Product is strong and demand exists — the bottleneck is creative delivery, not the market</li>
+      </ul>
+    </div>
+  </div>
+  <div class="verdict">
+    <div class="verdict-body">
+      <h3>Overall Verdict — Strong Business, Fixable Problem</h3>
+      <p>This account has delivered exactly what is being asked for. December 2025 at 6.81x blended ROAS. $73,000 in a Valentine's week. The $8,000 per day revenue target is not theoretical — this account has been at that level. The current crisis is not structural and it is not a product problem. It is a creative problem compounded by a budget allocation problem, and both are fixable within days. <strong>The single highest-leverage action is pausing the top five drain creatives today and redirecting spend to Green Screen Video 2.</strong> The second is sourcing a new batch of UGC this week so the pipeline does not run empty again in 30 days. From there the roadmap is clear: incremental budget step-ups as ROAS confirms, a Mother's Day offer in Week 4, and a self-sustaining creative testing process that prevents fatigue from accumulating again. The path to $8,000 per day runs through fresh creative and disciplined budget allocation — not structural rebuilds or new audiences.</p>
+    </div>
+  </div>
+  <div style="margin-top:32px;padding:28px 32px;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-align:center;">
+    <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted2);margin-bottom:8px;">Prepared by</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:28px;color:var(--white);margin-bottom:4px;">Charles Piper</div>
+    <div style="font-size:14px;color:var(--muted);">Your Marketing Partners · 13 April 2026</div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted2);">Confidential — Uncle Butch's Fudge · Not for distribution</div>
+  </div>
+</section>
+
+</div>
+
+<script>
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector(`.nav-link[href="#${id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -50% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
