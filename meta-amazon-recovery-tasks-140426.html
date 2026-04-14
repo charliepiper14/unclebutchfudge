@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UBF — Meta & Amazon Optimisation Checklist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0906;--bg2:#0f0b08;
+  --surface:#161009;--surface2:#1c1510;--surface3:#221a12;
+  --border:#2e2016;--border2:#3d2c1a;
+  --amber:#f0900f;--amber-glow:rgba(240,144,15,0.15);--amber-border:rgba(240,144,15,0.3);
+  --warn:#e8a825;--warn-glow:rgba(232,168,37,0.12);
+  --red:#e05040;--red-glow:rgba(224,80,64,0.12);
+  --green:#2ec97e;--green-glow:rgba(46,201,126,0.1);
+  --blue:#4a9eff;
+  --white:#f5f0ea;--text:#d4ccc0;--muted:#7a6858;--muted2:#4a3828;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;height:56px;
+  background:rgba(11,9,6,0.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 40px;
+}
+.nav-left{display:flex;align-items:center;gap:12px;}
+.nav-dot{width:8px;height:8px;background:var(--amber);border-radius:50%;}
+.nav-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--white);letter-spacing:0.3px;}
+.nav-sub{font-size:12px;color:var(--muted);margin-left:4px;}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.channel-pill{
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:20px;cursor:pointer;
+  transition:all 0.2s;
+}
+.channel-pill.meta{background:rgba(66,103,178,0.2);color:#6b8fe8;border:1px solid rgba(66,103,178,0.3);}
+.channel-pill.amazon{background:rgba(255,153,0,0.12);color:var(--amber);border:1px solid var(--amber-border);}
+.progress-pill{
+  background:var(--surface2);border:1px solid var(--border2);
+  border-radius:20px;padding:5px 16px;
+  font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
+  color:var(--amber);letter-spacing:0.5px;transition:all 0.3s;
+}
+
+/* PAGE */
+.page{padding-top:56px;}
+.wrap{max-width:1080px;margin:0 auto;padding:56px 40px 100px;}
+
+/* CHANNEL DIVIDER */
+.channel-divider{
+  display:flex;align-items:center;gap:20px;margin:72px 0 48px;
+}
+.channel-divider-line{flex:1;height:1px;background:var(--border);}
+.channel-divider-badge{
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;padding:8px 20px;border-radius:4px;
+  white-space:nowrap;
+}
+.channel-divider-badge.meta{background:rgba(66,103,178,0.15);color:#6b8fe8;border:1px solid rgba(66,103,178,0.3);}
+.channel-divider-badge.amazon{background:rgba(240,144,15,0.12);color:var(--amber);border:1px solid var(--amber-border);}
+
+/* HERO */
+.hero{padding:48px 0 36px;}
+.eyebrow{
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:3.5px;text-transform:uppercase;color:var(--amber);
+  display:flex;align-items:center;gap:12px;margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:28px;height:1.5px;background:var(--amber);}
+h1{font-family:'Playfair Display',serif;font-size:clamp(38px,5vw,62px);color:var(--white);line-height:1.08;margin-bottom:14px;font-weight:800;}
+h1 em{color:var(--amber);font-style:normal;}
+.hero-sub{font-size:15px;color:var(--muted);max-width:640px;line-height:1.7;margin-bottom:32px;}
+.hero-meta{display:flex;gap:36px;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.hero-meta-item{display:flex;flex-direction:column;gap:3px;}
+.hml{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);font-weight:600;}
+.hmv{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--white);}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px;}
+@media(max-width:700px){.stats-row{grid-template-columns:1fr 1fr;}}
+.stat-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:20px 22px;position:relative;overflow:hidden;
+}
+.stat-card::after{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:3px;border-radius:3px 0 0 3px;
+}
+.stat-card.red::after{background:var(--red);}
+.stat-card.amber::after{background:var(--amber);}
+.stat-card.green::after{background:var(--green);}
+.stat-card.neutral::after{background:var(--border2);}
+.sv{font-family:'Playfair Display',serif;font-size:34px;line-height:1.1;margin-bottom:5px;font-weight:700;}
+.sv.red{color:var(--red);}
+.sv.amber{color:var(--amber);}
+.sv.green{color:var(--green);}
+.sv.white{color:var(--white);}
+.sl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.ss{font-size:12px;color:var(--muted2);line-height:1.5;}
+
+/* HIGHLIGHT BOX */
+.hl{
+  border-left:3px solid var(--amber);background:var(--amber-glow);
+  border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:20px;
+  font-size:14px;color:var(--text);line-height:1.75;
+}
+.hl.red{border-color:var(--red);background:var(--red-glow);}
+.hl.green{border-color:var(--green);background:var(--green-glow);}
+.hl.warn{border-color:var(--warn);background:var(--warn-glow);}
+.hl strong{color:var(--white);font-weight:600;}
+.hl code{font-family:'Space Grotesk',monospace;font-size:12px;background:var(--surface3);padding:2px 6px;border-radius:4px;color:var(--amber);}
+
+/* SECTION */
+.section{margin-bottom:52px;}
+.section-hdr{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px;}
+.snum{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.snum.amber{background:var(--amber);color:#000;}
+.snum.red{background:var(--red);color:#fff;}
+.snum.green{background:var(--green);color:#000;}
+.snum.gray{background:var(--surface3);color:var(--muted);border:1px solid var(--border2);}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;color:var(--white);letter-spacing:0.2px;}
+.section-sub{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.5;}
+
+/* CAMPAIGN BLOCK */
+.camp-block{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:20px;overflow:hidden;}
+.camp-hdr{
+  padding:16px 22px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:var(--surface2);
+}
+.camp-name{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;color:var(--white);letter-spacing:0.2px;}
+.camp-name-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.camp-stats{display:flex;gap:22px;align-items:center;flex-shrink:0;}
+.cstat-val{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;}
+.cstat-val.red{color:var(--red);}
+.cstat-val.amber{color:var(--amber);}
+.cstat-val.green{color:var(--green);}
+.cstat-lbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted2);margin-top:1px;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{
+  font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--muted2);
+  padding:10px 16px;text-align:left;background:rgba(0,0,0,0.2);
+  border-bottom:1px solid var(--border);
+}
+.tbl td{
+  padding:12px 16px;font-size:13px;color:var(--text);
+  border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:top;
+  line-height:1.6;
+}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:hover td{background:rgba(255,255,255,0.015);}
+.ad-name{font-size:13px;font-weight:500;color:var(--white);}
+.ad-sub{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;}
+.rb{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;font-family:'Space Grotesk',sans-serif;}
+.rb-r{background:rgba(224,80,64,0.14);color:var(--red);}
+.rb-a{background:rgba(232,168,37,0.14);color:var(--warn);}
+.rb-g{background:rgba(46,201,126,0.12);color:var(--green);}
+.ab{
+  display:inline-flex;align-items:center;gap:5px;white-space:nowrap;
+  padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;
+  font-family:'Space Grotesk',sans-serif;letter-spacing:0.5px;text-transform:uppercase;
+}
+.ab-kill{background:rgba(224,80,64,0.15);color:var(--red);border:1px solid rgba(224,80,64,0.3);}
+.ab-scale{background:rgba(46,201,126,0.12);color:var(--green);border:1px solid rgba(46,201,126,0.25);}
+.ab-keep{background:rgba(240,144,15,0.1);color:var(--amber);border:1px solid var(--amber-border);}
+.ab-mon{background:rgba(232,168,37,0.12);color:var(--warn);border:1px solid rgba(232,168,37,0.25);}
+.ab-check{background:rgba(74,158,255,0.12);color:var(--blue);border:1px solid rgba(74,158,255,0.3);}
+
+/* CHECKLIST */
+.checklist{display:flex;flex-direction:column;}
+.ci{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.ci:last-child{border-bottom:none;}
+input[type="checkbox"]{display:none;}
+input[type="checkbox"]:checked+label .cbox{background:var(--amber);border-color:var(--amber);}
+input[type="checkbox"]:checked+label .cbox::after{content:'✓';font-size:11px;font-weight:700;color:#000;line-height:1;}
+input[type="checkbox"]:checked+label .ctext{opacity:0.38;}
+label{display:flex;align-items:flex-start;gap:16px;cursor:pointer;width:100%;}
+.cbox{
+  width:22px;height:22px;border-radius:6px;border:1.5px solid var(--border2);
+  flex-shrink:0;margin-top:1px;background:var(--surface2);
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.15s;
+}
+.cbox:hover{border-color:var(--amber);}
+.ctext{flex:1;transition:opacity 0.2s;}
+.ctitle{font-size:14px;font-weight:600;color:var(--white);margin-bottom:5px;line-height:1.5;}
+.cdesc{font-size:13px;color:var(--muted);line-height:1.75;}
+.cdesc strong{color:var(--text);font-weight:600;}
+.cdesc code{font-family:'Space Grotesk',monospace;font-size:11.5px;background:var(--surface3);padding:2px 7px;border-radius:4px;color:var(--amber);}
+.cmeta{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap;}
+.ptag{font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
+.pt-now{background:rgba(224,80,64,0.18);color:var(--red);}
+.pt-today{background:rgba(240,144,15,0.15);color:var(--amber);}
+.pt-48h{background:rgba(232,168,37,0.14);color:var(--warn);}
+.pt-week{background:rgba(74,158,255,0.12);color:var(--blue);}
+.pt-ongoing{background:var(--surface3);color:var(--muted);border:1px solid var(--border);}
+.cpath{font-family:'Space Grotesk',monospace;font-size:10.5px;color:var(--muted2);background:var(--surface2);padding:3px 9px;border-radius:4px;border:1px solid var(--border);}
+.warning-box{background:rgba(224,80,64,0.08);border:1px solid rgba(224,80,64,0.25);border-radius:10px;padding:14px 18px;margin:8px 0 0;font-size:12.5px;color:var(--text);line-height:1.65;}
+.warning-box strong{color:var(--red);}
+
+/* PHASE TAG */
+.phase-tag{
+  font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:5px;
+  display:inline-block;margin-bottom:18px;
+}
+.pt-red{background:var(--red);color:#fff;}
+.pt-green{background:var(--green);color:#000;}
+.pt-amber{background:var(--amber);color:#000;}
+.pt-warn{background:var(--warn);color:#000;}
+.pt-blue{background:rgba(74,158,255,0.2);color:var(--blue);border:1px solid rgba(74,158,255,0.3);}
+
+hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <div class="nav-dot"></div>
+    <span class="nav-title">Uncle Butch's Fudge</span>
+    <span class="nav-sub">— Optimisation Checklist</span>
+  </div>
+  <div class="nav-right">
+    <a href="#meta" class="channel-pill meta">Meta Ads</a>
+    <a href="#amazon" class="channel-pill amazon">Amazon Ads</a>
+    <span class="progress-pill" id="prog">0 / 52 Done</span>
+  </div>
+</nav>
+
+<div class="page"><div class="wrap">
+
+<!-- ══════════════════════════════════════════════════
+     META ADS
+══════════════════════════════════════════════════ -->
+<div id="meta">
+<div class="channel-divider">
+  <div class="channel-divider-line"></div>
+  <div class="channel-divider-badge meta">Meta Ads — Account 1044455086655030</div>
+  <div class="channel-divider-line"></div>
+</div>
+
+<div class="hero" style="padding-top:0">
+  <div class="eyebrow">Mar 14 – Apr 12, 2026</div>
+  <h1>Meta Ads<br><em>Optimisation</em></h1>
+  <p class="hero-sub">Every action below is validated against both the current period (Mar 14 – Apr 12) and the previous period (Feb 12 – Mar 13). Campaign names, ad set names, and ad names are verified against source CSV exports.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hml">Period Spend</span><span class="hmv" style="color:var(--text)">$40,150</span></div>
+    <div class="hero-meta-item"><span class="hml">Blended ROAS</span><span class="hmv" style="color:var(--red)">1.93x</span></div>
+    <div class="hero-meta-item"><span class="hml">Target ROAS</span><span class="hmv">3.0x (floor 2.5x)</span></div>
+    <div class="hero-meta-item"><span class="hml">Daily Spend</span><span class="hmv">$1,338/day</span></div>
+    <div class="hero-meta-item"><span class="hml">Best Performer</span><span class="hmv" style="color:var(--green)">4.50x</span></div>
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card red"><div class="sl">TOF Winners CBO</div><div class="sv red">1.82x</div><div class="ss">$14,332 spend — below floor</div></div>
+  <div class="stat-card red"><div class="sl">Advantage+ Post IDs</div><div class="sv red">1.80x</div><div class="ss">$14,042 spend — below floor</div></div>
+  <div class="stat-card amber"><div class="sl">RTG Sales</div><div class="sv amber">2.21x</div><div class="ss">$11,776 spend — below target</div></div>
+  <div class="stat-card green"><div class="sl">Green Screen V2</div><div class="sv green">4.50x</div><div class="ss">Best creative — $443 spend only. Scale this.</div></div>
+</div>
+
+<!-- ── ACCOUNT STRUCTURE ─────────────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum gray">i</div>
+    <div><div class="section-title">Live Account Structure — Verified Campaign Map</div>
+    <div class="section-sub">Three active campaigns. Every ad name, ad set name, and performance figure verified from source exports.</div></div>
+  </div>
+
+  <!-- CAMPAIGN 1 -->
+  <div class="camp-block">
+    <div class="camp-hdr">
+      <div><div class="camp-name">YMP - TOF Winners - CBO</div><div class="camp-name-sub">CBO · Active · L8 Lookalike was scaled 40x last period — root cause of the ROAS collapse</div></div>
+      <div class="camp-stats">
+        <div><div class="cstat-val red">1.82x</div><div class="cstat-lbl">ROAS</div></div>
+        <div><div class="cstat-val red">$14,332</div><div class="cstat-lbl">Spend</div></div>
+        <div><div class="cstat-val">535</div><div class="cstat-lbl">Purchases</div></div>
+      </div>
+    </div>
+    <table class="tbl">
+      <thead><tr><th>Ad Set</th><th>Ad Name</th><th>Spend</th><th>ROAS</th><th>CPP</th><th>CPM</th><th>Purch</th><th>Prev ROAS</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr>
+          <td rowspan="1"><strong>TOF - Green Screen Videos Migrated</strong><br><span style="font-size:11px;color:var(--muted)">Adset ROAS 4.50x · $443 spend</span></td>
+          <td><div class="ad-name">CT - Green Screen Video 2 – Copy</div><div class="ad-sub">New ad — no prev period data. 30-day ROAS at ~$14/day spend.</div></td>
+          <td>$443</td><td><span class="rb rb-g">4.50x</span></td><td>$13.85</td><td>$18.02</td><td>32</td><td style="color:var(--muted)">—</td>
+          <td><span class="ab ab-scale">Scale Now</span></td>
+        </tr>
+        <tr>
+          <td rowspan="2"><strong>YMP - Bakery Interest - Winners</strong><br><span style="font-size:11px;color:var(--muted)">Adset ROAS 1.99x · $5,907 spend</span></td>
+          <td>
+            <div class="ad-name">YMP - L8 | W Copy - Video1 - Packaging | Video</div>
+            <div class="ad-sub">⚠️ Two ads share this exact name in this adset. Check ad IDs in Ads Manager before acting. Prev period: $43 spend at 0.74x (barely tested). Current 4.82x is on the smaller, recently-active instance.</div>
+          </td>
+          <td>$322</td><td><span class="rb rb-g">4.82x</span></td><td>$18.97</td><td>$14.55</td><td>17</td><td style="color:var(--muted)">0.74x</td>
+          <td><span class="ab ab-scale">Keep &amp; scale</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="ad-name">YMP - L8 | W Copy - Video1 - Packaging | Video</div>
+            <div class="ad-sub">⚠️ Same name as above. This is the larger instance running 1.90x. Verify by ad ID before pausing — if same object as the 4.82x row, do NOT pause cold. Instead swap with Green Screen V2.</div>
+          </td>
+          <td>$5,055</td><td><span class="rb rb-r">1.90x</span></td><td>$24.54</td><td>$22.55</td><td>206</td><td style="color:var(--muted)">—</td>
+          <td><span class="ab ab-check">Verify ID first</span></td>
+        </tr>
+        <tr>
+          <td><strong>YMP - L8 | 5% Customer Lookalike, Value Based</strong><br><span style="font-size:11px;color:var(--muted)">Adset ROAS 1.54x · $6,977 spend. Was $322 prev period — scaled 40x. Caused collapse.</span></td>
+          <td><div class="ad-name">YMP - (ID) L8 | UGC - 'Video3' > Fudge collection | Video - FudgeCLP</div><div class="ad-sub">Prev period: $1,703 at 2.67x. Scaled aggressively → collapsed to 1.56x. Over-scaling confirmed.</div></td>
+          <td>$5,916</td><td><span class="rb rb-r">1.56x</span></td><td>$28.86</td><td>$15.42</td><td>205</td><td style="color:var(--green)">2.67x</td>
+          <td><span class="ab ab-kill">Pause</span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><div class="ad-name">YMP - (ID) L8 | C-UBF17 - "Video24" Revamp | Video - 4pVarBoxPDP</div><div class="ad-sub">Prev period: $14,991 spend at 1.88x — was already below floor. Now 1.40x. Two periods consecutive below target.</div></td>
+          <td>$1,061</td><td><span class="rb rb-r">1.40x</span></td><td>$30.31</td><td>$12.38</td><td>35</td><td style="color:var(--muted)">1.88x</td>
+          <td><span class="ab ab-kill">Pause</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CAMPAIGN 2 -->
+  <div class="camp-block">
+    <div class="camp-hdr">
+      <div><div class="camp-name">YMP - Advantage+ - Post IDs</div><div class="camp-name-sub">ASC · Active · Two ad sets: primary ($40/day active) and secondary ($25/day active). Swap ads one at a time — do NOT pause all simultaneously.</div></div>
+      <div class="camp-stats">
+        <div><div class="cstat-val red">1.80x</div><div class="cstat-lbl">ROAS</div></div>
+        <div><div class="cstat-val red">$14,042</div><div class="cstat-lbl">Spend</div></div>
+        <div><div class="cstat-val">567</div><div class="cstat-lbl">Purchases</div></div>
+      </div>
+    </div>
+    <table class="tbl">
+      <thead><tr><th>Ad Set</th><th>Ad Name</th><th>Spend</th><th>ROAS</th><th>CPP</th><th>CPM</th><th>Purch</th><th>Prev ROAS</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr>
+          <td rowspan="4"><strong>Advantage+</strong> ($40/day budget)<br><span style="font-size:11px;color:var(--muted)">Adset ROAS 1.78x · $13,935 spend · 558 purchases. Swap ads sequentially, not all at once.</span></td>
+          <td><div class="ad-name">A+ - 'YMP - '(ID) L3 | B-UBF Car review shortened | Video - 4pVarBoxPDP'</div><div class="ad-sub">Prev period: 2.97x at $14.59 CPP. Now 1.45x at $28.87 CPP. CPM near-doubled. Confirmed fatigue — pause first.</div></td>
+          <td>$3,926</td><td><span class="rb rb-r">1.45x</span></td><td>$28.87</td><td>$26.28</td><td>136</td><td style="color:var(--amber)">2.97x</td>
+          <td><span class="ab ab-kill">Pause — Step 1</span></td>
+        </tr>
+        <tr>
+          <td><div class="ad-name">A+ - '[T] TOF/CT - W COPY - VIDEO3'</div><div class="ad-sub">Prev period: only $200 at 2.12x — limited data. Current 1.84x below floor. Pause after Car Review is replaced and campaign has stabilised (48hrs).</div></td>
+          <td>$3,839</td><td><span class="rb rb-r">1.84x</span></td><td>$23.26</td><td>$23.02</td><td>165</td><td style="color:var(--muted)">2.12x</td>
+          <td><span class="ab ab-kill">Pause — Step 2</span></td>
+        </tr>
+        <tr>
+          <td><div class="ad-name">A+ - '[L] TOF/CT - JAN25- PostID - 987352933177346</div><div class="ad-sub">Prev period: 2.13x at $18.73 CPP. Now 1.93x at $22.89 CPP. CPM doubled ($13.32 → $26.29). Fatigue confirmed via CPM signal. Pause after Video3 swap.</div></td>
+          <td>$3,251</td><td><span class="rb rb-r">1.93x</span></td><td>$22.89</td><td>$26.29</td><td>142</td><td style="color:var(--amber)">2.13x</td>
+          <td><span class="ab ab-kill">Pause — Step 3</span></td>
+        </tr>
+        <tr>
+          <td><div class="ad-name">A+ - TOF/CT - "Video19" - Post ID: 1045183690727603</div><div class="ad-sub">Delivery shows inactive in export data. Verify status in Ads Manager. No prev period data. If showing any active status, pause immediately.</div></td>
+          <td>$2,919</td><td><span class="rb rb-r">1.99x</span></td><td>$25.39</td><td>$27.18</td><td>115</td><td style="color:var(--muted)">—</td>
+          <td><span class="ab ab-check">Confirm off</span></td>
+        </tr>
+        <tr>
+          <td rowspan="2"><strong>YMP - Advantage+</strong> ($25/day budget)<br><span style="font-size:11px;color:var(--red)">⚠️ This whole adset is at 0.69x ROAS on $627 spend this period. Pause the entire adset.</span></td>
+          <td><div class="ad-name">CT - Street Interview 3</div><div class="ad-sub">Delivery shows inactive in export. Prev period: $696 at 2.25x. This adset has deteriorated to 0.69x. If still live, pause.</div></td>
+          <td>$259</td><td><span class="rb rb-r">1.04x</span></td><td>$51.84</td><td>$21.76</td><td>5</td><td style="color:var(--amber)">2.25x</td>
+          <td><span class="ab ab-kill">Pause adset</span></td>
+        </tr>
+        <tr>
+          <td><div class="ad-name">CT - Street Interview 4</div><div class="ad-sub">Delivery shows inactive in export. Prev period: 4.01x at $13.94 CPP — was strong. Now 1.42x — audience exhausted. Adset itself is at 0.69x blended.</div></td>
+          <td>$241</td><td><span class="rb rb-r">1.42x</span></td><td>$40.15</td><td>$14.26</td><td>6</td><td style="color:var(--green)">4.01x</td>
+          <td><span class="ab ab-kill">Pause adset</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CAMPAIGN 3 -->
+  <div class="camp-block">
+    <div class="camp-hdr">
+      <div><div class="camp-name">YMP - RTG - SALES - US - 24.01.26</div><div class="camp-name-sub">Retargeting · Active · CBO · Best campaign by efficiency — but several ad sets and ads below floor</div></div>
+      <div class="camp-stats">
+        <div><div class="cstat-val amber">2.21x</div><div class="cstat-lbl">ROAS</div></div>
+        <div><div class="cstat-val amber">$11,776</div><div class="cstat-lbl">Spend</div></div>
+        <div><div class="cstat-val">500</div><div class="cstat-lbl">Purchases</div></div>
+      </div>
+    </div>
+    <table class="tbl">
+      <thead><tr><th>Ad Set</th><th>Ad Name</th><th>Spend</th><th>ROAS</th><th>CPP</th><th>CPM</th><th>Purch</th><th>Prev ROAS</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr>
+          <td rowspan="3"><strong>Checkout Abandoners</strong><br><span style="font-size:11px;color:var(--muted)">Adset ROAS 1.83x · $6,177 spend · 259 purchases. New adset this period ($0 prev).</span></td>
+          <td><div class="ad-name">AD 2B: Shipping Reassurance – Copy</div><div class="ad-sub">New ad — no prev period data. Largest purchase driver in RTG at 179 purchases. At 1.96x it is below the 2.5x floor but this is RTG with lower CPMs. Do not pause — it is generating volume while the ad finds its level.</div></td>
+          <td>$4,025</td><td><span class="rb rb-r">1.96x</span></td><td>$22.49</td><td>$17.22</td><td>179</td><td style="color:var(--muted)">—</td>
+          <td><span class="ab ab-keep">Keep — add Best Seller Carousel alongside</span></td>
+        </tr>
+        <tr>
+          <td><div class="ad-name">AD 2C: Urgency + FOMO</div><div class="ad-sub">Prev period: 1.66x at $24.64 CPP in Checkout Abandoners. Current 1.70x — barely moved across 2 periods. Consistently below floor. Reduce budget allocation rather than pause.</div></td>
+          <td>$1,360</td><td><span class="rb rb-r">1.70x</span></td><td>$25.19</td><td>$16.76</td><td>54</td><td style="color:var(--muted)">1.66x</td>
+          <td><span class="ab ab-mon">Reduce budget 40%</span></td>
+        </tr>
+        <tr>
+          <td><div class="ad-name">AD 2A: Problem Solver</div><div class="ad-sub">Prev period: strong at 2.96x and $14.41 CPP. Current period: 1.37x at $30.45 CPP — confirmed deterioration. This specific ad has fatigued. Safe to pause.</div></td>
+          <td>$792</td><td><span class="rb rb-r">1.37x</span></td><td>$30.45</td><td>$16.99</td><td>26</td><td style="color:var(--green)">2.96x</td>
+          <td><span class="ab ab-kill">Pause</span></td>
+        </tr>
+        <tr>
+          <td><strong>Cart Abandoners</strong><br><span style="font-size:11px;color:var(--red)">⚠️ $1,650 spend at 1.42x. New adset this period. No individual ad names visible in data export. Must open Ads Manager directly.</span></td>
+          <td><div class="ad-name">Ad names not visible in export</div><div class="ad-sub">The ad-level export does not surface individual ad names for this adset. Navigate directly to this adset in Ads Manager and review each ad. Pause any ad below 2x ROAS with 15+ purchases in the last 30 days.</div></td>
+          <td>$1,650</td><td><span class="rb rb-r">1.42x</span></td><td>$28.45</td><td>$13.40</td><td>58</td><td style="color:var(--muted)">—</td>
+          <td><span class="ab ab-check">Audit in Ads Manager</span></td>
+        </tr>
+        <tr>
+          <td><strong>Past Purchasers (Repeat/Loyalty)</strong><br><span style="font-size:11px;color:var(--muted)">Adset ROAS 1.48x · $963 spend</span></td>
+          <td><div class="ad-name">AD 4B: New Flavors</div><div class="ad-sub">Prev period: 0.58x (barely any spend, unreliable). Audience is small — likely exhausted at current spend. Pause and retest with new UGC once pipeline is live.</div></td>
+          <td>$963</td><td><span class="rb rb-r">1.48x</span></td><td>$32.10</td><td>$16.78</td><td>30</td><td style="color:var(--muted)">0.58x</td>
+          <td><span class="ab ab-kill">Pause — retest with fresh UGC</span></td>
+        </tr>
+        <tr>
+          <td rowspan="2"><strong>Product Viewers</strong><br><span style="font-size:11px;color:var(--muted)">Adset ROAS 2.67x · $583 spend. Prev period had $7,517 spend — 92% drop. Investigate before scaling.</span></td>
+          <td><div class="ad-name">AD 3A: Best Seller Carousel</div><div class="ad-sub">Prev period: $92 at 1.30x (barely tested). Current 2.90x at $14.86 CPP — strong for RTG. Low CPM $13.91. Increase allocation to this ad.</div></td>
+          <td>$342</td><td><span class="rb rb-g">2.90x</span></td><td>$14.86</td><td>$13.91</td><td>23</td><td style="color:var(--muted)">1.30x</td>
+          <td><span class="ab ab-scale">Scale + add to Checkout Abandoners</span></td>
+        </tr>
+        <tr>
+          <td><div class="ad-name">AD 3C: Quality Story</div><div class="ad-sub">Prev period: 0 spend. Current 2.34x — approaching target. Keep running at current budget.</div></td>
+          <td>$242</td><td><span class="rb rb-a">2.34x</span></td><td>$18.58</td><td>$13.67</td><td>13</td><td style="color:var(--muted)">—</td>
+          <td><span class="ab ab-keep">Keep</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div><!-- /section -->
+
+<hr>
+
+<!-- ── PHASE 1: KILL ─────────────────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum red">1</div>
+    <div><div class="section-title">Phase 1 — Pause the Confirmed Drains</div>
+    <div class="section-sub">Actions validated against both current and previous period. Complete in order. Do NOT pause Advantage+ ads all at once.</div></div>
+  </div>
+
+  <div class="hl red"><strong>Before starting:</strong> The Advantage+ campaign uses an ASC (Advantage+ Shopping Campaign) structure. Removing all ads simultaneously forces a full learning phase reset. The sequenced approach below — pause worst first, wait 48 hours, then next — keeps the campaign in active learning throughout and prevents a hard ROAS dip during the transition.</div>
+
+  <span class="phase-tag pt-red">Phase 1 — Pause</span>
+  <div class="checklist">
+
+    <div class="ci"><input type="checkbox" id="c1"><label for="c1"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Check Video1 Packaging ad IDs before taking any action on Bakery Interest</div>
+      <div class="cdesc">Two ads in <strong>YMP - Bakery Interest - Winners</strong> (inside <strong>YMP - TOF Winners - CBO</strong>) share the exact name <code>YMP - L8 | W Copy - Video1 - Packaging | Video</code>. Before pausing anything, open Ads Manager → TOF Winners CBO → YMP - Bakery Interest - Winners → expand the ad set and check the creation date and ad ID of each. You are looking for two distinct ad objects. If they are genuinely separate: the one with the older creation date and higher CPM is the saturated version — pause that one only. If they are the same ad object, do not pause it — instead proceed directly to Step 2 (adding Green Screen V2 as a replacement) and let the CBO algorithm reduce delivery to this ad naturally.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now — First</span><span class="cpath">TOF Winners CBO → YMP - Bakery Interest - Winners → expand ad set</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c2"><label for="c2"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause: YMP - (ID) L8 | UGC - 'Video3' > Fudge collection | Video - FudgeCLP</div>
+      <div class="cdesc">Ad set: <strong>YMP - L8 | 5% Customer Lookalike, Value Based</strong> · Campaign: <strong>YMP - TOF Winners - CBO</strong>. Ran at 2.67x in previous period at modest spend. Scaled 40x this period and collapsed to 1.56x. $5,916 wasted on an audience that cannot support this volume. Confirmed over-scaling failure — safe to pause, the audience will be re-entered via the L8 Lookalike adset once fresh creative is loaded.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">TOF Winners CBO → YMP - L8 | 5% Customer Lookalike, Value Based</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c3"><label for="c3"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause: YMP - (ID) L8 | C-UBF17 - "Video24" Revamp | Video - 4pVarBoxPDP</div>
+      <div class="cdesc">Ad set: <strong>YMP - L8 | 5% Customer Lookalike, Value Based</strong> · Campaign: <strong>YMP - TOF Winners - CBO</strong>. Was the account's largest spend ad last period at $14,991 — already below floor at 1.88x then. Now 1.40x. Two consecutive periods below target. Also check: there is an inactive copy of this ad in Bakery Interest — if that one also shows any active status, pause it too.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">TOF Winners CBO → YMP - L8 | 5% Customer Lookalike, Value Based</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c4"><label for="c4"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause — Step 1 of 3 in Advantage+: A+ - 'YMP - '(ID) L3 | B-UBF Car review shortened | Video - 4pVarBoxPDP'</div>
+      <div class="cdesc">Ad set: <strong>Advantage+</strong> ($40/day budget) · Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. Worst performer at 1.45x. Ran at 2.97x last period — confirmed fatigue with near-doubled CPM. Pause this ad ONLY at this step. Wait 48 hours before pausing the next ad. The remaining three ads (VIDEO3, JAN25 PostID, Video19) will absorb the freed budget and maintain campaign delivery. Replace with Green Screen V2 as a new post ID ad in this same adset.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">YMP - Advantage+ - Post IDs → Advantage+ ($40/day)</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c5"><label for="c5"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause — Step 2 of 3 in Advantage+ (wait 48hrs after Step 1): A+ - '[T] TOF/CT - W COPY - VIDEO3'</div>
+      <div class="cdesc">Ad set: <strong>Advantage+</strong> ($40/day budget) · Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. After Car Review is paused and a replacement creative is added (see Phase 2), wait 48 hours for the campaign to redistribute budget, then pause this ad. Current 1.84x, below floor. Limited previous period data so fatigue is inferred from current performance rather than period-over-period deterioration.</div>
+      <div class="cmeta"><span class="ptag pt-48h">48hrs after Step 1</span><span class="cpath">YMP - Advantage+ - Post IDs → Advantage+ ($40/day)</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c6"><label for="c6"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause — Step 3 of 3 in Advantage+ (after Step 2 settles): A+ - '[L] TOF/CT - JAN25- PostID - 987352933177346</div>
+      <div class="cdesc">Ad set: <strong>Advantage+</strong> ($40/day budget) · Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. Prev period 2.13x, current 1.93x — modest decline but CPM has near-doubled from $13.32 to $26.29. The CPM signal is the primary fatigue indicator here. Pause after Step 2 has settled and a second replacement creative is live. By this point the Advantage+ adset should have 2 fresh creatives running.</div>
+      <div class="cmeta"><span class="ptag pt-48h">48–72hrs after Step 2</span><span class="cpath">YMP - Advantage+ - Post IDs → Advantage+ ($40/day)</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c7"><label for="c7"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Confirm off / Pause if active: A+ - TOF/CT - "Video19" - Post ID: 1045183690727603</div>
+      <div class="cdesc">Ad set: <strong>Advantage+</strong> ($40/day budget) · Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. Export shows inactive delivery. Open Ads Manager and confirm this ad shows Paused or Off status. If it shows any active, scheduled, or learning status, pause it immediately. $2,919 spend at 1.99x — if it restarts it will drain budget.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now — confirm</span><span class="cpath">YMP - Advantage+ - Post IDs → Advantage+ ($40/day)</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c8"><label for="c8"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause the entire YMP - Advantage+ ($25/day) adset</div>
+      <div class="cdesc">Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. This adset is spending $627 at <strong>0.69x ROAS</strong> — the worst in the entire account. Both CT - Street Interview 3 and CT - Street Interview 4 are showing inactive delivery in the export but the adset is still spending. Pause the entire adset (not just individual ads) to ensure all budget leaking through this unit stops completely.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">YMP - Advantage+ - Post IDs → YMP - Advantage+ ($25/day) → pause adset</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c9"><label for="c9"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause: AD 2A: Problem Solver</div>
+      <div class="cdesc">Ad set: <strong>Checkout Abandoners</strong> · Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. Ran at 2.96x last period — strong. Now 1.37x at $30.45 CPP. Confirmed deterioration across both periods. Pausing removes $792 in spend and 26 purchases — those 26 purchases will partially be recaptured by AD 2B and Best Seller Carousel which have lower CPPs.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">YMP - RTG - SALES - US - 24.01.26 → Checkout Abandoners</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c10"><label for="c10"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause: AD 4B: New Flavors</div>
+      <div class="cdesc">Ad set: <strong>Past Purchasers (Repeat/Loyalty)</strong> · Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. At 1.48x ROAS. The audience size for past purchasers is inherently limited — at $963 spend over 30 days (~$32/day) this audience is likely saturated. Pause and retest with fresh creative once the UGC pipeline delivers new assets.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">YMP - RTG - SALES - US - 24.01.26 → Past Purchasers (Repeat/Loyalty)</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c11"><label for="c11"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Reduce budget 40%: AD 2C: Urgency + FOMO</div>
+      <div class="cdesc">Ad set: <strong>Checkout Abandoners</strong> · Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. Consistently below floor at 1.66x last period and 1.70x this period — no meaningful improvement across two months. Do not pause entirely (still generates 54 purchases and contributes to adset volume). Instead reduce its budget share by approximately 40% within the CBO. If ROAS does not improve above 2x within the next 30 days, pause.</div>
+      <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">YMP - RTG - SALES - US - 24.01.26 → Checkout Abandoners → AD 2C</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c12"><label for="c12"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Audit Cart Abandoners adset directly in Ads Manager — ad names not visible in data</div>
+      <div class="cdesc">Ad set: <strong>Cart Abandoners</strong> · Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. This adset spent $1,650 at 1.42x ROAS in the current period but no individual ad names surfaced in the ad-level export. Navigate directly to Ads Manager → RTG campaign → Cart Abandoners adset → review each active ad. For any ad running below 2x ROAS with 10+ purchases, pause it. The $1,650 at 1.42x is the weakest adset in the RTG campaign and the specific ads driving this need to be identified and acted on.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">YMP - RTG - SALES - US - 24.01.26 → Cart Abandoners → open in Ads Manager</span></div>
+    </div></label></div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ── PHASE 2: SCALE ────────────────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum green">2</div>
+    <div><div class="section-title">Phase 2 — Scale the Winners and Add Replacements</div>
+    <div class="section-sub">Execute alongside Phase 1. Fresh creative must be live before or immediately after each Advantage+ ad is paused.</div></div>
+  </div>
+
+  <div class="hl green"><strong>Realistic ROAS expectation at scale:</strong> CT - Green Screen Video 2 – Copy is running 4.50x at ~$14/day. Scaling to $400/day is a 28x increase — expect ROAS to normalise to 2.5–3.5x at volume. This is still a significant improvement over the current 1.93x blended. Do not model the 4.50x as a sustained figure at scale — model conservatively at 2.8x and the account still beats target.</div>
+
+  <span class="phase-tag pt-green">Phase 2 — Scale</span>
+  <div class="checklist">
+
+    <div class="ci"><input type="checkbox" id="c13"><label for="c13"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Scale: CT - Green Screen Video 2 – Copy — increase CBO budget on TOF Winners</div>
+      <div class="cdesc">Ad: <strong>CT - Green Screen Video 2 – Copy</strong> · Ad set: <strong>TOF - Green Screen Videos Migrated</strong> · Campaign: <strong>YMP - TOF Winners - CBO</strong>. This is a CBO campaign — you cannot set per-ad budgets directly. The mechanism is: (1) increase the TOF Winners CBO overall campaign budget by 25–30% to give the algorithm more to route to this adset, and (2) duplicate Green Screen V2 into the L8 Lookalike adset (see next action) so it has more auction opportunities across both adsets. The CBO algorithm should route heavily to Green Screen V2 once the drain ads are paused.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">TOF Winners CBO → campaign budget settings → increase 25%</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c14"><label for="c14"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Duplicate Green Screen V2 into YMP - L8 | 5% Customer Lookalike adset</div>
+      <div class="cdesc">Campaign: <strong>YMP - TOF Winners - CBO</strong>. After pausing Video3 and Video24 Revamp in Phase 1, the L8 Lookalike adset has no active creative. Duplicate <code>CT - Green Screen Video 2 – Copy</code> into this adset immediately. Verify the destination URL is the Variety Box landing page (/pages/fudge-variety-box — 13.13% CVR confirmed). This keeps the L8 Lookalike audience active and gives the CBO a proven creative to route budget to in that adset.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now — after Phase 1 pauses</span><span class="cpath">TOF Winners CBO → YMP - L8 | 5% Customer Lookalike, Value Based → add new ad</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c15"><label for="c15"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Add Green Screen V2 as a replacement ad in Advantage+ ($40/day adset) — Step 1 replacement</div>
+      <div class="cdesc">Campaign: <strong>YMP - Advantage+ - Post IDs</strong>, ad set: <strong>Advantage+</strong> ($40/day). After pausing Car Review (Phase 1, Step 1), add Green Screen V2 as a new post ID ad into this adset immediately — the same day. Do not leave the adset with a reduced ad count for more than a few hours. Ensure destination URL is Variety Box LP. This is the first fresh creative in the Advantage+ rotation and begins the replacement sequence.</div>
+      <div class="cmeta"><span class="ptag pt-now">Same day as Phase 1 Step 1</span><span class="cpath">YMP - Advantage+ - Post IDs → Advantage+ ($40/day) → add new ad</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c16"><label for="c16"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Duplicate AD 3A: Best Seller Carousel into Checkout Abandoners adset</div>
+      <div class="cdesc">Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. Best Seller Carousel is running 2.90x at $14.86 CPP in Product Viewers. Checkout abandoners have higher purchase intent than product viewers — social proof format converts this audience well. Duplicate the ad into Checkout Abandoners alongside AD 2B: Shipping Reassurance. This gives the Checkout Abandoners adset a higher-ROAS creative option and gives CBO something efficient to route toward.</div>
+      <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">YMP - RTG - SALES - US - 24.01.26 → Checkout Abandoners → add Best Seller Carousel</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c17"><label for="c17"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Investigate Product Viewers 92% spend drop and restore if audience is sound</div>
+      <div class="cdesc">Ad set: <strong>Product Viewers</strong> · Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. Previous period: $7,517 spend. Current period: $583 — a 92% drop. This is likely a CBO budget allocation decision, not a structural change. Check: (1) whether audience size has changed in the adset settings, (2) whether any targeting rules were modified. If the audience definition is intact, the drop in allocation means CBO deprioritised it — which may correct itself once higher-ROAS ads are removed from competing adsets. Monitor for 5 days after Phase 1 pauses before taking any manual action.</div>
+      <div class="cmeta"><span class="ptag pt-48h">Monitor after Phase 1</span><span class="cpath">YMP - RTG - SALES - US - 24.01.26 → Product Viewers → check audience settings</span></div>
+    </div></label></div>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- ── PHASE 3: DESTINATION URLS ─────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum amber">3</div>
+    <div><div class="section-title">Phase 3 — Landing Page Destination Audit</div>
+    <div class="section-sub">Variety Box LP converts at 13.13% vs 6.30% on homepage. Every TOF ad must point there before receiving budget.</div></div>
+  </div>
+
+  <div class="checklist">
+    <div class="ci"><input type="checkbox" id="c18"><label for="c18"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Confirm CT - Green Screen Video 2 – Copy destination is Variety Box LP before scaling</div>
+      <div class="cdesc">Before any budget increase, verify the destination URL on <code>CT - Green Screen Video 2 – Copy</code> in the <strong>TOF - Green Screen Videos Migrated</strong> adset. The confirmed high-converting destination is <code>/pages/fudge-variety-box</code>. If it is pointing to the homepage or any collection page, edit it now before the budget increases take effect.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now — before scaling</span><span class="cpath">TOF Winners CBO → TOF - Green Screen Videos Migrated → CT - Green Screen Video 2 – Copy → edit URL</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c19"><label for="c19"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Check destination URLs on all surviving TOF ads and the two duplicates added in Phase 2</div>
+      <div class="cdesc">For every ad that remains active in <strong>YMP - TOF Winners - CBO</strong> and <strong>YMP - Advantage+ - Post IDs</strong> after Phase 1 pauses, check the destination URL. Video3 was confirmed pointing to the fudge collection page (/collections/fudge) — this is the wrong destination. Update any ad pointing to homepage or collection pages to Variety Box LP. RTG ads (Checkout Abandoners, Product Viewers) can point to relevant product pages rather than the variety box specifically.</div>
+      <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">Ads Manager → each active ad → view URL destination</span></div>
+    </div></label></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── PHASE 4: UGC ──────────────────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum amber">4</div>
+    <div><div class="section-title">Phase 4 — Build the UGC Pipeline</div>
+    <div class="section-sub">Flagged for six consecutive weeks. The Phase 1 pauses buy time — but without new creative in test within 7 days the account hits the same wall again.</div></div>
+  </div>
+
+  <div class="hl"><strong>What works in this account:</strong> Green Screen UGC overlay (4.50x current), Review Image statics (Review Image1 hit 7.44x in January), unboxing phone reaction videos (VBox Unboxing hit 5.45x in February). These three formats — not polished brand content — are what this audience responds to. YMP has an established UGC and influencer partner network. Engagement confirmation is in progress.</div>
+
+  <div class="checklist">
+    <div class="ci"><input type="checkbox" id="c20"><label for="c20"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Build Green Screen Video 3 and Video 4 internally — 24-hour turnaround</div>
+      <div class="cdesc">The Green Screen format is confirmed to work right now. Build two new variations using the same overlay technique as CT - Green Screen Video 2 – Copy: one with a <strong>price/value hook</strong> ("Try every flavour for under $50"), one with a <strong>gifting hook</strong> ("The best thing you can send someone who has everything"). Name them <code>CT - Green Screen Video 3</code> and <code>CT - Green Screen Video 4</code> for consistent naming. Both can be built from existing brand assets within 24 hours.</div>
+      <div class="cmeta"><span class="ptag pt-today">Today</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c21"><label for="c21"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Build three Review Image static ads — 4-hour turnaround</div>
+      <div class="cdesc">Review Image1 delivered 7.44x ROAS in January. Pull three customer reviews (prioritise ones with star ratings visible and ideally a photo). Build static image ads in the same format. Name them <code>Review Image 2</code>, <code>Review Image 3</code>, <code>Review Image 4</code>. Launch into <strong>TOF - Green Screen Videos Migrated</strong> adset at $15/day each as a secondary test creative.</div>
+      <div class="cmeta"><span class="ptag pt-today">Today</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c22"><label for="c22"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Launch new creatives into Creative Testing at $20/day each — 48hr ROAS gate</div>
+      <div class="cdesc">Once Green Screen V3, V4, and the three Review Image statics are built, launch each into an ad set within <strong>YMP - TOF Winners - CBO</strong>. Either use the existing <strong>TOF - Green Screen Videos Migrated</strong> adset or create a new <strong>TOF - Creative Testing</strong> adset. Apply the gate: any ad below 2x ROAS after 48 hours with 20+ clicks gets paused. Any ad above 3x ROAS after 48 hours gets duplicated into the L8 Lookalike adset.</div>
+      <div class="cmeta"><span class="ptag pt-today">Within 24–48hrs of builds</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c23"><label for="c23"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Confirm UGC partner network engagement and brief for 5–8 unboxing reaction videos</div>
+      <div class="cdesc">YMP's UGC and influencer partner network is being engaged — confirmation of process details is pending. Brief: 60-second phone-recorded honest reaction video. Unboxing and first taste. No scripts. Product visible in first 3 seconds. When assets arrive, name sequentially: <code>VBox Unboxing 2</code>, <code>VBox Unboxing 3</code>, etc. Launch each into Creative Testing at $20/day per the gate above.</div>
+      <div class="cmeta"><span class="ptag pt-today">Today — confirm engagement</span></div>
+    </div></label></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── PHASE 5: SCALING PROTOCOL ─────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum green">5</div>
+    <div><div class="section-title">Phase 5 — Scaling Protocol (Days 5–14)</div>
+    <div class="section-sub">Apply only after ROAS confirms above 2.5x. The account was burned by a 40x scale-up on Video3. This protocol prevents a repeat.</div></div>
+  </div>
+
+  <div class="hl warn"><strong>Non-negotiable:</strong> 20–25% budget increases maximum, once every 3 days. ROAS must hold above 2.5x for a full 72-hour window before each step-up. The L8 Lookalike adset collapse from 4.82x to 1.56x happened because this rule was not applied. It will happen again with Green Screen V2 if bids are increased too sharply.</div>
+
+  <div class="checklist">
+    <div class="ci"><input type="checkbox" id="c24"><label for="c24"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Day 3 check: confirm blended ROAS is trending above 2.0x post-pauses</div>
+      <div class="cdesc">Pull the 3-day window in Triple Whale or Ads Manager. If blended ROAS is above 2.0x and trending up, Phase 1 pauses are working. If ROAS has dropped below 1.9x, check that all Phase 1 pauses are confirmed active and no paused ads have reactivated. Do not proceed to any budget increases until blended ROAS clears 2.0x.</div>
+      <div class="cmeta"><span class="ptag pt-48h">Day 3</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c25"><label for="c25"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Day 7 scale gate: first 25% budget increase on TOF Winners CBO if ROAS holds above 2.5x for 72hrs</div>
+      <div class="cdesc">If blended ROAS has held above 2.5x for a continuous 72-hour window, apply a 25% increase to the <strong>YMP - TOF Winners - CBO</strong> campaign budget only. Do not touch Advantage+ or RTG campaign budgets at this step. Monitor for 48 hours. If ROAS holds or improves, proceed to Day 10 step-up. If ROAS drops below 2.5x within 48 hours, revert the budget increase immediately.</div>
+      <div class="cmeta"><span class="ptag pt-week">Day 7</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c26"><label for="c26"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Day 10 review: full performance check and second step-up decision</div>
+      <div class="cdesc">Pull 10-day performance across all campaigns from Triple Whale. Targets: blended ROAS above 3x, daily spend $1,500+, Green Screen V2 or equivalent still in top ROAS position. If met: apply a second 25% budget increase to TOF Winners CBO and a first 25% increase to RTG. If not met: hold at current budgets and diagnose why ROAS has not reached 3x — likely cause is the Creative Testing pipeline has not yet produced a second winner beyond Green Screen V2.</div>
+      <div class="cmeta"><span class="ptag pt-week">Day 10</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="c27"><label for="c27"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Ongoing: monitor CPM weekly as the leading fatigue indicator</div>
+      <div class="cdesc">Check weekly: if CPM on any active ad increases by more than 20% week-over-week while ROAS drops simultaneously, that ad is entering fatigue. The signal is CPM rising + ROAS softening together. Act before ROAS breaks the floor. Car Review ran at 2.97x before collapsing to 1.45x — the CPM rise was the early warning that was not acted on. Set a calendar reminder every Monday to pull CPM and ROAS for the top 5 ads by spend.</div>
+      <div class="cmeta"><span class="ptag pt-ongoing">Weekly</span></div>
+    </div></label></div>
+  </div>
+</div>
+
+</div><!-- /meta -->
+
+<!-- ══════════════════════════════════════════════════
+     AMAZON ADS
+══════════════════════════════════════════════════ -->
+<div id="amazon">
+<div class="channel-divider">
+  <div class="channel-divider-line"></div>
+  <div class="channel-divider-badge amazon">Amazon Ads — Sponsored Products</div>
+  <div class="channel-divider-line"></div>
+</div>
+
+<div class="hero" style="padding-top:0">
+  <div class="eyebrow">SC: Mar 15 – Apr 14 · SP: Apr 1–13 MTD</div>
+  <h1>Amazon Ads<br><em>Optimisation</em></h1>
+  <p class="hero-sub">All 120 active SP campaigns cross-referenced across MTD (Apr 1–13) and 7D (Apr 8–14) windows. Campaign names verified against source CSV exports.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><span class="hml">SC 30D Revenue</span><span class="hmv" style="color:var(--red)">$49,235</span></div>
+    <div class="hero-meta-item"><span class="hml">LY Same Period</span><span class="hmv">$66,957</span></div>
+    <div class="hero-meta-item"><span class="hml">YoY Gap</span><span class="hmv" style="color:var(--red)">-26.5%</span></div>
+    <div class="hero-meta-item"><span class="hml">MTD SP ROAS</span><span class="hmv" style="color:var(--warn)">3.40x</span></div>
+    <div class="hero-meta-item"><span class="hml">MTD TACOS</span><span class="hmv" style="color:var(--warn)">15.2%</span></div>
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card red"><div class="sl">Under-bidding severity</div><div class="sv red">3.6%</div><div class="ss">$1,505/day budget on winners. $54/day actual spend. Root cause.</div></div>
+  <div class="stat-card amber"><div class="sl">Best campaign 7D</div><div class="sv amber">10.89x</div><div class="ss">Custom Box PAT Defensive. $79/day budget. $2.27/day spend.</div></div>
+  <div class="stat-card amber"><div class="sl">TOS 100 7D ROAS</div><div class="sv amber">5.49x</div><div class="ss">Custom Box 4 Flavors Exact Branded TOS 100. $612/day budget. $24/day spend.</div></div>
+  <div class="stat-card neutral"><div class="sl">MTD TACOS</div><div class="sv" style="color:var(--warn)">15.2%</div><div class="ss">At ceiling. 3 anomaly days inflate figure. Normal days: 10–14%.</div></div>
+</div>
+
+<div class="hl red"><strong>The single most important finding:</strong> Eight Custom Box winner campaigns have a combined $1,505/day budget and are spending $54/day — 3.6% utilisation. This is not an audience problem. Bids are too low to win auctions. Dynamic Bids Down Only compounds this by suppressing bids further when conversion probability is uncertain. Fixing bid strategy and raising bids is the highest-leverage action in this entire account.</div>
+
+<div class="hl warn"><strong>TACOS gate:</strong> MTD TACOS is 15.2% — right at the 15% target. Three anomaly days (Apr 4 $790, Apr 8 $852, Apr 10 $830) inflate the figure; on normal days TACOS runs 10–14%. As SP spend increases from bid raises, track daily TACOS. If it approaches 17%, pause the next round of bid increases until revenue catches up. Ceiling is 18%.</div>
+
+<!-- AMAZON CAMPAIGN MAP -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum gray">i</div>
+    <div><div class="section-title">Amazon SP Campaign Map — All Key Campaigns</div>
+    <div class="section-sub">Verified across MTD (Apr 1–13) and 7D (Apr 8–14). Bid strategy shown for each.</div></div>
+  </div>
+
+  <div class="camp-block">
+    <div class="camp-hdr" style="background:rgba(46,201,126,0.05);border-color:rgba(46,201,126,0.15);">
+      <div><div class="camp-name" style="color:var(--green)">Winners — Under-Bidding Emergency</div><div class="camp-name-sub">High ROAS. Large budgets. Near-zero spend. Bid level is the only constraint.</div></div>
+      <div class="camp-stats"><div><div class="cstat-val red">3.6%</div><div class="cstat-lbl">Avg utilisation</div></div></div>
+    </div>
+    <table class="tbl">
+      <thead><tr><th>Campaign</th><th>Budget/Day</th><th>7D Spend</th><th>MTD ROAS</th><th>7D ROAS</th><th>Utilisation</th><th>Bid Strategy</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><div class="ad-name">SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact Branded - TOS 100</div></td><td>$612</td><td>$171.90</td><td><span class="rb rb-g">6.39x</span></td><td><span class="rb rb-g">5.49x</span></td><td style="color:var(--red);font-weight:600">4.0%</td><td style="color:var(--warn)">Up/Down ✓</td><td><span class="ab ab-scale">Raise bids +60%</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0DXHGSYH6 - Fudge Custom Box - Exact Branded</div></td><td>$364</td><td>$92.62</td><td><span class="rb rb-g">3.66x</span></td><td><span class="rb rb-g">3.13x</span></td><td style="color:var(--red);font-weight:600">3.6%</td><td style="color:var(--warn)">Up/Down ✓</td><td><span class="ab ab-scale">Raise bids +50% + TOS modifier</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0CYJ3XTBS - Fudge Custom Box - PAT Defensive</div><div class="ad-sub">10.89x ROAS 7D — highest in account. Spending $2.27/day against $79 budget.</div></td><td>$79</td><td>$15.93</td><td><span class="rb rb-g">6.99x</span></td><td><span class="rb rb-g">10.89x</span></td><td style="color:var(--red);font-weight:600">2.9%</td><td style="color:var(--warn)">Up/Down ✓</td><td><span class="ab ab-scale">Raise PAT bids +100%</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0DXHGSYH6 - Fudge Custom Box - Exact - fudge</div><div class="ad-sub">Still on Down Only. Generic "fudge" keyword converting at 4.46x 7D.</div></td><td>$120</td><td>$61.80</td><td><span class="rb rb-g">5.57x</span></td><td><span class="rb rb-g">4.46x</span></td><td style="color:var(--red);font-weight:600">7.4%</td><td style="color:var(--red)">Down Only ✗</td><td><span class="ab ab-scale">Switch Up/Down + raise +60%</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0BLZNDZK8 - Chocolate Pecan Fudge - Exact - Generic - fudge</div><div class="ad-sub">Still on Down Only. 4.09x 7D.</div></td><td>$80</td><td>$27.16</td><td><span class="rb rb-a">2.01x MTD</span></td><td><span class="rb rb-g">4.09x</span></td><td style="color:var(--red);font-weight:600">4.9%</td><td style="color:var(--red)">Down Only ✗</td><td><span class="ab ab-scale">Switch Up/Down + raise +60%</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact - fudge candy</div><div class="ad-sub">11.3x 7D on $3.24 spend. $100/day budget idle.</div></td><td>$100</td><td>$3.24</td><td><span class="rb rb-g">6.48x MTD</span></td><td><span class="rb rb-g">11.3x</span></td><td style="color:var(--red);font-weight:600">0.5%</td><td style="color:var(--red)">Down Only ✗</td><td><span class="ab ab-scale">Switch Up/Down + raise +100%</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - PAT 1</div><div class="ad-sub">459x ROAS on $0.08 spend. $60/day budget completely idle.</div></td><td>$60</td><td>$0.08</td><td>—</td><td><span class="rb rb-g">459x</span></td><td style="color:var(--red);font-weight:600">0.02%</td><td style="color:var(--red)">Down Only ✗</td><td><span class="ab ab-scale">Switch Up/Down + raise +200%</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0BLZNDZK8 - Chocolate Pecan Fudge - PAT Defensive</div><div class="ad-sub">14.5x ROAS on $2.31 spend. $40/day budget.</div></td><td>$40</td><td>$2.31</td><td>—</td><td><span class="rb rb-g">14.5x</span></td><td style="color:var(--red);font-weight:600">0.8%</td><td style="color:var(--warn)">Up/Down ✓</td><td><span class="ab ab-scale">Raise PAT bids +100%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="camp-block">
+    <div class="camp-hdr"><div><div class="camp-name">Mid-Tier — Optimise Efficiency</div><div class="camp-name-sub">Spending but ACOS above target or ROAS below floor</div></div></div>
+    <table class="tbl">
+      <thead><tr><th>Campaign</th><th>Budget/Day</th><th>7D Spend</th><th>7D ROAS</th><th>MTD ACOS</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><div class="ad-name">SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact - fudge</div><div class="ad-sub">Highest actual spend ($375.71 7D). Already on Up/Down. 3.22x 7D at 31% ACOS.</div></td><td>$250</td><td>$375.71</td><td><span class="rb rb-g">3.22x</span></td><td style="color:var(--warn)">31.2%</td><td><span class="ab ab-keep">Keep — selective +20% bid on top converting keywords</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Phrase</div><div class="ad-sub">Up/Down. 2.51x 7D, 3.35x MTD. ACOS creeping higher on 7D vs MTD.</div></td><td>$80</td><td>$146.49</td><td><span class="rb rb-a">2.51x</span></td><td style="color:var(--warn)">29.8%</td><td><span class="ab ab-mon">Reduce bids -15%</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0CYJ3XTBS - Fudge Custom Box - Exact - fudge</div><div class="ad-sub">Second-highest spend ($213.68 7D). 1.85x 7D, 1.71x MTD. 54–58% ACOS. Up/Down.</div></td><td>$126</td><td>$213.68</td><td><span class="rb rb-r">1.85x</span></td><td style="color:var(--red)">58.5%</td><td><span class="ab ab-kill">Reduce bids -30%</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0BG13N4ZJ - Dark Chocolate Fudge - Exact - chocolate fudge</div><div class="ad-sub">1.50x 7D, 1.30x MTD. 67–77% ACOS. Down Only.</div></td><td>$75</td><td>$18.54</td><td><span class="rb rb-r">1.50x</span></td><td style="color:var(--red)">76.8%</td><td><span class="ab ab-kill">Reduce bids -30%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="camp-block">
+    <div class="camp-hdr" style="background:rgba(224,80,64,0.04);border-color:rgba(224,80,64,0.15);">
+      <div><div class="camp-name" style="color:var(--red)">Zero-Conversion Drains — Pause Now</div><div class="camp-name-sub">Zero attributed orders verified in BOTH 7D and MTD windows</div></div>
+      <div class="camp-stats"><div><div class="cstat-val red">$81</div><div class="cstat-lbl">7D waste</div></div></div>
+    </div>
+    <table class="tbl">
+      <thead><tr><th>Campaign</th><th>Budget/Day</th><th>7D Spend</th><th>MTD Spend</th><th>MTD Orders</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><div class="ad-name">SP - B0BG3G9SF7 - Maple Walnut Fudge - Exact Branded</div><div class="ad-sub">$81.62 MTD, 2 orders at 146.9% ACOS ($81 spend for $55 sales). Not economically viable.</div></td><td>$50</td><td>$30.71</td><td>$81.62</td><td style="color:var(--red)">2 (146.9% ACOS)</td><td><span class="ab ab-kill">Pause</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0BGJS7KQV - Vanilla Walnut Fudge - PAT Defensive - B0CN9P8MVT</div><div class="ad-sub">0 orders 7D. 1 order MTD at 50.7% ACOS. Competitor ASIN not converting.</div></td><td>$60</td><td>$10.99</td><td>$16.96</td><td style="color:var(--red)">1 (50.7% ACOS)</td><td><span class="ab ab-kill">Pause</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0BLZNDZK8 - Chocolate Pecan Fudge - Exact - chocolate fudge candy</div><div class="ad-sub">0 orders 7D. Same ASIN converts at 4.09x on "fudge" — wrong keyword variant here.</div></td><td>$50</td><td>$11.14</td><td>$32.70</td><td style="color:var(--red)">1 (80.2% ACOS)</td><td><span class="ab ab-kill">Pause</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0DXHGSYH6 - Fudge Custom Box - Exact - fudge gift box</div><div class="ad-sub">0 orders 7D and MTD. $80/day budget going nowhere.</div></td><td>$80</td><td>$7.91</td><td>$10.81</td><td style="color:var(--red)">0</td><td><span class="ab ab-kill">Pause</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0C6YD1FZ2 - Key Lime Fudge - Phrase - TOS 30</div><div class="ad-sub">0 orders both windows. Low-volume flavor, no conversion signal.</div></td><td>$60</td><td>$6.77</td><td>$7.57</td><td style="color:var(--red)">0</td><td><span class="ab ab-kill">Pause</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0CYJ3XTBS - Fudge Custom Box - Exact - COMP</div><div class="ad-sub">0 orders both windows. Competitor keyword not converting.</div></td><td>$30</td><td>$5.45</td><td>$11.00</td><td style="color:var(--red)">0</td><td><span class="ab ab-kill">Pause</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact - fudge sampler</div><div class="ad-sub">0 orders both windows. "Fudge sampler" not converting for this ASIN.</div></td><td>$36</td><td>$5.07</td><td>$12.18</td><td style="color:var(--red)">0</td><td><span class="ab ab-kill">Pause</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="camp-block">
+    <div class="camp-hdr" style="background:rgba(240,144,15,0.04);border-color:rgba(240,144,15,0.15);">
+      <div><div class="camp-name" style="color:var(--amber)">Hidden Gems — High ROAS, Near-Zero Spend</div><div class="camp-name-sub">Extraordinary ROAS on minimal spend. Needs bid increases.</div></div>
+    </div>
+    <table class="tbl">
+      <thead><tr><th>Campaign</th><th>Budget/Day</th><th>7D Spend</th><th>ROAS</th><th>Utilisation</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><div class="ad-name">SP - B0BG13N4ZJ - Dark Chocolate Fudge - PAT Defensive</div><div class="ad-sub">28.7x MTD ROAS ($5.52 spend → $158.42 sales). $78/day budget. Down Only.</div></td><td>$78</td><td>$5.52 MTD</td><td><span class="rb rb-g">28.7x</span></td><td style="color:var(--red)">1%</td><td><span class="ab ab-scale">Switch Up/Down + raise PAT bids +100%</span></td></tr>
+        <tr><td><div class="ad-name">SP - B0CYJ3XTBS - Fudge Custom Box - Exact - fudge bars</div><div class="ad-sub">7.66x 7D ROAS. $60/day budget. Down Only.</div></td><td>$60</td><td>$3.63</td><td><span class="rb rb-g">7.66x</span></td><td style="color:var(--red)">0.9%</td><td><span class="ab ab-scale">Raise bids +80% + switch Up/Down</span></td></tr>
+        <tr><td><div class="ad-name">SP - B07NK8M6TB - Chocolate Walnut Fudge - Exact - walnut fudge - TOS 30</div><div class="ad-sub">7.89x 7D ROAS. $150/day budget. Down Only.</div></td><td>$150</td><td>$3.52</td><td><span class="rb rb-g">7.89x</span></td><td style="color:var(--red)">0.3%</td><td><span class="ab ab-scale">Raise bids +80% + switch Up/Down</span></td></tr>
+        <tr><td><div class="ad-name">SP- B0BG1D86G5 - Chocolate Fudge - Exact - Generic 1 - ROS 30</div><div class="ad-sub">11.18x MTD ROAS. $40/day budget. Down Only.</div></td><td>$40</td><td>$5.48 MTD</td><td><span class="rb rb-g">11.2x</span></td><td style="color:var(--red)">2%</td><td><span class="ab ab-scale">Switch Up/Down + raise bids +100%</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── AMAZON PHASE A1 ────────────────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum red">A1</div>
+    <div><div class="section-title">Amazon Phase A1 — Raise Bids on Custom Box Winners</div>
+    <div class="section-sub">Most winners are already on Up/Down. The constraint is bids are too low to win auctions. Raise bids aggressively on each campaign below.</div></div>
+  </div>
+
+  <div class="hl red"><strong>Why bids are more important than strategy here:</strong> Most of the winner campaigns have already been switched to Up/Down per the MTD report. Yet they are still spending only 3–7% of daily budget. This confirms bids are not clearing the auction floor — the strategy change alone is not enough. Each campaign needs direct keyword or PAT bid increases of 50–100% to start winning Top of Search placements.</div>
+
+  <span class="phase-tag pt-red">Amazon A1 — Raise Bids</span>
+  <div class="checklist">
+
+    <div class="ci"><input type="checkbox" id="a1"><label for="a1"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Raise keyword bids +60%: SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact Branded - TOS 100</div>
+      <div class="cdesc">Already on Up/Down. $612/day budget. Spending $24.56/day at 5.49x ROAS 7D. Navigate to Campaign Manager → this campaign → Ad group → Keywords. Select all keywords and apply a bulk +60% bid increase. Then confirm the Top of Search placement modifier is set to +100% or higher (Placement tab). Target: $80–150/day actual spend within 72 hours. If spend does not increase, apply a second +30% to keyword bids.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0CYJ5S1LB - Exact Branded - TOS 100 → Ad group → Keywords</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a2"><label for="a2"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Raise keyword bids +50% + add TOS modifier: SP - B0DXHGSYH6 - Fudge Custom Box - Exact Branded</div>
+      <div class="cdesc">Already on Up/Down. $364/day budget. Spending $13.23/day at 3.66x MTD ROAS. Raise keyword bids +50% in bulk. Then go to Placement tab and set Top of Search (First Page) modifier to +100% if not already set. Branded terms at TOS convert at 3–5x the rate of Rest of Search. Target: $40–80/day actual spend within 72 hours.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0DXHGSYH6 - Exact Branded → Keywords + Placement tab</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a3"><label for="a3"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Raise PAT bids +100%: SP - B0CYJ3XTBS - Fudge Custom Box - PAT Defensive</div>
+      <div class="cdesc">Already on Up/Down. 10.89x ROAS 7D but spending only $2.27/day against $79 budget. Navigate to Ad group → Targeting (not Keywords — this is a PAT campaign). Raise all PAT bids +100%. At 10.89x ROAS the economics of aggressive bidding are extremely strong — even if ACOS rises to 30%, this campaign is well within target. Target: $10–25/day actual spend within 7 days.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0CYJ3XTBS - PAT Defensive → Ad group → Targeting</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a4"><label for="a4"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Switch to Up/Down + raise bids +60%: SP - B0DXHGSYH6 - Fudge Custom Box - Exact - fudge</div>
+      <div class="cdesc">Still on Down Only. 4.46x ROAS 7D. $120/day budget, $8.83/day spend. Step 1: Settings → Bidding strategy → change to "Dynamic bids — up and down". Step 2: Keywords → raise all bids +60%. The generic "fudge" keyword is high-competition — bids need to be substantially above floor to win TOS. Monitor ACOS: target below 30%. If ACOS exceeds 35% after 7 days, reduce bids 15%.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0DXHGSYH6 - Exact - fudge → Settings → Bidding, then Keywords</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a5"><label for="a5"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Switch to Up/Down + raise bids +60%: SP - B0BLZNDZK8 - Chocolate Pecan Fudge - Exact - Generic - fudge</div>
+      <div class="cdesc">Still on Down Only. 4.09x ROAS 7D. $80/day budget, $3.88/day actual. Switch to Up/Down then raise keyword bids +60%. Important: this campaign is converting well — do not confuse it with <code>SP - B0BLZNDZK8 - Exact - chocolate fudge candy</code> (same ASIN, different keyword, zero conversions — pause that one in Phase A3).</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0BLZNDZK8 - Exact - Generic - fudge → Settings → Bidding, then Keywords</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a6"><label for="a6"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Switch to Up/Down + raise bids +100%: SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact - fudge candy</div>
+      <div class="cdesc">Down Only. 11.3x ROAS 7D on $3.24 spend. $100/day budget idle. Switch to Up/Down and raise keyword bids +100%. Extraordinary ROAS signals high relevance for this keyword. If daily spend reaches $30+ within 7 days and ACOS remains below 20%, increase budget to $150/day.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0CYJ5S1LB - Exact - fudge candy → Settings → Bidding, then Keywords</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a7"><label for="a7"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Switch to Up/Down + raise PAT bids +200%: SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - PAT 1</div>
+      <div class="cdesc">Down Only. 459x ROAS on $0.08 spend. $60/day budget. Switch to Up/Down and raise PAT bids +200%. A 459x ROAS means this PAT is landing on pages where buyers convert almost immediately — the only reason it spends $0.08 is that bids are near-zero. After raising bids, monitor daily. If ACOS after first $20 spend exceeds 30%, the 459x may have been an outlier single conversion — reduce bids 50% if ACOS does not hold below 25%.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0CYJ5S1LB - PAT 1 → Settings → Bidding, then Targeting</span></div>
+    </div></label></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── AMAZON PHASE A2 ────────────────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum amber">A2</div>
+    <div><div class="section-title">Amazon Phase A2 — Raise Bids on Hidden Gems</div>
+    <div class="section-sub">Exceptional ROAS on minimal spend. These are secondary priority after Phase A1 but should be actioned the same day.</div></div>
+  </div>
+
+  <span class="phase-tag pt-amber">Amazon A2 — Hidden Gems</span>
+  <div class="checklist">
+
+    <div class="ci"><input type="checkbox" id="a8"><label for="a8"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Switch to Up/Down + raise PAT bids +80%: SP - B0BG13N4ZJ - Dark Chocolate Fudge - PAT Defensive</div>
+      <div class="cdesc">Down Only. 28.7x MTD ROAS on $5.52 spend ($158.42 sales). $78/day budget. The highest ROAS in the entire MTD dataset. Switch to Up/Down, raise PAT bids +80%. Target $15–30/day actual spend within 7 days. If ACOS stays below 15% as spend increases, raise bids again.</div>
+      <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">Campaign Manager → SP - B0BG13N4ZJ - PAT Defensive → Settings → Bidding, then Targeting</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a9"><label for="a9"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Switch to Up/Down + raise bids +80%: SP - B0CYJ3XTBS - Fudge Custom Box - Exact - fudge bars</div>
+      <div class="cdesc">Down Only. 7.66x ROAS 7D. $60/day budget, $0.52/day actual. Switch to Up/Down, raise keyword bids +80%. "Fudge bars" is a distinct search term with demonstrated buying intent.</div>
+      <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">Campaign Manager → SP - B0CYJ3XTBS - Exact - fudge bars → Settings, then Keywords</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a10"><label for="a10"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Switch to Up/Down + raise bids +80%: SP - B07NK8M6TB - Chocolate Walnut Fudge - Exact - walnut fudge - TOS 30</div>
+      <div class="cdesc">Down Only. 7.89x ROAS 7D. $150/day budget, $0.50/day actual. Switch to Up/Down, raise keyword bids +80%. TOS 30 modifier is already applied. Bids need to be competitive enough to qualify for TOS placement.</div>
+      <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">Campaign Manager → SP - B07NK8M6TB - Exact - walnut fudge - TOS 30 → Settings, then Keywords</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a11"><label for="a11"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Switch to Up/Down + raise bids +100%: SP- B0BG1D86G5 - Chocolate Fudge - Exact - Generic 1 - ROS 30</div>
+      <div class="cdesc">Down Only. 11.18x MTD ROAS. $40/day budget, $0.78/day actual. Switch to Up/Down, raise keyword bids +100%. ROS 30 placement modifier already applied. Generic chocolate fudge keyword converting at 11x — bid aggressively.</div>
+      <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">Campaign Manager → SP- B0BG1D86G5 - Exact - Generic 1 - ROS 30 → Settings, then Keywords</span></div>
+    </div></label></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── AMAZON PHASE A3 ────────────────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum red">A3</div>
+    <div><div class="section-title">Amazon Phase A3 — Pause Zero-Conversion Drains</div>
+    <div class="section-sub">Verified zero-or-minimal orders in both 7D and MTD. Pausing removes spend without removing revenue.</div></div>
+  </div>
+
+  <div class="hl green"><strong>Pausing these will not reduce sales.</strong> Each campaign below has been cross-referenced across both 7D and MTD windows. Where a single MTD order exists, the ACOS is above 50% making the economics net-negative. Pausing frees ~$350/month to redirect to Custom Box winners running 5–11x ROAS.</div>
+
+  <span class="phase-tag pt-red">Amazon A3 — Pause Drains</span>
+  <div class="checklist">
+
+    <div class="ci"><input type="checkbox" id="a12"><label for="a12"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause: SP - B0BG3G9SF7 - Maple Walnut Fudge - Exact Branded</div>
+      <div class="cdesc">$81.62 MTD spend, 2 orders at 146.9% ACOS ($81 spend for $55 sales). Do not confuse with <code>SP - B0BG3G9SF7 - Maple Walnut Fudge - Exact - maple fudge</code> which is converting at 10.68x 7D and should NOT be touched. Only pause the <strong>Exact Branded</strong> version.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0BG3G9SF7 - Maple Walnut Fudge - Exact Branded → Status → Paused</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a13"><label for="a13"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause: SP - B0BLZNDZK8 - Chocolate Pecan Fudge - Exact - chocolate fudge candy</div>
+      <div class="cdesc">$32.70 MTD spend, 1 order at 80.2% ACOS. The same ASIN (B0BLZNDZK8) is converting at 4.09x on the generic "fudge" keyword in a separate campaign — that campaign gets Phase A1 bid raises. Pause only this specific "chocolate fudge candy" keyword campaign.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0BLZNDZK8 - Exact - chocolate fudge candy → Status → Paused</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a14"><label for="a14"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause: SP - B0DXHGSYH6 - Fudge Custom Box - Exact - fudge gift box</div>
+      <div class="cdesc">$10.81 MTD spend, 0 orders both 7D and MTD. $80/day budget entirely wasted. Redirect this $80/day to the Exact Branded campaign for the same ASIN (B0DXHGSYH6) which is converting at 3.66x MTD.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0DXHGSYH6 - Exact - fudge gift box → Status → Paused</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a15"><label for="a15"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Pause: SP - B0C6YD1FZ2 - Key Lime Fudge - Phrase - TOS 30 and SP - B0CYJ3XTBS - Fudge Custom Box - Exact - COMP</div>
+      <div class="cdesc"><strong>Key Lime Fudge Phrase TOS 30</strong>: $7.57 MTD, 0 orders. Pause ($60/day freed). <strong>Custom Box Exact COMP</strong>: $11.00 MTD, 0 orders. Competitor keyword not converting. Pause ($30/day freed). Combined $90/day saved.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → each campaign → Status → Paused</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a16"><label for="a16"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Reduce bids -30%: SP - B0CYJ3XTBS - Fudge Custom Box - Exact - fudge (1.71x MTD, 1.85x 7D)</div>
+      <div class="cdesc">Do not pause — second-highest spend campaign ($213.68 7D) and does generate volume. But at 1.71x MTD ROAS and 58.5% ACOS it is spending inefficiently. Reduce all keyword bids -30% in bulk. Target: push ACOS toward 30–35% over the next 7 days. If ROAS does not improve above 2.5x within 7 days, escalate to -50% bid reduction.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0CYJ3XTBS - Fudge Custom Box - Exact - fudge → Keywords → bulk bid decrease -30%</span></div>
+    </div></label></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── AMAZON PHASE A4 ────────────────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum green">A4</div>
+    <div><div class="section-title">Amazon Phase A4 — Monitoring Gates and Validation</div>
+    <div class="section-sub">TACOS is at 15.2% MTD. Scaling must be paced. These are the specific checks before each escalation.</div></div>
+  </div>
+
+  <div class="checklist">
+    <div class="ci"><input type="checkbox" id="a17"><label for="a17"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Investigate the three anomaly days (Apr 4, Apr 8, Apr 10) — find and fix the cause</div>
+      <div class="cdesc">SC data: Apr 4 $790 (LY $2,313), Apr 8 $852 (LY $2,241), Apr 10 $830 (LY $3,422). Three consecutive anomaly days are not random noise. Check Seller Central on each date: (1) Account Health notifications or listing suppressions, (2) FBA stock availability for B0CYJ5S1LB and B0DXHGSYH6, (3) buy box win rate. Apr 10 LY was $3,422 — a near-$2,600 single-day gap. If a listing was suppressed or buy box was lost, resolving it adds $600–800/day in baseline revenue immediately.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Seller Central → Account Health → Performance notifications → check Apr 4, 8, 10</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a18"><label for="a18"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Verify buy box status on B0CYJ5S1LB and B0DXHGSYH6</div>
+      <div class="cdesc">Both top-performing Custom Box ASINs must have active buy box and no listing suppression before Phase A1 bid increases take effect. Go to Seller Central → Inventory → Manage Inventory and check: (1) active buy box on both ASINs, (2) no suppressed listings, (3) no pricing alerts, (4) FBA stock at fulfillment centres. Ad spend driving traffic to a listing without buy box converts at near-zero.</div>
+      <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Seller Central → Inventory → Manage Inventory → B0CYJ5S1LB and B0DXHGSYH6</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a19"><label for="a19"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">48-hour spend check: confirm daily SP spend is moving toward $350–400/day</div>
+      <div class="cdesc">After Phase A1 bid actions, pull daily spend from Campaign Manager on Day 2 and Day 3. Baseline: ~$230/day SP spend. Target after Phase A1: $350–400/day within 72 hours. If daily SP spend has not increased by at least $80/day after 48 hours, apply a second round of +30% bid increases to the Phase A1 campaigns. Amazon's algorithm takes 24–48 hours to recalibrate after bid changes.</div>
+      <div class="cmeta"><span class="ptag pt-48h">48hrs after Phase A1</span><span class="cpath">Campaign Manager → All Campaigns → daily spend summary</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a20"><label for="a20"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Day 5 TACOS gate: calculate actual TACOS before further bid escalation</div>
+      <div class="cdesc">Pull: total SP spend for the 5 days post-changes ÷ total SC revenue for the same 5 days. If TACOS is below 15%: proceed to Phase A2 second-round bid increases. If TACOS is 15–17%: hold bid increases, execute Phase A3 pauses only. If TACOS exceeds 17%: reduce bids -15% on the lowest-ROAS Phase A1 campaigns until TACOS returns to 14%. Use a clean 5-day post-change window — do not calculate against the MTD figure which includes the anomaly days.</div>
+      <div class="cmeta"><span class="ptag pt-week">Day 5</span><span class="cpath">Seller Central → Sales dashboard → custom date range vs Campaign Manager spend</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a21"><label for="a21"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Day 7 revenue check: SC daily revenue should be tracking toward $1,800/day</div>
+      <div class="cdesc">Current April daily average: $1,540 (excluding anomaly days: $1,735). Target Day 7: $1,800/day. If not hit: check Campaign Manager to confirm Phase A1 changes drove increased impressions and clicks (impressions should be up 50%+ if bids are now winning more auctions). If impressions are up but revenue is flat, the bottleneck is listing conversion rate — check listing content, images, and reviews on B0CYJ5S1LB and B0DXHGSYH6.</div>
+      <div class="cmeta"><span class="ptag pt-week">Day 7</span><span class="cpath">Seller Central → Sales dashboard → daily view</span></div>
+    </div></label></div>
+
+    <div class="ci"><input type="checkbox" id="a22"><label for="a22"><div class="cbox"></div><div class="ctext">
+      <div class="ctitle">Variation family consolidation for chocolate flavor ASINs (Nathaniel-approved)</div>
+      <div class="cdesc">Nathaniel approved combining individual chocolate flavor listings into a variation family to share reviews across ASINs. Dark Chocolate Fudge (B0BG13N4ZJ) is performing at 28.7x PAT ROAS and would benefit significantly from increased review count. In Seller Central: Catalog → Add products → Add variation to existing product. Create parent-child relationship linking Dark Chocolate, Chocolate Walnut, and Chocolate Pecan. Complete this week.</div>
+      <div class="cmeta"><span class="ptag pt-week">This week</span><span class="cpath">Seller Central → Catalog → Add products → Add variation</span></div>
+    </div></label></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ── CROSS-CHANNEL VALIDATION ──────────────────── -->
+<div class="section">
+  <div class="section-hdr">
+    <div class="snum gray">V</div>
+    <div><div class="section-title">Cross-Channel Validation — Will These Actions Hurt Anything?</div>
+    <div class="section-sub">Full validation of revenue impact and risk for both channels before actioning.</div></div>
+  </div>
+
+  <div class="hl green"><strong>Meta: pausing drain creatives will not reduce revenue — it increases it.</strong> The five ads being paused (Video3 L8, Video24 Revamp L8, Car Review A+, VIDEO3 A+, JAN25 PostID A+) generated $59,068 combined on $34,137 spend at a blended 1.73x ROAS. Green Screen Video 2 is running 4.50x in the same campaigns. If that spend redirects to creatives averaging even 2.8x, the same budget generates $95,584 — a $36,500 revenue increase on identical spend. The Advantage+ campaign uses sequential swaps so it never loses delivery volume. The TOF Winners CBO redistributes budget within 24–48 hours without a learning phase reset.</div>
+  <div class="hl green"><strong>Amazon: pausing zero-conversion campaigns removes spend without removing sales.</strong> Every campaign in Phase A3 has been verified across both 7D and MTD windows. Zero orders confirmed except for two marginal exceptions (Maple Walnut Branded: 2 orders at 146.9% ACOS; Vanilla Walnut PAT: 1 order at 50.7% ACOS) — both net-negative on profit. Pausing saves budget and redirects it to 5–11x ROAS winners. Switching from Down Only to Up/Down does not cause overspend — daily budgets are Amazon hard caps.</div>
+
+</div><!-- /cross-channel -->
+
+</div><!-- /amazon -->
+</div></div><!-- /wrap /page -->
+
+<script>
+const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+const pill = document.getElementById('prog');
+const total = checkboxes.length;
+
+function updateProgress(){
+  const done = document.querySelectorAll('input[type="checkbox"]:checked').length;
+  pill.textContent = done+' / '+total+' Done';
+  pill.style.background = done===total ? 'var(--green)' : done > total*0.6 ? 'var(--amber)' : 'var(--surface2)';
+  pill.style.color = done===total||done>total*0.6 ? '#000' : 'var(--amber)';
+}
+
+checkboxes.forEach(cb=>{
+  const k='ubf2_'+cb.id;
+  try{ if(localStorage.getItem(k)==='true') cb.checked=true; }catch(e){}
+  cb.addEventListener('change',()=>{
+    try{ localStorage.setItem(k,cb.checked); }catch(e){}
+    updateProgress();
+  });
+});
+updateProgress();
+</script>
+</body>
+</html>
