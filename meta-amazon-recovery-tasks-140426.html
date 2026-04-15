@@ -265,7 +265,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
 <div class="hero" style="padding-top:0">
   <div class="eyebrow">Mar 14 – Apr 12, 2026</div>
   <h1>Meta Ads<br><em>Optimisation</em></h1>
-  <p class="hero-sub">Every action below is validated against both the current period (Mar 14 – Apr 12) and the previous period (Feb 12 – Mar 13). Campaign names, ad set names, and ad names are verified against source CSV exports.</p>
+  <p class="hero-sub">Actions based on 30-day performance data (Mar 14 – Apr 12) cross-checked against the prior period (Feb 12 – Mar 13). Work through in order.</p>
   <div class="hero-meta">
     <div class="hero-meta-item"><span class="hml">Period Spend</span><span class="hmv" style="color:var(--text)">$40,150</span></div>
     <div class="hero-meta-item"><span class="hml">Blended ROAS</span><span class="hmv" style="color:var(--red)">1.93x</span></div>
@@ -287,13 +287,13 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum gray">i</div>
     <div><div class="section-title">Live Account Structure — Verified Campaign Map</div>
-    <div class="section-sub">Three active campaigns. Every ad name, ad set name, and performance figure verified from source exports.</div></div>
+    <div class="section-sub">Three active campaigns with current performance.</div></div>
   </div>
 
   <!-- CAMPAIGN 1 -->
   <div class="camp-block">
     <div class="camp-hdr">
-      <div><div class="camp-name">YMP - TOF Winners - CBO</div><div class="camp-name-sub">CBO · Active · L8 Lookalike was scaled 40x last period — root cause of the ROAS collapse</div></div>
+      <div><div class="camp-name">YMP - TOF Winners - CBO</div><div class="camp-name-sub">CBO · Active · L8 Lookalike was over-scaled last period and collapsed</div></div>
       <div class="camp-stats">
         <div><div class="cstat-val red">1.82x</div><div class="cstat-lbl">ROAS</div></div>
         <div><div class="cstat-val red">$14,332</div><div class="cstat-lbl">Spend</div></div>
@@ -345,7 +345,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <!-- CAMPAIGN 2 -->
   <div class="camp-block">
     <div class="camp-hdr">
-      <div><div class="camp-name">YMP - Advantage+ - Post IDs</div><div class="camp-name-sub">ASC · Active · Two ad sets: primary ($40/day active) and secondary ($25/day active). Swap ads one at a time — do NOT pause all simultaneously.</div></div>
+      <div><div class="camp-name">YMP - Advantage+ - Post IDs</div><div class="camp-name-sub">ASC · Active · Swap ads one at a time, not all at once</div></div>
       <div class="camp-stats">
         <div><div class="cstat-val red">1.80x</div><div class="cstat-lbl">ROAS</div></div>
         <div><div class="cstat-val red">$14,042</div><div class="cstat-lbl">Spend</div></div>
@@ -394,7 +394,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <!-- CAMPAIGN 3 -->
   <div class="camp-block">
     <div class="camp-hdr">
-      <div><div class="camp-name">YMP - RTG - SALES - US - 24.01.26</div><div class="camp-name-sub">Retargeting · Active · CBO · Best campaign by efficiency — but several ad sets and ads below floor</div></div>
+      <div><div class="camp-name">YMP - RTG - SALES - US - 24.01.26</div><div class="camp-name-sub">Retargeting · CBO · Active · Most efficient campaign but has weak ads dragging the average down</div></div>
       <div class="camp-stats">
         <div><div class="cstat-val amber">2.21x</div><div class="cstat-lbl">ROAS</div></div>
         <div><div class="cstat-val amber">$11,776</div><div class="cstat-lbl">Spend</div></div>
@@ -455,10 +455,10 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum red">1</div>
     <div><div class="section-title">Phase 1 — Pause the Confirmed Drains</div>
-    <div class="section-sub">Actions validated against both current and previous period. Complete in order. Do NOT pause Advantage+ ads all at once.</div></div>
+    <div class="section-sub">Complete in order. Do not pause Advantage+ ads all at once — see note below.</div></div>
   </div>
 
-  <div class="hl red"><strong>Before starting:</strong> The Advantage+ campaign uses an ASC (Advantage+ Shopping Campaign) structure. Removing all ads simultaneously forces a full learning phase reset. The sequenced approach below — pause worst first, wait 48 hours, then next — keeps the campaign in active learning throughout and prevents a hard ROAS dip during the transition.</div>
+  <div class="hl red"><strong>Before starting:</strong> The Advantage+ campaign is an ASC. Removing all ads at once resets the learning phase. Pause the worst ad first, wait 48 hours, then the next. This keeps the campaign delivering throughout.</div>
 
   <span class="phase-tag pt-red">Phase 1 — Pause</span>
   <div class="checklist">
@@ -471,31 +471,31 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
 
     <div class="ci"><input type="checkbox" id="c2"><label for="c2"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Pause: YMP - (ID) L8 | UGC - 'Video3' > Fudge collection | Video - FudgeCLP</div>
-      <div class="cdesc">Ad set: <strong>YMP - L8 | 5% Customer Lookalike, Value Based</strong> · Campaign: <strong>YMP - TOF Winners - CBO</strong>. Ran at 2.67x in previous period at modest spend. Scaled 40x this period and collapsed to 1.56x. $5,916 wasted on an audience that cannot support this volume. Confirmed over-scaling failure — safe to pause, the audience will be re-entered via the L8 Lookalike adset once fresh creative is loaded.</div>
+      <div class="cdesc">Ad set: <strong>YMP - L8 | 5% Customer Lookalike, Value Based</strong> · Campaign: <strong>YMP - TOF Winners - CBO</strong>. Ran at 2.67x in previous period at modest spend. Scaled 40x this period and collapsed to 1.56x. $5,916 wasted on an audience that cannot support this volume. Classic over-scaling collapse — safe to pause, the audience will be re-entered via the L8 Lookalike adset once fresh creative is loaded.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">TOF Winners CBO → YMP - L8 | 5% Customer Lookalike, Value Based</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c3"><label for="c3"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Pause: YMP - (ID) L8 | C-UBF17 - "Video24" Revamp | Video - 4pVarBoxPDP</div>
-      <div class="cdesc">Ad set: <strong>YMP - L8 | 5% Customer Lookalike, Value Based</strong> · Campaign: <strong>YMP - TOF Winners - CBO</strong>. Was the account's largest spend ad last period at $14,991 — already below floor at 1.88x then. Now 1.40x. Two consecutive periods below target. Also check: there is an inactive copy of this ad in Bakery Interest — if that one also shows any active status, pause it too.</div>
+      <div class="cdesc">Ad set: <strong>YMP - L8 | 5% Customer Lookalike, Value Based</strong> · Campaign: <strong>YMP - TOF Winners - CBO</strong>. Was the account's largest spend ad last period at $14,991 — already below floor at 1.88x then. Now 1.40x. Two periods in a row below target. Also check: there is an inactive copy of this ad in Bakery Interest — if that one also shows any active status, pause it too.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">TOF Winners CBO → YMP - L8 | 5% Customer Lookalike, Value Based</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c4"><label for="c4"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Pause — Step 1 of 3 in Advantage+: A+ - 'YMP - '(ID) L3 | B-UBF Car review shortened | Video - 4pVarBoxPDP'</div>
-      <div class="cdesc">Ad set: <strong>Advantage+</strong> ($40/day budget) · Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. Worst performer at 1.45x. Ran at 2.97x last period — confirmed fatigue with near-doubled CPM. Pause this ad ONLY at this step. Wait 48 hours before pausing the next ad. The remaining three ads (VIDEO3, JAN25 PostID, Video19) will absorb the freed budget and maintain campaign delivery. Replace with Green Screen V2 as a new post ID ad in this same adset.</div>
+      <div class="cdesc">Ad set: <strong>Advantage+</strong> ($40/day budget) · Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. Worst performer at 1.45x. Ran at 2.97x last period — confirmed fatigue with near-doubled CPM. Pause this ad only at this step. Wait 48 hours before the next one. The remaining three ads will pick up the budget. Add Green Screen V2 as a replacement the same day.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">YMP - Advantage+ - Post IDs → Advantage+ ($40/day)</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c5"><label for="c5"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Pause — Step 2 of 3 in Advantage+ (wait 48hrs after Step 1): A+ - '[T] TOF/CT - W COPY - VIDEO3'</div>
-      <div class="cdesc">Ad set: <strong>Advantage+</strong> ($40/day budget) · Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. After Car Review is paused and a replacement creative is added (see Phase 2), wait 48 hours for the campaign to redistribute budget, then pause this ad. Current 1.84x, below floor. Limited previous period data so fatigue is inferred from current performance rather than period-over-period deterioration.</div>
+      <div class="cdesc">Ad set: <strong>Advantage+</strong> ($40/day budget) · Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. After Car Review is paused and Green Screen V2 is in, wait 48 hours, then pause this one. Current 1.84x, below floor. Limited previous period data so fatigue is inferred from current performance rather than period-over-period deterioration.</div>
       <div class="cmeta"><span class="ptag pt-48h">48hrs after Step 1</span><span class="cpath">YMP - Advantage+ - Post IDs → Advantage+ ($40/day)</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c6"><label for="c6"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Pause — Step 3 of 3 in Advantage+ (after Step 2 settles): A+ - '[L] TOF/CT - JAN25- PostID - 987352933177346</div>
-      <div class="cdesc">Ad set: <strong>Advantage+</strong> ($40/day budget) · Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. Prev period 2.13x, current 1.93x — modest decline but CPM has near-doubled from $13.32 to $26.29. The CPM signal is the primary fatigue indicator here. Pause after Step 2 has settled and a second replacement creative is live. By this point the Advantage+ adset should have 2 fresh creatives running.</div>
+      <div class="cdesc">Ad set: <strong>Advantage+</strong> ($40/day budget) · Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. Prev period 2.13x, current 1.93x — modest decline but CPM has near-doubled from $13.32 to $26.29. The CPM doubling is the clearest sign of fatigue here. Pause after Step 2 has settled and a second replacement creative is live. By this point the Advantage+ adset should have 2 fresh creatives running.</div>
       <div class="cmeta"><span class="ptag pt-48h">48–72hrs after Step 2</span><span class="cpath">YMP - Advantage+ - Post IDs → Advantage+ ($40/day)</span></div>
     </div></label></div>
 
@@ -507,7 +507,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
 
     <div class="ci"><input type="checkbox" id="c8"><label for="c8"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Pause the entire YMP - Advantage+ ($25/day) adset</div>
-      <div class="cdesc">Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. This adset is spending $627 at <strong>0.69x ROAS</strong> — the worst in the entire account. Both CT - Street Interview 3 and CT - Street Interview 4 are showing inactive delivery in the export but the adset is still spending. Pause the entire adset (not just individual ads) to ensure all budget leaking through this unit stops completely.</div>
+      <div class="cdesc">Campaign: <strong>YMP - Advantage+ - Post IDs</strong>. This adset is spending $627 at <strong>0.69x ROAS</strong> — the worst in the entire account. Both Street Interview ads show inactive in the export but the adset is still spending somewhere. Pause the whole adset, not individual ads, to stop all budget going through it.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">YMP - Advantage+ - Post IDs → YMP - Advantage+ ($25/day) → pause adset</span></div>
     </div></label></div>
 
@@ -519,7 +519,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
 
     <div class="ci"><input type="checkbox" id="c10"><label for="c10"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Pause: AD 4B: New Flavors</div>
-      <div class="cdesc">Ad set: <strong>Past Purchasers (Repeat/Loyalty)</strong> · Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. At 1.48x ROAS. The audience size for past purchasers is inherently limited — at $963 spend over 30 days (~$32/day) this audience is likely saturated. Pause and retest with fresh creative once the UGC pipeline delivers new assets.</div>
+      <div class="cdesc">Ad set: <strong>Past Purchasers (Repeat/Loyalty)</strong> · Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. At 1.48x ROAS. Past purchaser audiences are small and this one is likely tapped out at $32/day spend. Pause and retest with fresh creative once the UGC pipeline delivers new assets.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">YMP - RTG - SALES - US - 24.01.26 → Past Purchasers (Repeat/Loyalty)</span></div>
     </div></label></div>
 
@@ -530,7 +530,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c12"><label for="c12"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Audit Cart Abandoners adset directly in Ads Manager — ad names not visible in data</div>
+      <div class="ctitle">Open Cart Abandoners directly in Ads Manager — ad names are not visible in the export</div>
       <div class="cdesc">Ad set: <strong>Cart Abandoners</strong> · Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. This adset spent $1,650 at 1.42x ROAS in the current period but no individual ad names surfaced in the ad-level export. Navigate directly to Ads Manager → RTG campaign → Cart Abandoners adset → review each active ad. For any ad running below 2x ROAS with 10+ purchases, pause it. The $1,650 at 1.42x is the weakest adset in the RTG campaign and the specific ads driving this need to be identified and acted on.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">YMP - RTG - SALES - US - 24.01.26 → Cart Abandoners → open in Ads Manager</span></div>
     </div></label></div>
@@ -545,41 +545,41 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum green">2</div>
     <div><div class="section-title">Phase 2 — Scale the Winners and Add Replacements</div>
-    <div class="section-sub">Execute alongside Phase 1. Fresh creative must be live before or immediately after each Advantage+ ad is paused.</div></div>
+    <div class="section-sub">Run alongside Phase 1. New creative goes live same day as each Advantage+ pause.</div></div>
   </div>
 
-  <div class="hl green"><strong>Realistic ROAS expectation at scale:</strong> CT - Green Screen Video 2 – Copy is running 4.50x at ~$14/day. Scaling to $400/day is a 28x increase — expect ROAS to normalise to 2.5–3.5x at volume. This is still a significant improvement over the current 1.93x blended. Do not model the 4.50x as a sustained figure at scale — model conservatively at 2.8x and the account still beats target.</div>
+  <div class="hl green"><strong>On scaling Green Screen V2:</strong> It is running 4.50x at around $14/day. At $400/day that ROAS will come down — expect 2.5–3.5x at real volume. That is still well above the current 1.93x blended. Plan around 2.8x, not 4.50x.</div>
 
   <span class="phase-tag pt-green">Phase 2 — Scale</span>
   <div class="checklist">
 
     <div class="ci"><input type="checkbox" id="c13"><label for="c13"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Scale: CT - Green Screen Video 2 – Copy — increase CBO budget on TOF Winners</div>
-      <div class="cdesc">Ad: <strong>CT - Green Screen Video 2 – Copy</strong> · Ad set: <strong>TOF - Green Screen Videos Migrated</strong> · Campaign: <strong>YMP - TOF Winners - CBO</strong>. This is a CBO campaign — you cannot set per-ad budgets directly. The mechanism is: (1) increase the TOF Winners CBO overall campaign budget by 25–30% to give the algorithm more to route to this adset, and (2) duplicate Green Screen V2 into the L8 Lookalike adset (see next action) so it has more auction opportunities across both adsets. The CBO algorithm should route heavily to Green Screen V2 once the drain ads are paused.</div>
+      <div class="cdesc">Ad: <strong>CT - Green Screen Video 2 – Copy</strong> · Ad set: <strong>TOF - Green Screen Videos Migrated</strong> · Campaign: <strong>YMP - TOF Winners - CBO</strong>. This is a CBO campaign so per-ad budgets are not an option. The way to do it: (1) increase the TOF Winners CBO overall campaign budget by 25–30% to give the algorithm more to route to this adset, and (2) duplicate Green Screen V2 into the L8 Lookalike adset (see next action) so it has more auction opportunities across both adsets. Once the drain ads are paused, the CBO will push budget toward Green Screen V2.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">TOF Winners CBO → campaign budget settings → increase 25%</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c14"><label for="c14"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Duplicate Green Screen V2 into YMP - L8 | 5% Customer Lookalike adset</div>
-      <div class="cdesc">Campaign: <strong>YMP - TOF Winners - CBO</strong>. After pausing Video3 and Video24 Revamp in Phase 1, the L8 Lookalike adset has no active creative. Duplicate <code>CT - Green Screen Video 2 – Copy</code> into this adset immediately. Verify the destination URL is the Variety Box landing page (/pages/fudge-variety-box — 13.13% CVR confirmed). This keeps the L8 Lookalike audience active and gives the CBO a proven creative to route budget to in that adset.</div>
+      <div class="cdesc">Campaign: <strong>YMP - TOF Winners - CBO</strong>. After pausing Video3 and Video24 Revamp in Phase 1, the L8 Lookalike adset has no active creative. Duplicate <code>CT - Green Screen Video 2 – Copy</code> into this adset immediately. Verify the destination URL is the Variety Box landing page (/pages/fudge-variety-box — 13.13% CVR confirmed). This keeps the L8 Lookalike active and gives the CBO something efficient to spend against.</div>
       <div class="cmeta"><span class="ptag pt-now">Now — after Phase 1 pauses</span><span class="cpath">TOF Winners CBO → YMP - L8 | 5% Customer Lookalike, Value Based → add new ad</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c15"><label for="c15"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Add Green Screen V2 as a replacement ad in Advantage+ ($40/day adset) — Step 1 replacement</div>
-      <div class="cdesc">Campaign: <strong>YMP - Advantage+ - Post IDs</strong>, ad set: <strong>Advantage+</strong> ($40/day). After pausing Car Review (Phase 1, Step 1), add Green Screen V2 as a new post ID ad into this adset immediately — the same day. Do not leave the adset with a reduced ad count for more than a few hours. Ensure destination URL is Variety Box LP. This is the first fresh creative in the Advantage+ rotation and begins the replacement sequence.</div>
+      <div class="cdesc">Campaign: <strong>YMP - Advantage+ - Post IDs</strong>, ad set: <strong>Advantage+</strong> ($40/day). After pausing Car Review (Phase 1, Step 1), add Green Screen V2 as a new post ID ad into this adset immediately — the same day. Do not leave the adset short on ads for more than a few hours. Ensure destination URL is Variety Box LP. This is the first fresh creative in the Advantage+ rotation and begins the replacement sequence.</div>
       <div class="cmeta"><span class="ptag pt-now">Same day as Phase 1 Step 1</span><span class="cpath">YMP - Advantage+ - Post IDs → Advantage+ ($40/day) → add new ad</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c16"><label for="c16"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Duplicate AD 3A: Best Seller Carousel into Checkout Abandoners adset</div>
-      <div class="cdesc">Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. Best Seller Carousel is running 2.90x at $14.86 CPP in Product Viewers. Checkout abandoners have higher purchase intent than product viewers — social proof format converts this audience well. Duplicate the ad into Checkout Abandoners alongside AD 2B: Shipping Reassurance. This gives the Checkout Abandoners adset a higher-ROAS creative option and gives CBO something efficient to route toward.</div>
+      <div class="cdesc">Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. Best Seller Carousel is running 2.90x at $14.86 CPP in Product Viewers. Checkout abandoners have higher purchase intent than product viewers — social proof format converts this audience well. Duplicate the ad into Checkout Abandoners alongside AD 2B: Shipping Reassurance. Gives Checkout Abandoners a better creative and gives the CBO an efficient option to route toward.</div>
       <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">YMP - RTG - SALES - US - 24.01.26 → Checkout Abandoners → add Best Seller Carousel</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c17"><label for="c17"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Investigate Product Viewers 92% spend drop and restore if audience is sound</div>
-      <div class="cdesc">Ad set: <strong>Product Viewers</strong> · Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. Previous period: $7,517 spend. Current period: $583 — a 92% drop. This is likely a CBO budget allocation decision, not a structural change. Check: (1) whether audience size has changed in the adset settings, (2) whether any targeting rules were modified. If the audience definition is intact, the drop in allocation means CBO deprioritised it — which may correct itself once higher-ROAS ads are removed from competing adsets. Monitor for 5 days after Phase 1 pauses before taking any manual action.</div>
+      <div class="ctitle">Check why Product Viewers spend dropped 92% and restore if the audience is intact</div>
+      <div class="cdesc">Ad set: <strong>Product Viewers</strong> · Campaign: <strong>YMP - RTG - SALES - US - 24.01.26</strong>. Previous period: $7,517 spend. Current period: $583 — a 92% drop. This is likely a CBO budget allocation decision, not a structural change. Check: (1) whether audience size has changed in the adset settings, (2) whether any targeting rules were modified. If the audience definition is intact, the drop is a CBO allocation decision that should correct itself once the drain ads are gone. Give it 5 days after the Phase 1 pauses before touching anything manually.</div>
       <div class="cmeta"><span class="ptag pt-48h">Monitor after Phase 1</span><span class="cpath">YMP - RTG - SALES - US - 24.01.26 → Product Viewers → check audience settings</span></div>
     </div></label></div>
 
@@ -593,18 +593,18 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum amber">3</div>
     <div><div class="section-title">Phase 3 — Landing Page Destination Audit</div>
-    <div class="section-sub">Variety Box LP converts at 13.13% vs 6.30% on homepage. Every TOF ad must point there before receiving budget.</div></div>
+    <div class="section-sub">Variety Box LP is converting at 13.13% vs 6.30% on the homepage. Check every TOF ad before adding budget.</div></div>
   </div>
 
   <div class="checklist">
     <div class="ci"><input type="checkbox" id="c18"><label for="c18"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Confirm CT - Green Screen Video 2 – Copy destination is Variety Box LP before scaling</div>
+      <div class="ctitle">Check CT - Green Screen Video 2 – Copy is pointing to the Variety Box LP before scaling</div>
       <div class="cdesc">Before any budget increase, verify the destination URL on <code>CT - Green Screen Video 2 – Copy</code> in the <strong>TOF - Green Screen Videos Migrated</strong> adset. The confirmed high-converting destination is <code>/pages/fudge-variety-box</code>. If it is pointing to the homepage or any collection page, edit it now before the budget increases take effect.</div>
       <div class="cmeta"><span class="ptag pt-now">Now — before scaling</span><span class="cpath">TOF Winners CBO → TOF - Green Screen Videos Migrated → CT - Green Screen Video 2 – Copy → edit URL</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c19"><label for="c19"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Check destination URLs on all surviving TOF ads and the two duplicates added in Phase 2</div>
+      <div class="ctitle">Check destination URLs on all active TOF ads and the Phase 2 duplicates</div>
       <div class="cdesc">For every ad that remains active in <strong>YMP - TOF Winners - CBO</strong> and <strong>YMP - Advantage+ - Post IDs</strong> after Phase 1 pauses, check the destination URL. Video3 was confirmed pointing to the fudge collection page (/collections/fudge) — this is the wrong destination. Update any ad pointing to homepage or collection pages to Variety Box LP. RTG ads (Checkout Abandoners, Product Viewers) can point to relevant product pages rather than the variety box specifically.</div>
       <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">Ads Manager → each active ad → view URL destination</span></div>
     </div></label></div>
@@ -618,7 +618,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum amber">4</div>
     <div><div class="section-title">Phase 4 — Build the UGC Pipeline</div>
-    <div class="section-sub">Flagged for six consecutive weeks. The Phase 1 pauses buy time — but without new creative in test within 7 days the account hits the same wall again.</div></div>
+    <div class="section-sub">New creative needs to be in test within 7 days or the account ends up back at the same problem.</div></div>
   </div>
 
   <div class="hl"><strong>What works in this account:</strong> Green Screen UGC overlay (4.50x current), Review Image statics (Review Image1 hit 7.44x in January), unboxing phone reaction videos (VBox Unboxing hit 5.45x in February). These three formats — not polished brand content — are what this audience responds to. YMP has an established UGC and influencer partner network. Engagement confirmation is in progress.</div>
@@ -643,7 +643,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c23"><label for="c23"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Confirm UGC partner network engagement and brief for 5–8 unboxing reaction videos</div>
+      <div class="ctitle">Lock in the UGC brief and confirm partner network engagement</div>
       <div class="cdesc">YMP's UGC and influencer partner network is being engaged — confirmation of process details is pending. Brief: 60-second phone-recorded honest reaction video. Unboxing and first taste. No scripts. Product visible in first 3 seconds. When assets arrive, name sequentially: <code>VBox Unboxing 2</code>, <code>VBox Unboxing 3</code>, etc. Launch each into Creative Testing at $20/day per the gate above.</div>
       <div class="cmeta"><span class="ptag pt-today">Today — confirm engagement</span></div>
     </div></label></div>
@@ -657,32 +657,32 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum green">5</div>
     <div><div class="section-title">Phase 5 — Scaling Protocol (Days 5–14)</div>
-    <div class="section-sub">Apply only after ROAS confirms above 2.5x. The account was burned by a 40x scale-up on Video3. This protocol prevents a repeat.</div></div>
+    <div class="section-sub">Only apply once ROAS has confirmed above 2.5x. Do not increase budgets before that.</div></div>
   </div>
 
-  <div class="hl warn"><strong>Non-negotiable:</strong> 20–25% budget increases maximum, once every 3 days. ROAS must hold above 2.5x for a full 72-hour window before each step-up. The L8 Lookalike adset collapse from 4.82x to 1.56x happened because this rule was not applied. It will happen again with Green Screen V2 if bids are increased too sharply.</div>
+  <div class="hl warn"><strong>Budget increases:</strong> 20–25% maximum, once every 3 days. ROAS must hold above 2.5x for 72 hours before each step-up. The L8 Lookalike collapsed from 4.82x to 1.56x when this was ignored. The same will happen with Green Screen V2 if you push too fast.</div>
 
   <div class="checklist">
     <div class="ci"><input type="checkbox" id="c24"><label for="c24"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Day 3 check: confirm blended ROAS is trending above 2.0x post-pauses</div>
+      <div class="ctitle">Day 3: is blended ROAS trending above 2.0x?</div>
       <div class="cdesc">Pull the 3-day window in Triple Whale or Ads Manager. If blended ROAS is above 2.0x and trending up, Phase 1 pauses are working. If ROAS has dropped below 1.9x, check that all Phase 1 pauses are confirmed active and no paused ads have reactivated. Do not proceed to any budget increases until blended ROAS clears 2.0x.</div>
       <div class="cmeta"><span class="ptag pt-48h">Day 3</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c25"><label for="c25"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Day 7 scale gate: first 25% budget increase on TOF Winners CBO if ROAS holds above 2.5x for 72hrs</div>
+      <div class="ctitle">Day 7: if ROAS has held above 2.5x for 72 hours, increase TOF Winners CBO budget by 25%</div>
       <div class="cdesc">If blended ROAS has held above 2.5x for a continuous 72-hour window, apply a 25% increase to the <strong>YMP - TOF Winners - CBO</strong> campaign budget only. Do not touch Advantage+ or RTG campaign budgets at this step. Monitor for 48 hours. If ROAS holds or improves, proceed to Day 10 step-up. If ROAS drops below 2.5x within 48 hours, revert the budget increase immediately.</div>
       <div class="cmeta"><span class="ptag pt-week">Day 7</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c26"><label for="c26"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Day 10 review: full performance check and second step-up decision</div>
+      <div class="ctitle">Day 10: full performance check and second budget step-up</div>
       <div class="cdesc">Pull 10-day performance across all campaigns from Triple Whale. Targets: blended ROAS above 3x, daily spend $1,500+, Green Screen V2 or equivalent still in top ROAS position. If met: apply a second 25% budget increase to TOF Winners CBO and a first 25% increase to RTG. If not met: hold at current budgets and diagnose why ROAS has not reached 3x — likely cause is the Creative Testing pipeline has not yet produced a second winner beyond Green Screen V2.</div>
       <div class="cmeta"><span class="ptag pt-week">Day 10</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="c27"><label for="c27"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Ongoing: monitor CPM weekly as the leading fatigue indicator</div>
+      <div class="ctitle">Weekly: check CPM as the early warning sign of fatigue</div>
       <div class="cdesc">Check weekly: if CPM on any active ad increases by more than 20% week-over-week while ROAS drops simultaneously, that ad is entering fatigue. The signal is CPM rising + ROAS softening together. Act before ROAS breaks the floor. Car Review ran at 2.97x before collapsing to 1.45x — the CPM rise was the early warning that was not acted on. Set a calendar reminder every Monday to pull CPM and ROAS for the top 5 ads by spend.</div>
       <div class="cmeta"><span class="ptag pt-ongoing">Weekly</span></div>
     </div></label></div>
@@ -704,7 +704,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
 <div class="hero" style="padding-top:0">
   <div class="eyebrow">SC: Mar 15 – Apr 14 · SP: Apr 1–13 MTD</div>
   <h1>Amazon Ads<br><em>Optimisation</em></h1>
-  <p class="hero-sub">All 120 active SP campaigns cross-referenced across MTD (Apr 1–13) and 7D (Apr 8–14) windows. Campaign names verified against source CSV exports.</p>
+  <p class="hero-sub">Based on Seller Central dashboard, MTD SP report (Apr 1–13), 7D SP report (Apr 8–14), and budget utilisation data. Work through in order.</p>
   <div class="hero-meta">
     <div class="hero-meta-item"><span class="hml">SC 30D Revenue</span><span class="hmv" style="color:var(--red)">$49,235</span></div>
     <div class="hero-meta-item"><span class="hml">LY Same Period</span><span class="hmv">$66,957</span></div>
@@ -721,21 +721,21 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="stat-card neutral"><div class="sl">MTD TACOS</div><div class="sv" style="color:var(--warn)">15.2%</div><div class="ss">At ceiling. 3 anomaly days inflate figure. Normal days: 10–14%.</div></div>
 </div>
 
-<div class="hl red"><strong>The single most important finding:</strong> Eight Custom Box winner campaigns have a combined $1,505/day budget and are spending $54/day — 3.6% utilisation. This is not an audience problem. Bids are too low to win auctions. Dynamic Bids Down Only compounds this by suppressing bids further when conversion probability is uncertain. Fixing bid strategy and raising bids is the highest-leverage action in this entire account.</div>
+<div class="hl red"><strong>The core issue:</strong> Eight Custom Box winner campaigns have $1,505/day in combined budget and are spending $54/day. That is 3.6% utilisation. Not an audience problem. Bids are too low to win the auction and Down Only suppresses them further. Raising bids is the most important thing to do in this account right now.</div>
 
-<div class="hl warn"><strong>TACOS gate:</strong> MTD TACOS is 15.2% — right at the 15% target. Three anomaly days (Apr 4 $790, Apr 8 $852, Apr 10 $830) inflate the figure; on normal days TACOS runs 10–14%. As SP spend increases from bid raises, track daily TACOS. If it approaches 17%, pause the next round of bid increases until revenue catches up. Ceiling is 18%.</div>
+<div class="hl warn"><strong>TACOS note:</strong> MTD TACOS is 15.2%, right at target. Three low-revenue days (Apr 4, 8, 10) are inflating that number — on normal days it runs 10–14%. As spend increases from bid raises, keep a daily eye on TACOS. If it gets to 17%, hold before the next round. Ceiling is 18%.</div>
 
 <!-- AMAZON CAMPAIGN MAP -->
 <div class="section">
   <div class="section-hdr">
     <div class="snum gray">i</div>
     <div><div class="section-title">Amazon SP Campaign Map — All Key Campaigns</div>
-    <div class="section-sub">Verified across MTD (Apr 1–13) and 7D (Apr 8–14). Bid strategy shown for each.</div></div>
+    <div class="section-sub">MTD (Apr 1–13) and 7D (Apr 8–14) data. Bid strategy noted for each.</div></div>
   </div>
 
   <div class="camp-block">
     <div class="camp-hdr" style="background:rgba(46,201,126,0.05);border-color:rgba(46,201,126,0.15);">
-      <div><div class="camp-name" style="color:var(--green)">Winners — Under-Bidding Emergency</div><div class="camp-name-sub">High ROAS. Large budgets. Near-zero spend. Bid level is the only constraint.</div></div>
+      <div><div class="camp-name" style="color:var(--green)">Winners — Under-Bidding Emergency</div><div class="camp-name-sub">Strong ROAS. Big budgets. Almost no spend. Bids are too low to win.</div></div>
       <div class="camp-stats"><div><div class="cstat-val red">3.6%</div><div class="cstat-lbl">Avg utilisation</div></div></div>
     </div>
     <table class="tbl">
@@ -754,7 +754,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   </div>
 
   <div class="camp-block">
-    <div class="camp-hdr"><div><div class="camp-name">Mid-Tier — Optimise Efficiency</div><div class="camp-name-sub">Spending but ACOS above target or ROAS below floor</div></div></div>
+    <div class="camp-hdr"><div><div class="camp-name">Mid-Tier — Optimise Efficiency</div><div class="camp-name-sub">Spending but not efficiently enough</div></div></div>
     <table class="tbl">
       <thead><tr><th>Campaign</th><th>Budget/Day</th><th>7D Spend</th><th>7D ROAS</th><th>MTD ACOS</th><th>Action</th></tr></thead>
       <tbody>
@@ -768,7 +768,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
 
   <div class="camp-block">
     <div class="camp-hdr" style="background:rgba(224,80,64,0.04);border-color:rgba(224,80,64,0.15);">
-      <div><div class="camp-name" style="color:var(--red)">Zero-Conversion Drains — Pause Now</div><div class="camp-name-sub">Zero attributed orders verified in BOTH 7D and MTD windows</div></div>
+      <div><div class="camp-name" style="color:var(--red)">Zero-Conversion Drains — Pause Now</div><div class="camp-name-sub">No attributed orders in either reporting window</div></div>
       <div class="camp-stats"><div><div class="cstat-val red">$81</div><div class="cstat-lbl">7D waste</div></div></div>
     </div>
     <table class="tbl">
@@ -787,7 +787,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
 
   <div class="camp-block">
     <div class="camp-hdr" style="background:rgba(240,144,15,0.04);border-color:rgba(240,144,15,0.15);">
-      <div><div class="camp-name" style="color:var(--amber)">Hidden Gems — High ROAS, Near-Zero Spend</div><div class="camp-name-sub">Extraordinary ROAS on minimal spend. Needs bid increases.</div></div>
+      <div><div class="camp-name" style="color:var(--amber)">Hidden Gems — High ROAS, Near-Zero Spend</div><div class="camp-name-sub">High ROAS, almost no spend. Raise bids.</div></div>
     </div>
     <table class="tbl">
       <thead><tr><th>Campaign</th><th>Budget/Day</th><th>7D Spend</th><th>ROAS</th><th>Utilisation</th><th>Action</th></tr></thead>
@@ -808,17 +808,17 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum red">A1</div>
     <div><div class="section-title">Amazon Phase A1 — Raise Bids on Custom Box Winners</div>
-    <div class="section-sub">Most winners are already on Up/Down. The constraint is bids are too low to win auctions. Raise bids aggressively on each campaign below.</div></div>
+    <div class="section-sub">The bid strategy is mostly correct already. The problem is bids are too low to win the auction. Each campaign below needs a direct bid increase.</div></div>
   </div>
 
-  <div class="hl red"><strong>Why bids are more important than strategy here:</strong> Most of the winner campaigns have already been switched to Up/Down per the MTD report. Yet they are still spending only 3–7% of daily budget. This confirms bids are not clearing the auction floor — the strategy change alone is not enough. Each campaign needs direct keyword or PAT bid increases of 50–100% to start winning Top of Search placements.</div>
+  <div class="hl red"><strong>On bid strategy:</strong> Most winner campaigns are already on Up/Down. They are still spending 3–7% of their daily budgets. The strategy is not the issue — the actual bid levels are too low to win placement. Each campaign below needs a direct keyword or PAT bid increase of 50–100%.</div>
 
   <span class="phase-tag pt-red">Amazon A1 — Raise Bids</span>
   <div class="checklist">
 
     <div class="ci"><input type="checkbox" id="a1"><label for="a1"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Raise keyword bids +60%: SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact Branded - TOS 100</div>
-      <div class="cdesc">Already on Up/Down. $612/day budget. Spending $24.56/day at 5.49x ROAS 7D. Navigate to Campaign Manager → this campaign → Ad group → Keywords. Select all keywords and apply a bulk +60% bid increase. Then confirm the Top of Search placement modifier is set to +100% or higher (Placement tab). Target: $80–150/day actual spend within 72 hours. If spend does not increase, apply a second +30% to keyword bids.</div>
+      <div class="cdesc">Already on Up/Down. $612/day budget. Spending $24.56/day at 5.49x ROAS 7D. Go to Campaign Manager → this campaign → Ad group → Keywords. Select all and apply a bulk +60% bid increase. Then confirm the Top of Search placement modifier is set to +100% or higher (Placement tab). Target: $80–150/day actual spend within 72 hours. If spend does not increase, apply a second +30% to keyword bids.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0CYJ5S1LB - Exact Branded - TOS 100 → Ad group → Keywords</span></div>
     </div></label></div>
 
@@ -830,7 +830,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
 
     <div class="ci"><input type="checkbox" id="a3"><label for="a3"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Raise PAT bids +100%: SP - B0CYJ3XTBS - Fudge Custom Box - PAT Defensive</div>
-      <div class="cdesc">Already on Up/Down. 10.89x ROAS 7D but spending only $2.27/day against $79 budget. Navigate to Ad group → Targeting (not Keywords — this is a PAT campaign). Raise all PAT bids +100%. At 10.89x ROAS the economics of aggressive bidding are extremely strong — even if ACOS rises to 30%, this campaign is well within target. Target: $10–25/day actual spend within 7 days.</div>
+      <div class="cdesc">Already on Up/Down. 10.89x ROAS 7D but spending only $2.27/day against $79 budget. Go to Ad group → Targeting (not Keywords — PAT campaigns use Targeting). Raise all bids +100%. At 10.89x ROAS there is a lot of room to be aggressive here. Even if ACOS climbs to 30% this is still well within target. Target: $10–25/day actual spend within 7 days.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0CYJ3XTBS - PAT Defensive → Ad group → Targeting</span></div>
     </div></label></div>
 
@@ -848,13 +848,13 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
 
     <div class="ci"><input type="checkbox" id="a6"><label for="a6"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Switch to Up/Down + raise bids +100%: SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - Exact - fudge candy</div>
-      <div class="cdesc">Down Only. 11.3x ROAS 7D on $3.24 spend. $100/day budget idle. Switch to Up/Down and raise keyword bids +100%. Extraordinary ROAS signals high relevance for this keyword. If daily spend reaches $30+ within 7 days and ACOS remains below 20%, increase budget to $150/day.</div>
+      <div class="cdesc">Down Only. 11.3x ROAS 7D on $3.24 spend. $100/day budget idle. Switch to Up/Down and raise keyword bids +100%. That ROAS level means the product is a strong match for this keyword. If daily spend reaches $30+ within 7 days and ACOS remains below 20%, increase budget to $150/day.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0CYJ5S1LB - Exact - fudge candy → Settings → Bidding, then Keywords</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="a7"><label for="a7"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Switch to Up/Down + raise PAT bids +200%: SP - B0CYJ5S1LB - Fudge Custom Box 4 Flavors - PAT 1</div>
-      <div class="cdesc">Down Only. 459x ROAS on $0.08 spend. $60/day budget. Switch to Up/Down and raise PAT bids +200%. A 459x ROAS means this PAT is landing on pages where buyers convert almost immediately — the only reason it spends $0.08 is that bids are near-zero. After raising bids, monitor daily. If ACOS after first $20 spend exceeds 30%, the 459x may have been an outlier single conversion — reduce bids 50% if ACOS does not hold below 25%.</div>
+      <div class="cdesc">Down Only. 459x ROAS on $0.08 spend. $60/day budget. Switch to Up/Down and raise PAT bids +200%. A 459x ROAS means it is landing on pages where people are ready to buy. The reason it spends $0.08 is that bids are essentially zero. After raising bids, monitor daily. If ACOS on the first $20 of spend exceeds 30%, that 459x was probably a one-off. Pull bids back 50% if ACOS does not settle below 25%.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Campaign Manager → SP - B0CYJ5S1LB - PAT 1 → Settings → Bidding, then Targeting</span></div>
     </div></label></div>
   </div>
@@ -867,7 +867,7 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum amber">A2</div>
     <div><div class="section-title">Amazon Phase A2 — Raise Bids on Hidden Gems</div>
-    <div class="section-sub">Exceptional ROAS on minimal spend. These are secondary priority after Phase A1 but should be actioned the same day.</div></div>
+    <div class="section-sub">Strong ROAS but virtually no spend. Action these the same day as Phase A1.</div></div>
   </div>
 
   <span class="phase-tag pt-amber">Amazon A2 — Hidden Gems</span>
@@ -875,25 +875,25 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
 
     <div class="ci"><input type="checkbox" id="a8"><label for="a8"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Switch to Up/Down + raise PAT bids +80%: SP - B0BG13N4ZJ - Dark Chocolate Fudge - PAT Defensive</div>
-      <div class="cdesc">Down Only. 28.7x MTD ROAS on $5.52 spend ($158.42 sales). $78/day budget. The highest ROAS in the entire MTD dataset. Switch to Up/Down, raise PAT bids +80%. Target $15–30/day actual spend within 7 days. If ACOS stays below 15% as spend increases, raise bids again.</div>
+      <div class="cdesc">Down Only. 28.7x MTD ROAS on $5.52 spend ($158.42 sales). $78/day budget. Highest ROAS in the MTD dataset. Switch to Up/Down, raise PAT bids +80%. Target $15–30/day actual spend within 7 days. If ACOS stays below 15% as spend increases, raise bids again.</div>
       <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">Campaign Manager → SP - B0BG13N4ZJ - PAT Defensive → Settings → Bidding, then Targeting</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="a9"><label for="a9"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Switch to Up/Down + raise bids +80%: SP - B0CYJ3XTBS - Fudge Custom Box - Exact - fudge bars</div>
-      <div class="cdesc">Down Only. 7.66x ROAS 7D. $60/day budget, $0.52/day actual. Switch to Up/Down, raise keyword bids +80%. "Fudge bars" is a distinct search term with demonstrated buying intent.</div>
+      <div class="cdesc">Down Only. 7.66x ROAS 7D. $60/day budget, $0.52/day actual. Switch to Up/Down, raise keyword bids +80%. "Fudge bars" has clear buying intent and is converting.</div>
       <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">Campaign Manager → SP - B0CYJ3XTBS - Exact - fudge bars → Settings, then Keywords</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="a10"><label for="a10"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Switch to Up/Down + raise bids +80%: SP - B07NK8M6TB - Chocolate Walnut Fudge - Exact - walnut fudge - TOS 30</div>
-      <div class="cdesc">Down Only. 7.89x ROAS 7D. $150/day budget, $0.50/day actual. Switch to Up/Down, raise keyword bids +80%. TOS 30 modifier is already applied. Bids need to be competitive enough to qualify for TOS placement.</div>
+      <div class="cdesc">Down Only. 7.89x ROAS 7D. $150/day budget, $0.50/day actual. Switch to Up/Down, raise keyword bids +80%. TOS 30 modifier is already applied. Bids need to be high enough to show at the top.</div>
       <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">Campaign Manager → SP - B07NK8M6TB - Exact - walnut fudge - TOS 30 → Settings, then Keywords</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="a11"><label for="a11"><div class="cbox"></div><div class="ctext">
       <div class="ctitle">Switch to Up/Down + raise bids +100%: SP- B0BG1D86G5 - Chocolate Fudge - Exact - Generic 1 - ROS 30</div>
-      <div class="cdesc">Down Only. 11.18x MTD ROAS. $40/day budget, $0.78/day actual. Switch to Up/Down, raise keyword bids +100%. ROS 30 placement modifier already applied. Generic chocolate fudge keyword converting at 11x — bid aggressively.</div>
+      <div class="cdesc">Down Only. 11.18x MTD ROAS. $40/day budget, $0.78/day actual. Switch to Up/Down, raise keyword bids +100%. ROS 30 placement modifier already applied. Generic chocolate fudge keyword at 11x. Bid aggressively.</div>
       <div class="cmeta"><span class="ptag pt-today">Today</span><span class="cpath">Campaign Manager → SP- B0BG1D86G5 - Exact - Generic 1 - ROS 30 → Settings, then Keywords</span></div>
     </div></label></div>
   </div>
@@ -906,10 +906,10 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum red">A3</div>
     <div><div class="section-title">Amazon Phase A3 — Pause Zero-Conversion Drains</div>
-    <div class="section-sub">Verified zero-or-minimal orders in both 7D and MTD. Pausing removes spend without removing revenue.</div></div>
+    <div class="section-sub">Zero or near-zero orders in both reporting windows. Safe to pause.</div></div>
   </div>
 
-  <div class="hl green"><strong>Pausing these will not reduce sales.</strong> Each campaign below has been cross-referenced across both 7D and MTD windows. Where a single MTD order exists, the ACOS is above 50% making the economics net-negative. Pausing frees ~$350/month to redirect to Custom Box winners running 5–11x ROAS.</div>
+  <div class="hl green"><strong>Safe to pause:</strong> Each campaign below was checked across both 7D and MTD. Where a single order exists, ACOS is above 50% — net negative at those rates. Pausing frees around $350/month to put toward Custom Box campaigns running 5–11x ROAS.</div>
 
   <span class="phase-tag pt-red">Amazon A3 — Pause Drains</span>
   <div class="checklist">
@@ -953,43 +953,43 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum green">A4</div>
     <div><div class="section-title">Amazon Phase A4 — Monitoring Gates and Validation</div>
-    <div class="section-sub">TACOS is at 15.2% MTD. Scaling must be paced. These are the specific checks before each escalation.</div></div>
+    <div class="section-sub">TACOS is sitting at 15.2% MTD. Check these before pushing spend further.</div></div>
   </div>
 
   <div class="checklist">
     <div class="ci"><input type="checkbox" id="a17"><label for="a17"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Investigate the three anomaly days (Apr 4, Apr 8, Apr 10) — find and fix the cause</div>
-      <div class="cdesc">SC data: Apr 4 $790 (LY $2,313), Apr 8 $852 (LY $2,241), Apr 10 $830 (LY $3,422). Three consecutive anomaly days are not random noise. Check Seller Central on each date: (1) Account Health notifications or listing suppressions, (2) FBA stock availability for B0CYJ5S1LB and B0DXHGSYH6, (3) buy box win rate. Apr 10 LY was $3,422 — a near-$2,600 single-day gap. If a listing was suppressed or buy box was lost, resolving it adds $600–800/day in baseline revenue immediately.</div>
+      <div class="ctitle">Find out what caused the three low-revenue days (Apr 4, Apr 8, Apr 10)</div>
+      <div class="cdesc">Apr 4 was $790 (vs $2,313 last year), Apr 8 was $852 (vs $2,241), Apr 10 was $830 (vs $3,422). Three days in a row like that is not normal. Check Seller Central on each date: (1) Account Health notifications or listing suppressions, (2) FBA stock availability for B0CYJ5S1LB and B0DXHGSYH6, (3) buy box win rate. Apr 10 LY was $3,422 — a near-$2,600 single-day gap. If a listing was suppressed or buy box was lost, resolving it adds $600–800/day in baseline revenue immediately.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Seller Central → Account Health → Performance notifications → check Apr 4, 8, 10</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="a18"><label for="a18"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Verify buy box status on B0CYJ5S1LB and B0DXHGSYH6</div>
-      <div class="cdesc">Both top-performing Custom Box ASINs must have active buy box and no listing suppression before Phase A1 bid increases take effect. Go to Seller Central → Inventory → Manage Inventory and check: (1) active buy box on both ASINs, (2) no suppressed listings, (3) no pricing alerts, (4) FBA stock at fulfillment centres. Ad spend driving traffic to a listing without buy box converts at near-zero.</div>
+      <div class="ctitle">Confirm buy box is active on B0CYJ5S1LB and B0DXHGSYH6</div>
+      <div class="cdesc">Before the Phase A1 bid changes go in, confirm both top Custom Box ASINs have an active buy box and no listing issues. Go to Seller Central → Inventory → Manage Inventory and check: (1) active buy box on both ASINs, (2) no suppressed listings, (3) no pricing alerts, (4) FBA stock at fulfillment centres. Spend going to a listing without buy box is almost entirely wasted.</div>
       <div class="cmeta"><span class="ptag pt-now">Now</span><span class="cpath">Seller Central → Inventory → Manage Inventory → B0CYJ5S1LB and B0DXHGSYH6</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="a19"><label for="a19"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">48-hour spend check: confirm daily SP spend is moving toward $350–400/day</div>
-      <div class="cdesc">After Phase A1 bid actions, pull daily spend from Campaign Manager on Day 2 and Day 3. Baseline: ~$230/day SP spend. Target after Phase A1: $350–400/day within 72 hours. If daily SP spend has not increased by at least $80/day after 48 hours, apply a second round of +30% bid increases to the Phase A1 campaigns. Amazon's algorithm takes 24–48 hours to recalibrate after bid changes.</div>
+      <div class="ctitle">48-hour check: is daily SP spend moving toward $350–400/day?</div>
+      <div class="cdesc">After Phase A1 bid actions, pull daily spend from Campaign Manager on Day 2 and Day 3. Baseline: ~$230/day SP spend. Target after Phase A1: $350–400/day within 72 hours. If daily SP spend has not increased by at least $80/day after 48 hours, apply a second round of +30% bid increases to the Phase A1 campaigns. Give it 24–48 hours to recalibrate after bid changes.</div>
       <div class="cmeta"><span class="ptag pt-48h">48hrs after Phase A1</span><span class="cpath">Campaign Manager → All Campaigns → daily spend summary</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="a20"><label for="a20"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Day 5 TACOS gate: calculate actual TACOS before further bid escalation</div>
-      <div class="cdesc">Pull: total SP spend for the 5 days post-changes ÷ total SC revenue for the same 5 days. If TACOS is below 15%: proceed to Phase A2 second-round bid increases. If TACOS is 15–17%: hold bid increases, execute Phase A3 pauses only. If TACOS exceeds 17%: reduce bids -15% on the lowest-ROAS Phase A1 campaigns until TACOS returns to 14%. Use a clean 5-day post-change window — do not calculate against the MTD figure which includes the anomaly days.</div>
+      <div class="ctitle">Day 5: calculate TACOS before pushing bids further</div>
+      <div class="cdesc">Pull: total SP spend for the 5 days post-changes ÷ total SC revenue for the same 5 days. If TACOS is below 15%: proceed to Phase A2 second-round bid increases. If TACOS is 15–17%: hold bid increases, execute Phase A3 pauses only. If TACOS exceeds 17%: reduce bids -15% on the lowest-ROAS Phase A1 campaigns until TACOS returns to 14%. Use a clean 5-day window post-changes. Do not calculate against the MTD figure which includes the anomaly days.</div>
       <div class="cmeta"><span class="ptag pt-week">Day 5</span><span class="cpath">Seller Central → Sales dashboard → custom date range vs Campaign Manager spend</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="a21"><label for="a21"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Day 7 revenue check: SC daily revenue should be tracking toward $1,800/day</div>
-      <div class="cdesc">Current April daily average: $1,540 (excluding anomaly days: $1,735). Target Day 7: $1,800/day. If not hit: check Campaign Manager to confirm Phase A1 changes drove increased impressions and clicks (impressions should be up 50%+ if bids are now winning more auctions). If impressions are up but revenue is flat, the bottleneck is listing conversion rate — check listing content, images, and reviews on B0CYJ5S1LB and B0DXHGSYH6.</div>
+      <div class="ctitle">Day 7: is SC daily revenue tracking toward $1,800/day?</div>
+      <div class="cdesc">Current April daily average: $1,540 (excluding anomaly days: $1,735). Target Day 7: $1,800/day. If not hit: check Campaign Manager to confirm Phase A1 changes drove increased impressions and clicks (impressions should be up 50%+ if bids are now winning more auctions). If impressions are up but revenue is flat, the issue is on the listing itself. Check images, content, and reviews on B0CYJ5S1LB and B0DXHGSYH6.</div>
       <div class="cmeta"><span class="ptag pt-week">Day 7</span><span class="cpath">Seller Central → Sales dashboard → daily view</span></div>
     </div></label></div>
 
     <div class="ci"><input type="checkbox" id="a22"><label for="a22"><div class="cbox"></div><div class="ctext">
-      <div class="ctitle">Variation family consolidation for chocolate flavor ASINs (Nathaniel-approved)</div>
-      <div class="cdesc">Nathaniel approved combining individual chocolate flavor listings into a variation family to share reviews across ASINs. Dark Chocolate Fudge (B0BG13N4ZJ) is performing at 28.7x PAT ROAS and would benefit significantly from increased review count. In Seller Central: Catalog → Add products → Add variation to existing product. Create parent-child relationship linking Dark Chocolate, Chocolate Walnut, and Chocolate Pecan. Complete this week.</div>
+      <div class="ctitle">Consolidate chocolate flavor listings into a variation family</div>
+      <div class="cdesc">Nathaniel approved this. Combining chocolate flavor listings into a variation family shares reviews across ASINs. Dark Chocolate Fudge (B0BG13N4ZJ) is performing at 28.7x PAT ROAS and would benefit significantly from increased review count. In Seller Central: Catalog → Add products → Add variation to existing product. Link Dark Chocolate, Chocolate Walnut, and Chocolate Pecan as parent-child. Complete this week.</div>
       <div class="cmeta"><span class="ptag pt-week">This week</span><span class="cpath">Seller Central → Catalog → Add products → Add variation</span></div>
     </div></label></div>
   </div>
@@ -1002,11 +1002,11 @@ hr{border:none;border-top:1px solid var(--border);margin:48px 0;}
   <div class="section-hdr">
     <div class="snum gray">V</div>
     <div><div class="section-title">Cross-Channel Validation — Will These Actions Hurt Anything?</div>
-    <div class="section-sub">Full validation of revenue impact and risk for both channels before actioning.</div></div>
+    <div class="section-sub">Why these actions will improve rather than hurt performance.</div></div>
   </div>
 
-  <div class="hl green"><strong>Meta: pausing drain creatives will not reduce revenue — it increases it.</strong> The five ads being paused (Video3 L8, Video24 Revamp L8, Car Review A+, VIDEO3 A+, JAN25 PostID A+) generated $59,068 combined on $34,137 spend at a blended 1.73x ROAS. Green Screen Video 2 is running 4.50x in the same campaigns. If that spend redirects to creatives averaging even 2.8x, the same budget generates $95,584 — a $36,500 revenue increase on identical spend. The Advantage+ campaign uses sequential swaps so it never loses delivery volume. The TOF Winners CBO redistributes budget within 24–48 hours without a learning phase reset.</div>
-  <div class="hl green"><strong>Amazon: pausing zero-conversion campaigns removes spend without removing sales.</strong> Every campaign in Phase A3 has been verified across both 7D and MTD windows. Zero orders confirmed except for two marginal exceptions (Maple Walnut Branded: 2 orders at 146.9% ACOS; Vanilla Walnut PAT: 1 order at 50.7% ACOS) — both net-negative on profit. Pausing saves budget and redirects it to 5–11x ROAS winners. Switching from Down Only to Up/Down does not cause overspend — daily budgets are Amazon hard caps.</div>
+  <div class="hl green"><strong>On pausing Meta creatives:</strong> The five ads being paused generated $59,068 on $34,137 spend at 1.73x. Green Screen V2 is running 4.50x in the same campaigns. If that same budget redirects to creatives averaging 2.8x, revenue from the same spend goes to $95,584. The Advantage+ swaps are sequential so delivery never drops. The CBO redistributes within 24–48 hours.</div>
+  <div class="hl green"><strong>On pausing Amazon drains:</strong> Every campaign in Phase A3 was checked across both 7D and MTD. Zero orders in most cases. The two exceptions (Maple Walnut Branded and Vanilla Walnut PAT) both have orders at 146.9% and 50.7% ACOS respectively — net negative. Switching from Down Only to Up/Down does not cause overspend. Daily budgets are a hard cap on Amazon.</div>
 
 </div><!-- /cross-channel -->
 
