@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uncle Butch's Fudge — The Path to $400K | Your Marketing Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --amber: #e8820a;
+  --amber-light: #f4a236;
+  --amber-dim: rgba(232,130,10,0.12);
+  --amber-border: rgba(232,130,10,0.22);
+  --bg: #0d0805;
+  --bg2: #120b06;
+  --surface: #181008;
+  --surface2: #1e1409;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.1);
+  --text: #ede8e0;
+  --muted: #8a7060;
+  --muted2: #5a4535;
+  --red: #e84c3c;
+  --warn: #e8a020;
+  --green: #27c87a;
+  --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
+
+/* Print setup for PDF export */
+@media print {
+  body { background: var(--bg) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .slide-nav, .nav-dot-rail { display: none !important; }
+  .slide { page-break-after: always; min-height: auto; height: 100vh; }
+}
+
+/* Top progress bar / nav */
+.slide-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: rgba(13,8,5,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; }
+.nav-diamond {
+  width: 18px; height: 18px;
+  background: var(--amber);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.nav-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nav-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.nav-counter {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--muted2);
+}
+.nav-counter span { color: var(--amber); }
+
+/* Side dot navigation */
+.nav-dot-rail {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.nav-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted2);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+.nav-dot:hover { background: var(--amber); transform: scale(1.4); }
+.nav-dot.active { background: var(--amber); transform: scale(1.6); box-shadow: 0 0 0 3px rgba(232,130,10,0.15); }
+
+/* Slide structure */
+.deck { padding-top: 56px; }
+.slide {
+  min-height: calc(100vh - 56px);
+  position: relative;
+  padding: 70px 80px 80px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--border);
+}
+.slide-num {
+  position: absolute;
+  top: 70px;
+  right: 80px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 14px;
+  color: var(--muted2);
+  letter-spacing: 2px;
+}
+.slide-num em { color: var(--amber); font-style: normal; }
+.slide-label {
+  position: absolute;
+  top: 70px;
+  left: 80px;
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.slide-label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--amber);
+}
+
+/* Typography */
+h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.1; }
+h1 { font-size: clamp(56px, 7vw, 96px); color: var(--white); }
+h1 em { color: var(--amber); font-style: italic; }
+h2 { font-size: clamp(34px, 4.5vw, 56px); color: var(--white); margin-bottom: 32px; line-height: 1.05; }
+h2 em { color: var(--amber); font-style: italic; }
+h3 { font-size: 22px; color: var(--white); margin-bottom: 14px; }
+h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+p { color: var(--muted); line-height: 1.8; font-size: 15px; }
+strong { color: var(--text); font-weight: 600; }
+em { font-style: italic; }
+
+/* Background atmosphere */
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.atmosphere::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232,130,10,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,130,10,0.022) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.atmosphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 90% 30%, rgba(232,130,10,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 40% at 5% 90%, rgba(232,130,10,0.035) 0%, transparent 60%);
+}
+
+/* Big background number watermark */
+.bg-watermark {
+  position: absolute;
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(280px, 38vw, 540px);
+  color: rgba(232,130,10,0.035);
+  line-height: 0.85;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.04em;
+  font-style: italic;
+}
+
+/* Eyebrow */
+.eyebrow {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+}
+.card.amber { border-color: var(--amber-border); background: rgba(232,130,10,0.04); }
+.card.red { border-color: rgba(232,76,60,0.25); background: rgba(232,76,60,0.03); }
+.card.warn { border-color: rgba(232,160,32,0.25); background: rgba(232,160,32,0.03); }
+.card.green { border-color: rgba(39,200,122,0.2); background: rgba(39,200,122,0.02); }
+.card.dark { background: var(--bg2); }
+
+/* Stat boxes */
+.stat-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 28px;
+}
+.stat-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 44px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.stat-val.t { color: var(--amber); }
+.stat-val.r { color: var(--red); }
+.stat-val.a { color: var(--warn); }
+.stat-val.g { color: var(--green); }
+.stat-val em { font-style: italic; color: var(--amber); }
+.stat-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stat-sub { font-size: 12px; color: var(--muted2); margin-top: 6px; line-height: 1.5; }
+
+/* Grids */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+.two-col.asym { grid-template-columns: 1.5fr 1fr; }
+.two-col.asym-r { grid-template-columns: 1fr 1.5fr; }
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.badge.critical { background: rgba(232,76,60,0.15); color: var(--red); }
+.badge.high { background: rgba(232,160,32,0.15); color: var(--warn); }
+.badge.medium { background: rgba(232,130,10,0.12); color: var(--amber); }
+.badge.good { background: rgba(39,200,122,0.12); color: var(--green); }
+.badge.dim { background: var(--surface); color: var(--muted); }
+.badge .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.badge.pulse .dot { animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* Highlight callouts */
+.highlight {
+  background: var(--amber-dim);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.highlight strong { color: var(--text); }
+.highlight.red { background: rgba(232,76,60,0.06); border-color: var(--red); }
+.highlight.warn { background: rgba(232,160,32,0.06); border-color: var(--warn); }
+.highlight.green { background: rgba(39,200,122,0.06); border-color: var(--green); }
+
+/* Check lists */
+ul.check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+ul.check-list li {
+  padding-left: 24px;
+  position: relative;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+ul.check-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 12px;
+  height: 1px;
+  background: var(--amber);
+}
+ul.check-list.tight li { font-size: 13px; gap: 8px; }
+ul.check-list li strong { color: var(--text); }
+
+/* Data table */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border2);
+  text-align: left;
+}
+.data-table td {
+  padding: 13px 14px;
+  font-size: 13px;
+  color: var(--text);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  vertical-align: middle;
+}
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table .good { color: var(--green); font-weight: 600; }
+.data-table .bad { color: var(--red); font-weight: 600; }
+.data-table .ok { color: var(--warn); font-weight: 600; }
+.data-table .dim { color: var(--muted); }
+
+/* ROAS pill */
+.roas-pill { display: inline-block; padding: 3px 10px; border-radius: 12px; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; }
+.roas-g { background: rgba(39,200,122,0.12); color: var(--green); }
+.roas-a { background: rgba(232,160,32,0.15); color: var(--warn); }
+.roas-r { background: rgba(232,76,60,0.12); color: var(--red); }
+
+/* Bar */
+.bar-wrap { display: flex; align-items: center; gap: 12px; }
+.bar-track { flex: 1; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; background: var(--amber); transition: width 0.6s ease-out; }
+.bar-fill.r { background: var(--red); }
+.bar-fill.a { background: var(--warn); }
+.bar-fill.g { background: var(--green); }
+.bar-pct { font-family: 'Syne', sans-serif; font-size: 11px; color: var(--muted); min-width: 42px; text-align: right; font-weight: 600; }
+
+/* Phase / week cards */
+.phase-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.phase-card.active { border-color: var(--amber-border); background: rgba(232,130,10,0.04); }
+.phase-num { font-family: 'DM Serif Display', serif; font-size: 56px; color: var(--amber); opacity: 0.18; line-height: 0.9; margin-bottom: 4px; font-style: italic; }
+.phase-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #000;
+  background: var(--amber);
+  padding: 3px 9px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+.phase-tag.p2 { background: var(--warn); }
+.phase-tag.p3 { background: transparent; color: var(--green); border: 1px solid rgba(39,200,122,0.3); }
+.phase-tag.p4 { background: transparent; color: var(--amber); border: 1px solid var(--amber-border); }
+.phase-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 4px; letter-spacing: 0.3px; }
+.phase-subtitle { font-size: 12px; color: var(--muted2); margin-bottom: 16px; }
+.phase-kpi { font-size: 11px; color: var(--amber); font-weight: 600; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border); font-family: 'Syne', sans-serif; letter-spacing: 0.5px; }
+
+/* Status row */
+.status-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* Cover slide */
+#slide-cover {
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+}
+.cover-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+.cover-meta {
+  display: flex;
+  gap: 50px;
+  margin-top: 60px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.cover-meta-label { font-family: 'Syne', sans-serif; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted2); font-weight: 700; }
+.cover-meta-val { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); }
+
+/* Big number panels */
+.bignum {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.bignum .num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 84px;
+  line-height: 1;
+  color: var(--white);
+  letter-spacing: -0.03em;
+}
+.bignum .num em { color: var(--amber); font-style: italic; }
+.bignum .unit {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+/* Math row for thresholds */
+.math-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 100px 1fr 120px;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 14px;
+}
+.math-row:last-child { border-bottom: none; }
+.math-row .target {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  color: var(--amber);
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+.math-row .equation { color: var(--muted2); font-family: 'Syne', sans-serif; font-size: 12px; letter-spacing: 1px; text-align: center; }
+.math-row .formula { color: var(--text); font-family: 'Syne', sans-serif; font-size: 13px; }
+.math-row .timeline { font-family: 'Syne', sans-serif; font-size: 11px; color: var(--green); font-weight: 700; letter-spacing: 1px; text-align: right; }
+
+/* Trajectory chart */
+.trajectory-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin: 30px 0;
+}
+.trajectory-week {
+  text-align: center;
+  padding: 20px 14px;
+  background: var(--surface);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+.trajectory-week.current {
+  border-color: var(--amber-border);
+  background: rgba(232,130,10,0.05);
+}
+.trajectory-week .week-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 10px;
+}
+.trajectory-week .week-roas {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+  font-style: italic;
+}
+.trajectory-week .week-roas.improving { color: var(--green); }
+.trajectory-week .week-roas.target { color: var(--amber); }
+.trajectory-week .week-spend { font-size: 12px; color: var(--muted); }
+
+/* Channel split */
+.channel-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+.channel-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 22px;
+  position: relative;
+  overflow: hidden;
+}
+.channel-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--amber);
+}
+.channel-card.meta::before { background: var(--amber); }
+.channel-card.amazon::before { background: var(--warn); }
+.channel-card.email::before { background: var(--green); }
+.channel-card.organic::before { background: rgba(255,255,255,0.4); }
+.channel-name { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.channel-amount { font-family: 'DM Serif Display', serif; font-size: 38px; color: var(--white); line-height: 1; margin-bottom: 6px; letter-spacing: -0.02em; }
+.channel-pct { font-size: 12px; color: var(--amber); font-weight: 600; margin-bottom: 12px; font-family: 'Syne', sans-serif; letter-spacing: 1px; }
+.channel-note { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+/* Action item */
+.action-item {
+  display: flex;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  align-items: flex-start;
+}
+.action-item:last-child { border-bottom: none; }
+.action-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--amber);
+  opacity: 0.5;
+  font-style: italic;
+  min-width: 32px;
+  line-height: 1.4;
+}
+.action-text {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  flex: 1;
+}
+.action-text strong { color: var(--text); }
+
+/* Diagonal divider line decoration */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--amber) 50%, transparent 100%);
+  margin: 30px 0;
+  opacity: 0.4;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); }
+  .channel-split { grid-template-columns: repeat(2, 1fr); }
+  .two-col, .two-col.asym, .two-col.asym-r { grid-template-columns: 1fr; gap: 30px; }
+  .slide { padding: 70px 40px 60px; }
+  .slide-num, .slide-label { left: 40px; right: 40px; }
+}
+@media (max-width: 700px) {
+  .grid-2, .grid-3, .grid-4, .grid-5, .channel-split { grid-template-columns: 1fr; }
+  .nav-dot-rail { display: none; }
+  .slide-nav { padding: 0 20px; }
+  .slide { padding: 60px 20px 40px; }
+  .slide-num, .slide-label { left: 20px; right: 20px; }
+  .math-row { grid-template-columns: 60px 1fr; gap: 8px; }
+  .math-row .equation, .math-row .formula, .math-row .timeline { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="slide-nav">
+  <div class="nav-brand">
+    <div class="nav-diamond"></div>
+    <span class="nav-name">Your Marketing Partners</span>
+  </div>
+  <span class="nav-title">UBF · The Path to $400K</span>
+  <span class="nav-counter"><span id="navcurrent">01</span> / 16</span>
+</nav>
+
+<div class="nav-dot-rail" id="dotrail"></div>
+
+<div class="deck">
+
+<!-- ============================================== -->
+<!-- SLIDE 01 — COVER -->
+<!-- ============================================== -->
+<section class="slide" id="slide-cover">
+  <div class="atmosphere"></div>
+  <div class="bg-watermark" style="right:-30px;bottom:-80px;">400K</div>
+  <span class="slide-label">Strategic Plan · May 2026</span>
+  <span class="slide-num">Slide <em>01</em> / 16</span>
+
+  <div class="cover-content">
+    <div class="eyebrow">A Four-Week Path to Scale</div>
+    <h1>Uncle Butch's Fudge<br><em>The path to $400K.</em></h1>
+    <p style="font-size:18px;margin-top:24px;color:var(--muted);max-width:700px;">A grounded four-week strategy to move from $145K monthly across all channels to $400K. Built on what the data shows works, paced by what the algorithms can absorb, gated by what we can verify in real time.</p>
+
+    <div class="status-row" style="margin-top:36px;">
+      <span class="badge medium pulse"><span class="dot"></span>Recovery curve confirmed · 5 weeks</span>
+      <span class="badge good"><span class="dot"></span>Amazon 3.87x ROAS · TACOS 14.76%</span>
+      <span class="badge high"><span class="dot"></span>Meta inflection check · May 13</span>
+    </div>
+
+    <div class="cover-meta">
+      <div class="cover-meta-item"><span class="cover-meta-label">Prepared For</span><span class="cover-meta-val">Nathaniel · Owner, UBF</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Prepared By</span><span class="cover-meta-val">Charles Piper · YMP</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Date</span><span class="cover-meta-val">3 May 2026</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Window</span><span class="cover-meta-val">May 4 — Jun 1, 2026</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Confidential</span><span class="cover-meta-val">Internal Distribution Only</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 02 — THE BRIEF -->
+<!-- ============================================== -->
+<section class="slide" id="slide-brief">
+  <div class="atmosphere"></div>
+  <span class="slide-label">The brief</span>
+  <span class="slide-num">Slide <em>02</em> / 16</span>
+
+  <div class="eyebrow">What Nathaniel asked for</div>
+  <h2>The targets are clear.<br>The question is <em>how, and how fast.</em></h2>
+
+  <div class="grid-3" style="margin-top:30px;">
+    <div class="stat-box">
+      <div class="stat-val t">$400K</div>
+      <div class="stat-label">Monthly Revenue Floor</div>
+      <div class="stat-sub">Across Meta, Amazon, Google and email. Stretch target sits at $500K.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">25%</div>
+      <div class="stat-label">Blended Marketing Cost of Sales</div>
+      <div class="stat-sub">Maximum 30%. Includes Amazon's 15% commission load.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val">3.0x</div>
+      <div class="stat-label">ROAS Target on Meta and Google</div>
+      <div class="stat-sub">2.5x acceptable floor. Amazon target: 15% TACOS, 18% ceiling.</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="two-col asym">
+    <div>
+      <h4>The current reality</h4>
+      <div class="highlight red">
+        <strong>April closed at roughly $145K to $150K total attributed.</strong> That is 36% of the floor target. The gap is significant and we need to be honest about what that means. Hitting $400K in any single month inside the next 4 weeks is not realistic. Hitting a clear path that gets there inside 8 to 10 weeks is.
+      </div>
+      <div class="highlight" style="margin-top:14px;">
+        <strong>The recovery has started, the curve is real.</strong> Meta ROAS climbed from 1.46x to 2.17x across four weeks before softening to 1.87x last week on an execution miss. Amazon TACOS hit 14.76% with revenue up 21% sequentially. The directional signal is right. The pace from here depends on creative supply and disciplined audience expansion.
+      </div>
+    </div>
+    <div>
+      <h4>What this deck covers</h4>
+      <ul class="check-list tight" style="margin-top:8px;">
+        <li><strong>Where we are.</strong> The honest snapshot, validated against source data</li>
+        <li><strong>How we got here.</strong> The 5-week recovery curve and what changed</li>
+        <li><strong>The math of $400K.</strong> Channel allocation that gets us there</li>
+        <li><strong>Two compounding levers.</strong> ROAS and spend growth working together</li>
+        <li><strong>The site headwind.</strong> The variable Meta cannot fix alone</li>
+        <li><strong>Four weeks of action.</strong> Week by week, gated by data</li>
+        <li><strong>Risks and requirements.</strong> What stops us, what we need from you</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 03 — WHERE WE ARE NOW -->
+<!-- ============================================== -->
+<section class="slide" id="slide-current">
+  <div class="atmosphere"></div>
+  <span class="slide-label">Where we are · May 3, 2026</span>
+  <span class="slide-num">Slide <em>03</em> / 16</span>
+
+  <div class="eyebrow">Honest snapshot</div>
+  <h2>Two engines running.<br>One climbing, <em>one inflecting.</em></h2>
+
+  <div class="grid-2" style="margin-top:30px;">
+    <div class="card amber">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+        <span class="badge medium"><span class="dot"></span>Meta · Last 7 Days</span>
+        <span class="badge dim">Apr 26 to May 2</span>
+      </div>
+      <div class="grid-2" style="gap:16px;margin-bottom:20px;">
+        <div>
+          <div class="stat-val a" style="font-size:38px;">$11,539</div>
+          <div class="stat-label">Spend</div>
+        </div>
+        <div>
+          <div class="stat-val" style="font-size:38px;">$21,537</div>
+          <div class="stat-label">Revenue</div>
+        </div>
+        <div>
+          <div class="stat-val a" style="font-size:38px;">1.87x</div>
+          <div class="stat-label">Blended ROAS</div>
+        </div>
+        <div>
+          <div class="stat-val" style="font-size:38px;">494</div>
+          <div class="stat-label">Purchases</div>
+        </div>
+      </div>
+      <div class="highlight warn">
+        <strong>Soft week, not a reversal.</strong> The 1% and 3% LAL audiences slated for last Tuesday did not launch and the new Mother's Day reels stayed at $56 combined spend. That is the single biggest reason ROAS slipped from 2.17x to 1.87x. Strategy is right, execution missed the window.
+      </div>
+    </div>
+
+    <div class="card green">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+        <span class="badge good"><span class="dot"></span>Amazon · Last 7 Days</span>
+        <span class="badge dim">Apr 26 to May 2</span>
+      </div>
+      <div class="grid-2" style="gap:16px;margin-bottom:20px;">
+        <div>
+          <div class="stat-val g" style="font-size:38px;">$2,027</div>
+          <div class="stat-label">Ad Spend</div>
+        </div>
+        <div>
+          <div class="stat-val" style="font-size:38px;">$13,733</div>
+          <div class="stat-label">Business Revenue</div>
+        </div>
+        <div>
+          <div class="stat-val g" style="font-size:38px;">3.87x</div>
+          <div class="stat-label">Blended ROAS</div>
+        </div>
+        <div>
+          <div class="stat-val g" style="font-size:38px;">14.8%</div>
+          <div class="stat-label">TACOS</div>
+        </div>
+      </div>
+      <div class="highlight green">
+        <strong>The strongest week of the recovery.</strong> Revenue up 21.3% sequentially while TACOS held below the 15% target. SD pause executed cleanly, branded SP at 5.29x, Custom Box 4 Flavors Exact Branded at 8.78x. The levers are compounding rather than competing.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="grid-3">
+    <div class="stat-box">
+      <div class="stat-val r" style="font-size:30px;">$1,648</div>
+      <div class="stat-label">Meta Daily Average</div>
+      <div class="stat-sub">Below the $3K daily target. Audience expansion is the unlock.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val a" style="font-size:30px;">$23.36</div>
+      <div class="stat-label">Meta CPP</div>
+      <div class="stat-sub">Down from $30.50 four weeks ago. CPP recovery is real.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val g" style="font-size:30px;">-14.7%</div>
+      <div class="stat-label">Amazon YoY Gap</div>
+      <div class="stat-sub">From -42% three weeks ago. Tougher comp this week, sequential growth strong.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 04 — RECOVERY CURVE -->
+<!-- ============================================== -->
+<section class="slide" id="slide-curve">
+  <div class="atmosphere"></div>
+  <span class="slide-label">The recovery curve</span>
+  <span class="slide-num">Slide <em>04</em> / 16</span>
+
+  <div class="eyebrow">Five weeks of work, visible</div>
+  <h2>The shape of a turnaround.<br>Not finished, <em>but real.</em></h2>
+
+  <p style="max-width:780px;margin-bottom:30px;">Weekly Meta ROAS by reporting window. The trajectory is what an account looks like when drain spend gets cut, fatigued creative is paused, and budget concentrates on validated performers. Last week's dip is the execution miss that this deck addresses head-on.</p>
+
+  <div class="trajectory-row">
+    <div class="trajectory-week">
+      <div class="week-label">Apr 3 to 9</div>
+      <div class="week-roas" style="color:var(--red);">1.46x</div>
+      <div class="week-spend">$12,343 spend</div>
+    </div>
+    <div class="trajectory-week">
+      <div class="week-label">Apr 10 to 16</div>
+      <div class="week-roas" style="color:var(--red);">1.49x</div>
+      <div class="week-spend">$9,944 spend</div>
+    </div>
+    <div class="trajectory-week">
+      <div class="week-label">Apr 17 to 23</div>
+      <div class="week-roas improving">1.78x</div>
+      <div class="week-spend">$13,127 spend</div>
+    </div>
+    <div class="trajectory-week">
+      <div class="week-label">Apr 22 to 28</div>
+      <div class="week-roas improving">2.17x</div>
+      <div class="week-spend">$10,969 spend</div>
+    </div>
+    <div class="trajectory-week current">
+      <div class="week-label">Apr 26 to May 2</div>
+      <div class="week-roas" style="color:var(--warn);">1.87x</div>
+      <div class="week-spend">$11,539 spend</div>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:30px;">
+    <div class="card">
+      <h4>What drove the gain (Apr 3 to Apr 28)</h4>
+      <ul class="check-list tight" style="margin-top:8px;">
+        <li><strong>Cut drain spend.</strong> Car Review, Video3, Street Interview 4 paused after confirmed fatigue</li>
+        <li><strong>Concentrated weight.</strong> Shipping Reassurance Copy and SOC Ad7 VBX absorbed budget at proven efficiency</li>
+        <li><strong>Frequency throttling.</strong> L8 5% Lookalike capped to let the algorithm reset</li>
+        <li><strong>CPP improved $30.50 to $21.30 across four weeks at held spend</strong></li>
+      </ul>
+    </div>
+    <div class="card warn">
+      <h4>What slipped last week</h4>
+      <ul class="check-list tight" style="margin-top:8px;">
+        <li><strong>1% and 3% LAL audiences did not launch on Tuesday.</strong> The unlock for moving past L8 saturation was deferred</li>
+        <li><strong>Mother's Day reels stayed in the existing test ad set.</strong> Combined spend across all eight new creatives was $56</li>
+        <li><strong>L8 frequency climbed to 4.19.</strong> Up from 3.89 the prior week. Audience exhaustion accelerating</li>
+        <li><strong>This is execution, not strategy.</strong> Correction is the priority of this deck</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="highlight green" style="margin-top:24px;">
+    <strong>Net direction over five weeks: 1.46x to 1.87x.</strong> A 28% ROAS lift while spend stayed flat. Last week's dip looks like a cliff in isolation. In context, it is one missed week inside a sustained climb that can be recovered inside seven days with the audience expansion that should have happened last Tuesday.
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 05 — THE MATH OF $400K -->
+<!-- ============================================== -->
+<section class="slide" id="slide-math">
+  <div class="atmosphere"></div>
+  <div class="bg-watermark" style="right:-50px;top:50px;font-size:clamp(220px,30vw,420px);">$</div>
+  <span class="slide-label">The math of $400K</span>
+  <span class="slide-num">Slide <em>05</em> / 16</span>
+
+  <div class="eyebrow">Channel allocation</div>
+  <h2>$400K monthly is a sum<br>of <em>four parts.</em></h2>
+
+  <p style="max-width:780px;margin-bottom:8px;">The mistake is to treat Meta as the sole lever. The path to the floor target distributes across all four revenue channels, each playing a defined role. The structure below is the realistic shape of $400K in steady state.</p>
+
+  <div class="channel-split">
+    <div class="channel-card meta">
+      <div class="channel-name">Meta</div>
+      <div class="channel-amount">$180K</div>
+      <div class="channel-pct">45% of Total</div>
+      <div class="channel-note">$6K daily revenue at 2.5x ROAS on $2,400 daily spend. The primary growth engine.</div>
+    </div>
+    <div class="channel-card amazon">
+      <div class="channel-name">Amazon</div>
+      <div class="channel-amount">$80K</div>
+      <div class="channel-pct">20% of Total</div>
+      <div class="channel-note">Recovery from current $44K monthly to historical $80K range as bid scaling continues and Mother's Day demand lifts.</div>
+    </div>
+    <div class="channel-card email">
+      <div class="channel-name">Email + SMS</div>
+      <div class="channel-amount">$60K</div>
+      <div class="channel-pct">15% of Total</div>
+      <div class="channel-note">Repeat customer flow at 15% of total revenue. Currently underleveraged. Sits with Georgie at Mailchimp.</div>
+    </div>
+    <div class="channel-card organic">
+      <div class="channel-name">Organic + Direct</div>
+      <div class="channel-amount">$80K</div>
+      <div class="channel-pct">20% of Total</div>
+      <div class="channel-note">Direct, search, social organic, plus Google branded. Grows naturally as paid traffic compounds brand search volume.</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="two-col">
+    <div>
+      <h4>Where we are vs the structure</h4>
+      <table class="data-table" style="margin-top:8px;">
+        <thead>
+          <tr><th>Channel</th><th>Apr Run Rate</th><th>$400K Target</th><th>Gap</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Meta</strong></td>
+            <td>$95K</td>
+            <td>$180K</td>
+            <td class="bad">-$85K</td>
+          </tr>
+          <tr>
+            <td><strong>Amazon</strong></td>
+            <td>$44K</td>
+            <td>$80K</td>
+            <td class="ok">-$36K</td>
+          </tr>
+          <tr>
+            <td><strong>Email + SMS</strong></td>
+            <td>~$15K</td>
+            <td>$60K</td>
+            <td class="bad">-$45K</td>
+          </tr>
+          <tr>
+            <td><strong>Organic + Direct</strong></td>
+            <td>~$50K</td>
+            <td>$80K</td>
+            <td class="ok">-$30K</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h4>The takeaway</h4>
+      <div class="highlight">
+        <strong>Meta carries 47% of the gap that needs closing.</strong> $85K of the $196K total monthly increase. That is achievable inside the next 8 to 10 weeks if the inflection holds at 2.5x ROAS through the planned spend ramp.
+      </div>
+      <div class="highlight" style="margin-top:14px;">
+        <strong>Email is the second-biggest unlock.</strong> A $45K monthly gap that lives outside paid media. Worth a focused conversation with Georgie on flow optimisation, segmentation, and post-purchase sequencing. Low cost, high leverage.
+      </div>
+      <div class="highlight green" style="margin-top:14px;">
+        <strong>Amazon is closest to the target.</strong> $36K gap, currently scaling at 21% sequentially with TACOS held below 15%. On current trajectory this closes inside the same 8 to 10 weeks.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 06 — TWO COMPOUNDING LEVERS -->
+<!-- ============================================== -->
+<section class="slide" id="slide-levers">
+  <div class="atmosphere"></div>
+  <span class="slide-label">Two compounding levers</span>
+  <span class="slide-num">Slide <em>06</em> / 16</span>
+
+  <div class="eyebrow">How Meta moves to $6K daily</div>
+  <h2>Spend grows. ROAS holds.<br>Both have to <em>work together.</em></h2>
+
+  <p style="max-width:780px;margin-bottom:30px;">Meta scaling is not linear. Pushing budget without ROAS confirmation breaks the algorithm. Holding ROAS without growing spend leaves revenue on the table. The realistic path is 15 to 20% weekly spend growth with ROAS holding 2.3x to 2.5x. At that pace the daily revenue thresholds land predictably.</p>
+
+  <h4>Spend needed at each daily revenue threshold</h4>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-top:12px;overflow:hidden;">
+    <div class="math-row" style="background:rgba(232,130,10,0.05);font-weight:700;color:var(--white);font-size:11px;font-family:'Syne',sans-serif;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--border2);">
+      <div>Target</div>
+      <div>Math</div>
+      <div class="equation">at ROAS</div>
+      <div>Spend Required</div>
+      <div class="timeline" style="color:var(--muted);">Timeline</div>
+    </div>
+    <div class="math-row">
+      <div class="target">$5K</div>
+      <div class="formula">Daily revenue threshold</div>
+      <div class="equation">2.5x</div>
+      <div class="formula">$2,000 daily spend</div>
+      <div class="timeline">2 to 3 weeks out</div>
+    </div>
+    <div class="math-row">
+      <div class="target">$6K</div>
+      <div class="formula">Daily revenue threshold</div>
+      <div class="equation">2.5x</div>
+      <div class="formula">$2,400 daily spend</div>
+      <div class="timeline">3 to 4 weeks out</div>
+    </div>
+    <div class="math-row">
+      <div class="target">$7K</div>
+      <div class="formula">Daily revenue threshold</div>
+      <div class="equation">2.5x</div>
+      <div class="formula">$2,800 daily spend</div>
+      <div class="timeline">4 to 5 weeks out</div>
+    </div>
+    <div class="math-row">
+      <div class="target">$8K</div>
+      <div class="formula">Daily revenue threshold</div>
+      <div class="equation">2.5x</div>
+      <div class="formula">$3,200 daily spend</div>
+      <div class="timeline">5 to 6 weeks out</div>
+    </div>
+    <div class="math-row" style="background:rgba(39,200,122,0.04);">
+      <div class="target" style="color:var(--green);">$10K</div>
+      <div class="formula">Daily revenue threshold</div>
+      <div class="equation">2.5x</div>
+      <div class="formula">$4,000 daily spend</div>
+      <div class="timeline">8 to 10 weeks out</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="grid-3">
+    <div class="card">
+      <h4>Why 15 to 20% weekly</h4>
+      <p style="font-size:13px;">Faster than 25% weekly growth resets Meta's optimisation. The algorithm interprets large jumps as new campaigns and starts learning over. We saw this happen on the original collapse and it cost four weeks to recover.</p>
+    </div>
+    <div class="card">
+      <h4>Why ROAS gates the step</h4>
+      <p style="font-size:13px;">Each step-up only happens when ROAS clears 2.5x for a sustained read. If the audience and creative are not absorbing efficiency at the current spend, more spend buys frequency, not revenue. The gate protects the curve.</p>
+    </div>
+    <div class="card amber">
+      <h4>Faster path exists</h4>
+      <p style="font-size:13px;">If creative quality holds through the next two rotations and new audiences absorb at L8 efficiency, 25% weekly is safe and shaves 2 to 3 weeks off every threshold. Conservative number first, beat it second.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 07 — SITE CR HEADWIND -->
+<!-- ============================================== -->
+<section class="slide" id="slide-cr">
+  <div class="atmosphere"></div>
+  <span class="slide-label">The site CR headwind</span>
+  <span class="slide-num">Slide <em>07</em> / 16</span>
+
+  <div class="eyebrow">The variable Meta cannot fix alone</div>
+  <h2>Meta is fighting a 45%<br>conversion rate <em>headwind.</em></h2>
+
+  <div class="grid-2" style="margin-top:30px;">
+    <div>
+      <div class="card red" style="margin-bottom:18px;">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;">
+          <span class="bignum"><span class="num">2.85<em>%</em></span><span class="unit">YTD</span></span>
+        </div>
+        <div class="stat-label" style="margin-bottom:10px;">Site Conversion Rate · 2026</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7;">vs <strong>5.18%</strong> same period last year. A 45% drop in site conversion rate.</div>
+      </div>
+      <div class="card warn">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;">
+          <span class="bignum"><span class="num"><em>+57</em>%</span><span class="unit">12-MO</span></span>
+        </div>
+        <div class="stat-label" style="margin-bottom:10px;">Sessions Year on Year</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.7;">Traffic is up 57%, conversion rate is down 23%. We are sending more visitors to a site that converts them at a lower rate.</div>
+      </div>
+    </div>
+
+    <div>
+      <h4>The math of the headwind</h4>
+      <div class="highlight red" style="margin-bottom:18px;">
+        <strong>At last year's site CR of 5.18%, our current Meta ROAS of 2.17x would be 3.94x.</strong> Same spend. Same audiences. Same creatives. The site CR alone is removing roughly 45% of the revenue value of every dollar going into Meta.
+      </div>
+      <div class="highlight">
+        <strong>This changes the conversation.</strong> Two thirds of the recovery sits with us in ads, audience expansion, and creative refresh. A meaningful third sits with the site itself. If we recover even half the lost CR, the timeline in slide 06 compresses by 2 to 3 weeks because we get more revenue from the same ad spend.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h4>Where to look on the site</h4>
+  <div class="grid-4" style="margin-top:14px;">
+    <div class="card dark">
+      <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--amber);font-style:italic;line-height:1;margin-bottom:8px;">01</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:8px;">Product Pages</div>
+      <p style="font-size:12px;line-height:1.55;">Any layout, image, or content changes in the last twelve months. Mobile rendering specifically.</p>
+    </div>
+    <div class="card dark">
+      <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--amber);font-style:italic;line-height:1;margin-bottom:8px;">02</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:8px;">Checkout Flow</div>
+      <p style="font-size:12px;line-height:1.55;">Steps, friction points, abandonment triggers. New apps or integrations added since last year.</p>
+    </div>
+    <div class="card dark">
+      <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--amber);font-style:italic;line-height:1;margin-bottom:8px;">03</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:8px;">Pop-ups</div>
+      <p style="font-size:12px;line-height:1.55;">Email capture, exit intent, geo prompts. Anything that interrupts purchase intent on landing.</p>
+    </div>
+    <div class="card dark">
+      <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--amber);font-style:italic;line-height:1;margin-bottom:8px;">04</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:8px;">AOV Trends</div>
+      <p style="font-size:12px;line-height:1.55;">Mix shift toward smaller boxes, pricing changes, bundle dynamics. Could explain part of the gap.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 08 — WEEK 1 -->
+<!-- ============================================== -->
+<section class="slide" id="slide-week1">
+  <div class="atmosphere"></div>
+  <span class="slide-label">Week 1 · May 4 to 10</span>
+  <span class="slide-num">Slide <em>08</em> / 16</span>
+
+  <div class="eyebrow">Recover the missed week</div>
+  <h2>Audience expansion lands.<br>The work last week <em>should have done.</em></h2>
+
+  <div class="two-col asym" style="margin-top:30px;">
+    <div>
+      <div class="phase-card active">
+        <div class="phase-num">01</div>
+        <span class="phase-tag">Week 1</span>
+        <div class="phase-title">Audience Expansion + Creative Refresh</div>
+        <div class="phase-subtitle">Target ROAS: 2.0x to 2.3x recovery · Target spend: $1,800 daily by Friday</div>
+
+        <h4 style="margin-top:20px;margin-bottom:12px;">Action 1 · Tuesday May 6</h4>
+        <p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px;"><strong>1% and 3% value-based LAL audiences live.</strong> Both built off the value-based purchaser seed. Vid27 VBox, SOC Ad7, and the four strongest Mother's Day reels duplicated into each at $150 daily per ad set. This is the priority that slipped last week and it is the gate for everything that follows.</p>
+
+        <h4 style="margin-top:20px;margin-bottom:12px;">Action 2 · Tuesday to Wednesday</h4>
+        <p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px;"><strong>Mother's Day reel batch into the new LAL ad sets at real budget.</strong> Candy or Dessert delivered 5.76x on $7. Fathers Name delivered 4.21x on $13. Frequency 1.1 to 1.3 means cold audience reads. With $100 to $150 daily per ad set we get clean efficiency reads by Friday.</p>
+
+        <h4 style="margin-top:20px;margin-bottom:12px;">Action 3 · Wednesday</h4>
+        <p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px;"><strong>L8 5% LAL throttled to $300 daily.</strong> Frequency hit 4.19 last week, the audience pool is exhausted. Holding the budget here lets the creative continue earning while the new audiences absorb fresh impressions.</p>
+
+        <h4 style="margin-top:20px;margin-bottom:12px;">Action 4 · Thursday</h4>
+        <p style="font-size:13px;color:var(--muted);line-height:1.65;"><strong>Memorial Day creative brief locked.</strong> Value-stacked offer at full margin. Free Mother's Day card, scarcity claim, hard order-by deadline, risk-reversal guarantee. Brief lands in your inbox Wednesday for sign-off Thursday.</p>
+
+        <div class="phase-kpi" style="margin-top:20px;">Friday read · LAL CPP within 15% of L8 historical = clear scale signal</div>
+      </div>
+    </div>
+
+    <div>
+      <h4>Daily cadence Week 1</h4>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:8px;">
+        <div style="padding:14px 18px;border-bottom:1px solid var(--border);">
+          <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;">Mon May 4</div>
+          <div style="font-size:13px;color:var(--text);">Audience build, creative briefing, structural setup</div>
+        </div>
+        <div style="padding:14px 18px;border-bottom:1px solid var(--border);background:rgba(232,130,10,0.04);">
+          <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;">Tue May 6</div>
+          <div style="font-size:13px;color:var(--text);"><strong>LAL audiences live · Mother's Day reels at scale</strong></div>
+        </div>
+        <div style="padding:14px 18px;border-bottom:1px solid var(--border);">
+          <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Wed May 7</div>
+          <div style="font-size:13px;color:var(--text);">L8 throttle, Memorial Day brief drafted</div>
+        </div>
+        <div style="padding:14px 18px;border-bottom:1px solid var(--border);">
+          <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Thu May 8</div>
+          <div style="font-size:13px;color:var(--text);">Memorial Day brief locked, mid-week read</div>
+        </div>
+        <div style="padding:14px 18px;border-bottom:1px solid var(--border);background:rgba(39,200,122,0.04);">
+          <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:4px;">Fri May 9</div>
+          <div style="font-size:13px;color:var(--text);"><strong>Friday read · Audience CPP confirmation</strong></div>
+        </div>
+        <div style="padding:14px 18px;">
+          <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Sat to Sun</div>
+          <div style="font-size:13px;color:var(--text);">Weekend monitoring, no major changes pre-week 2</div>
+        </div>
+      </div>
+
+      <div class="highlight" style="margin-top:18px;">
+        <strong>Week 1 success looks like:</strong> ROAS recovers to 2.0x or above by Friday. New LAL audiences spending at planned daily budgets. CPP on new audiences within 15% of L8 historical. Mother's Day creative landing at 2.5x or above on the better-performing reels.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 09 — WEEK 2 -->
+<!-- ============================================== -->
+<section class="slide" id="slide-week2">
+  <div class="atmosphere"></div>
+  <span class="slide-label">Week 2 · May 11 to 17</span>
+  <span class="slide-num">Slide <em>09</em> / 16</span>
+
+  <div class="eyebrow">Mother's Day push, LAL ramp</div>
+  <h2>The first scaling step.<br>Gated by <em>2.5x confirmation.</em></h2>
+
+  <div class="two-col asym-r" style="margin-top:30px;">
+    <div>
+      <h4>What needs to be true to step up</h4>
+      <div class="highlight green">
+        <strong>Inflection check lands May 13.</strong> If blended ROAS holds 2.5x for the full week of LAL audiences absorbing budget, the path is locked. We move at 20% spend growth weekly from there. If it stalls between 2.0x and 2.2x, we hold spend flat and diagnose before pushing further.
+      </div>
+
+      <div class="grid-3" style="margin-top:24px;">
+        <div class="stat-box">
+          <div class="stat-val a" style="font-size:28px;">2.5x</div>
+          <div class="stat-label">ROAS Floor</div>
+          <div class="stat-sub">Sustained 7-day read required</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val a" style="font-size:28px;">$2,000</div>
+          <div class="stat-label">Daily Spend Target</div>
+          <div class="stat-sub">From $1,650 average current</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val g" style="font-size:28px;">$5K</div>
+          <div class="stat-label">Daily Revenue Goal</div>
+          <div class="stat-sub">First threshold confirmation</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="phase-card">
+        <div class="phase-num">02</div>
+        <span class="phase-tag p2">Week 2</span>
+        <div class="phase-title">Mother's Day + LAL Ramp</div>
+        <div class="phase-subtitle">Target ROAS: 2.3x to 2.7x · Target spend: $2,000 daily</div>
+
+        <ul class="check-list tight" style="margin-top:18px;">
+          <li><strong>Mother's Day campaign at full delivery.</strong> Mother's Day is May 10. Push lands the back half of week 1 into week 2 for late shoppers. The reels are the lead creative</li>
+          <li><strong>20% budget step on confirmed winners.</strong> Any ad holding 2.5x+ at meaningful spend gets a single 20% increase by Wednesday</li>
+          <li><strong>Second creative rotation built.</strong> 6 to 10 new reels from your archive into the Charles054 brief. Standard 7 to 10 day production cycle</li>
+          <li><strong>RTG audience refresh.</strong> Checkout Abandoners and Past Purchasers segments rebuilt against fresh Mother's Day creative</li>
+          <li><strong>Memorial Day campaign structure built and approved.</strong> Live to test the day after Mother's Day demand fades</li>
+        </ul>
+        <div class="phase-kpi">May 13 · Inflection check · 2.5x sustained = green light to scale</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="grid-3">
+    <div class="card">
+      <h4>Mother's Day creative angle</h4>
+      <p style="font-size:13px;">The 8 reels already built lead the push. Hooks are emotional first, product second. Father's Name, Candy or Dessert, and Trio OMG are the strongest early reads from the limited Week 1 spend.</p>
+    </div>
+    <div class="card">
+      <h4>The 20% rule</h4>
+      <p style="font-size:13px;">No campaign gets two budget increases inside the same week. Algorithm needs three to four days to absorb each step before the next. Compounding too fast resets learning and breaks the curve we just rebuilt.</p>
+    </div>
+    <div class="card amber">
+      <h4>Failsafe trigger</h4>
+      <p style="font-size:13px;">If blended ROAS drops below 2.0x for two consecutive days at the new spend level, we revert to Week 1 spend and audience structure inside 24 hours. Discipline beats hope every time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 10 — WEEK 3 -->
+<!-- ============================================== -->
+<section class="slide" id="slide-week3">
+  <div class="atmosphere"></div>
+  <span class="slide-label">Week 3 · May 18 to 24</span>
+  <span class="slide-num">Slide <em>10</em> / 16</span>
+
+  <div class="eyebrow">Memorial Day value-stacked offer</div>
+  <h2>The first real promotional push.<br><em>Full margin. No discount.</em></h2>
+
+  <div class="two-col" style="margin-top:30px;">
+    <div>
+      <h4>The offer construction</h4>
+      <p style="margin-bottom:18px;">Discounting trains customers to wait for sales and erodes the brand at the cart. The Hormozi approach is to stack perceived value at full price so the sticker looks like a bargain for what the customer is getting. Goal is revenue lift at protected margin.</p>
+
+      <div class="card">
+        <h4 style="margin-bottom:14px;">Core product</h4>
+        <p style="font-size:13px;margin-bottom:18px;color:var(--text);">Custom Memorial Day Variety Box at full standard pricing.</p>
+
+        <h4 style="margin-bottom:14px;">Free bonus stack</h4>
+        <ul class="check-list tight">
+          <li><strong>Handwritten Memorial Day card</strong> with personalised message option</li>
+          <li><strong>Guaranteed delivery by Memorial Day</strong> or full refund plus we overnight a replacement</li>
+          <li><strong>Free 2-piece Thank You mini box for the buyer</strong>, so the gift giver tastes alongside</li>
+          <li><strong>Lifetime 10% loyalty code</strong> for repeat orders, zero cost until they reorder at margin</li>
+          <li><strong>Entry into a Mom of the Year giveaway</strong>, year of free fudge for the winner</li>
+        </ul>
+
+        <h4 style="margin-bottom:14px;margin-top:20px;">Risk reversal</h4>
+        <p style="font-size:13px;color:var(--text);font-style:italic;">"If your guests don't text you the moment they open this box, we'll refund every cent and you keep the fudge."</p>
+
+        <h4 style="margin-bottom:14px;margin-top:20px;">Scarcity + urgency</h4>
+        <p style="font-size:13px;">Only 500 boxes available, hand-poured fresh. Order by midnight Friday for guaranteed Memorial Day arrival.</p>
+      </div>
+    </div>
+
+    <div>
+      <h4>Why this beats 20% off</h4>
+      <ul class="check-list">
+        <li><strong>Margin stays at full.</strong> Every dollar of revenue carries the same gross margin as standard sales</li>
+        <li><strong>AOV likely lifts.</strong> The offer story makes people choose the larger box because the value stack feels disproportionate</li>
+        <li><strong>Premium positioning protected.</strong> No discount conditioning. Customers continue buying at full price after the promotion ends</li>
+        <li><strong>Email and SMS list grows.</strong> Giveaway entries feed Georgie's flow with high-intent buyers</li>
+        <li><strong>Loyalty pipeline activates.</strong> The 10% lifetime code creates repeat purchase momentum that compounds beyond Memorial Day</li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <div class="phase-card">
+        <div class="phase-num">03</div>
+        <span class="phase-tag p3">Week 3</span>
+        <div class="phase-title">Memorial Day Push</div>
+        <div class="phase-subtitle">Target ROAS: 2.7x to 3.0x · Target spend: $2,400 daily</div>
+
+        <ul class="check-list tight" style="margin-top:14px;">
+          <li>Memorial Day campaign live May 19 at 4 day window</li>
+          <li>Second 20% spend step on validated 2.5x+ ad sets</li>
+          <li>Third creative rotation in production for end-of-month delivery</li>
+          <li>Email partner Georgie aligned for the promo flow</li>
+        </ul>
+
+        <div class="phase-kpi">Promo window expected to lift weekly revenue 25 to 40%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 11 — WEEK 4 -->
+<!-- ============================================== -->
+<section class="slide" id="slide-week4">
+  <div class="atmosphere"></div>
+  <span class="slide-label">Week 4 · May 25 to 31</span>
+  <span class="slide-num">Slide <em>11</em> / 16</span>
+
+  <div class="eyebrow">Threshold confirmation</div>
+  <h2>The first $5K daily.<br>Then the path to <em>$8K and beyond.</em></h2>
+
+  <div class="grid-2" style="margin-top:30px;">
+    <div>
+      <div class="phase-card">
+        <div class="phase-num">04</div>
+        <span class="phase-tag p4">Week 4</span>
+        <div class="phase-title">Scale to Threshold</div>
+        <div class="phase-subtitle">Target ROAS: 2.8x to 3.0x sustained · Target spend: $2,800 daily</div>
+
+        <ul class="check-list tight" style="margin-top:14px;">
+          <li><strong>Memorial Day post-mortem locked Tuesday.</strong> What worked, what didn't, what gets carried into Father's Day</li>
+          <li><strong>Daily Meta revenue holding $5K floor for 4 consecutive days.</strong> First threshold confirmation</li>
+          <li><strong>Third creative rotation live.</strong> 6 to 10 new reels into the proven LAL audiences</li>
+          <li><strong>L8 5% LAL reactivated with fresh creative only.</strong> Not the fatigued reels that exhausted it</li>
+          <li><strong>Father's Day creative brief locked.</strong> June 16, prep window starts week 4</li>
+          <li><strong>Account architecture review.</strong> Identify any structural debt before the next $1K daily spend step</li>
+        </ul>
+
+        <div class="phase-kpi">Inflection 2 · End-week read confirms $6K daily achievable in week 5</div>
+      </div>
+    </div>
+
+    <div>
+      <h4>What success looks like at end of week 4</h4>
+
+      <div class="grid-2" style="gap:14px;margin-top:8px;">
+        <div class="stat-box">
+          <div class="stat-val g" style="font-size:32px;">$5,000</div>
+          <div class="stat-label">Daily Meta Revenue</div>
+          <div class="stat-sub">First threshold cleared</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val a" style="font-size:32px;">2.8x</div>
+          <div class="stat-label">Blended ROAS</div>
+          <div class="stat-sub">Target floor 2.5x exceeded</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val" style="font-size:32px;">$2,800</div>
+          <div class="stat-label">Daily Meta Spend</div>
+          <div class="stat-sub">Up 70% from current $1,648</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val g" style="font-size:32px;">$210K</div>
+          <div class="stat-label">Run Rate Monthly</div>
+          <div class="stat-sub">Meta alone, projected</div>
+        </div>
+      </div>
+
+      <div class="highlight green" style="margin-top:20px;">
+        <strong>Combined channel run rate at end of week 4:</strong> Meta $210K + Amazon $80K + Email $30K + Organic $80K = $400K monthly. That is the floor target hit on a forward run rate basis. Holding it for a full calendar month becomes a separate conversation about sustained creative supply and audience freshness.
+      </div>
+
+      <div class="highlight warn" style="margin-top:14px;">
+        <strong>What stops this:</strong> Creative pipeline running dry, site CR not improving, or audience exhaustion across both new LAL pools. Each has a mitigation plan in slides 13 and 14.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 12 — AMAZON PARALLEL TRACK -->
+<!-- ============================================== -->
+<section class="slide" id="slide-amazon">
+  <div class="atmosphere"></div>
+  <span class="slide-label">Amazon parallel scaling track</span>
+  <span class="slide-num">Slide <em>12</em> / 16</span>
+
+  <div class="eyebrow">The cleaner of the two engines</div>
+  <h2>Amazon is already turning.<br>The job is <em>not to break it.</em></h2>
+
+  <div class="grid-3" style="margin-top:30px;">
+    <div class="stat-box">
+      <div class="stat-val g" style="font-size:34px;">3.87x</div>
+      <div class="stat-label">Blended ROAS Last Week</div>
+      <div class="stat-sub">Up from 3.80x prior, climbing steadily</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val g" style="font-size:34px;">14.8%</div>
+      <div class="stat-label">TACOS</div>
+      <div class="stat-sub">Hit the 15% target with margin to spare</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val g" style="font-size:34px;">+21%</div>
+      <div class="stat-label">Revenue Sequential WoW</div>
+      <div class="stat-sub">$11.3K → $13.7K business revenue</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="two-col">
+    <div>
+      <h4>The four-week Amazon plan</h4>
+
+      <div class="phase-card" style="margin-bottom:14px;">
+        <span class="phase-tag" style="margin-bottom:8px;">Week 1</span>
+        <div class="phase-title" style="font-size:13px;">Sponsored Brands Step Up</div>
+        <p style="font-size:13px;color:var(--muted);margin-top:8px;">Daily SB budget from $20 toward $30 to $35. Bid lift on Custom Box Branded SB. Two-week ROAS sits at 8.18x, the most underutilised lever in the account.</p>
+      </div>
+
+      <div class="phase-card" style="margin-bottom:14px;">
+        <span class="phase-tag p2" style="margin-bottom:8px;">Week 2</span>
+        <div class="phase-title" style="font-size:13px;">Generic Fudge Bid Discipline</div>
+        <p style="font-size:13px;color:var(--muted);margin-top:8px;">Custom Box 4 Flavors generic fudge exact still spending $568 weekly at 2.84x. Trim to $450 weekly target. Reallocate into 4x+ branded and PAT terms.</p>
+      </div>
+
+      <div class="phase-card" style="margin-bottom:14px;">
+        <span class="phase-tag p3" style="margin-bottom:8px;">Week 3</span>
+        <div class="phase-title" style="font-size:13px;">SD Playbook Extension</div>
+        <p style="font-size:13px;color:var(--muted);margin-top:8px;">Apply the PAT Defensive and Purchase Remarketing structure that proved out on Custom Box to one more best-seller ASIN. Tight learning gates this time.</p>
+      </div>
+
+      <div class="phase-card">
+        <span class="phase-tag p4" style="margin-bottom:8px;">Week 4</span>
+        <div class="phase-title" style="font-size:13px;">Father's Day Prep</div>
+        <p style="font-size:13px;color:var(--muted);margin-top:8px;">Custom Box Father's Day variant launched on Amazon, Sponsored Display retargeting layered for Mother's Day post-purchase audiences.</p>
+      </div>
+    </div>
+
+    <div>
+      <h4>Why Amazon is on the cleaner curve</h4>
+
+      <ul class="check-list">
+        <li><strong>Bid recovery is done.</strong> The early April impression collapse is fully reversed. SP daily impressions back to 21K average from 19K low</li>
+        <li><strong>Branded share has more room.</strong> SP branded at 5.29x vs non-branded at 3.18x. Custom Box 4 Flavors Exact Branded at 8.78x is the cleanest lever</li>
+        <li><strong>SD pause confirmed the diagnosis.</strong> Removing $446 of dead spend lifted SD blended from 1.99x MTD to 11.16x weekly</li>
+        <li><strong>Structural runway exists.</strong> SB at $122 weekly with 3.75x ROAS can comfortably absorb 30 to 40% more budget without breaking efficiency</li>
+        <li><strong>Mother's Day will lift naturally.</strong> Amazon gifting demand peaks in the days before May 10. Campaigns are already structured to capture it</li>
+      </ul>
+
+      <div class="highlight green" style="margin-top:20px;">
+        <strong>Target by end of week 4:</strong> Amazon weekly business revenue at $16K to $18K, monthly run rate at $70K to $78K, TACOS holding 14 to 16%. That gets us to the $80K monthly Amazon contribution required for the $400K total.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 13 — CREATIVE PIPELINE -->
+<!-- ============================================== -->
+<section class="slide" id="slide-creative">
+  <div class="atmosphere"></div>
+  <span class="slide-label">Creative pipeline</span>
+  <span class="slide-num">Slide <em>13</em> / 16</span>
+
+  <div class="eyebrow">The structural unlock</div>
+  <h2>The bottleneck above $5K daily<br>isn't ROAS. It's <em>creative supply.</em></h2>
+
+  <div class="two-col asym" style="margin-top:30px;">
+    <div>
+      <h4>The pattern of the recovery</h4>
+      <p style="margin-bottom:20px;">Every gain in ROAS over the last five weeks was bought by retiring fatigued creative and concentrating spend on validated performers. That model has a ceiling. Once spend grows past $2,000 daily, audience absorption requires fresh creative every two to three weeks. Without it, frequency saturates the new audiences just like it saturated L8.</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h4 style="margin-bottom:8px;">6 to 10</h4>
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:8px;">Reels per month</div>
+          <p style="font-size:12px;line-height:1.6;">Sustained cadence required to scale past $5K daily without audience exhaustion.</p>
+        </div>
+        <div class="card">
+          <h4 style="margin-bottom:8px;">7 to 10</h4>
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:8px;">Day production cycle</div>
+          <p style="font-size:12px;line-height:1.6;">From source video to ad-ready reel with hooks, captions, and CTAs cut for testing.</p>
+        </div>
+        <div class="card">
+          <h4 style="margin-bottom:8px;">2.5x</h4>
+          <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:8px;">48-hour gate</div>
+          <p style="font-size:12px;line-height:1.6;">Each new reel reads against this threshold. Below pauses, above scales, between holds.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h4>The pipeline in motion</h4>
+      <table class="data-table" style="margin-top:8px;">
+        <thead>
+          <tr><th>Source</th><th>Cycle</th><th>Status</th><th>Output</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mother's Day reels (Batch 1)</strong></td>
+            <td>Live</td>
+            <td><span class="badge good"><span class="dot"></span>Active</span></td>
+            <td class="dim">8 reels into Week 1 LAL audiences</td>
+          </tr>
+          <tr>
+            <td><strong>Charles054 brief (Batch 2)</strong></td>
+            <td>Week 1 to 2</td>
+            <td><span class="badge medium"><span class="dot"></span>In production</span></td>
+            <td class="dim">12 reels for Week 3 to 4</td>
+          </tr>
+          <tr>
+            <td><strong>Memorial Day specific cut</strong></td>
+            <td>Week 2</td>
+            <td><span class="badge dim">Briefed Wed</span></td>
+            <td class="dim">4 reels for May 19 launch</td>
+          </tr>
+          <tr>
+            <td><strong>Batch 3 (Father's Day prep)</strong></td>
+            <td>Week 3 to 4</td>
+            <td><span class="badge dim">Brief Tuesday</span></td>
+            <td class="dim">8 to 10 reels for June 1 launch</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h4>What we need from your side</h4>
+      <div class="card amber" style="margin-bottom:18px;">
+        <p style="margin-bottom:14px;">You confirmed last week that you can keep pulling and sending TikTok video links from the archives. That input is the most valuable thing the creative pipeline can receive.</p>
+
+        <h4 style="margin-bottom:10px;">The cadence we need</h4>
+        <ul class="check-list tight">
+          <li><strong>8 to 12 raw video links per month</strong> from TikTok creators, customers, your own posts</li>
+          <li><strong>24 hour creative approval turnaround</strong> when new reels come back from the editor</li>
+          <li><strong>Rough-cut feedback within 48 hours</strong> if a brief direction needs adjusting</li>
+        </ul>
+      </div>
+
+      <div class="highlight">
+        <strong>The model:</strong> You source the raw human moments, we cut them into ad-ready reels with hooks, captions, and CTAs that get tested against account winners. Losers get killed at the 48-hour gate. Winners get scaled into TOF and Advantage+. The pipeline is the bottleneck. Solving it means the timeline to $400K compresses by 2 to 3 weeks.
+      </div>
+
+      <div class="highlight green" style="margin-top:14px;">
+        <strong>Compounding effect:</strong> Each batch of 6 to 10 reels typically produces 2 to 3 strong winners that scale, 4 to 5 that hold, and 1 to 2 that get killed. After three batches you have a deck of 6 to 9 sustained performers. After five batches you have 10 to 15. That is what supports $3K and $4K daily spend without audience exhaustion.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 14 — RISKS AND GATES -->
+<!-- ============================================== -->
+<section class="slide" id="slide-risks">
+  <div class="atmosphere"></div>
+  <span class="slide-label">Risks and gates</span>
+  <span class="slide-num">Slide <em>14</em> / 16</span>
+
+  <div class="eyebrow">What stops us, and what we do about it</div>
+  <h2>Honest about the risks.<br>Disciplined about the <em>gates.</em></h2>
+
+  <div class="grid-3" style="margin-top:30px;">
+    <div class="card red">
+      <span class="badge critical" style="margin-bottom:14px;"><span class="dot"></span>Risk 01</span>
+      <h3 style="font-size:18px;margin-bottom:10px;">Inflection stalls at 2.0x to 2.2x</h3>
+      <p style="font-size:13px;margin-bottom:14px;">If the new LAL audiences absorb at significantly worse CPP than L8 historical, blended ROAS doesn't clear the 2.5x gate.</p>
+      <h4 style="margin-bottom:8px;font-size:10px;">Mitigation</h4>
+      <p style="font-size:12px;color:var(--muted);">Hold spend flat, diagnose creative-audience match, rebuild brief with sharper hooks before pushing further. Honest conversation with you about timeline impact.</p>
+    </div>
+    <div class="card warn">
+      <span class="badge high" style="margin-bottom:14px;"><span class="dot"></span>Risk 02</span>
+      <h3 style="font-size:18px;margin-bottom:10px;">Creative pipeline drys up</h3>
+      <p style="font-size:13px;margin-bottom:14px;">The Charles054 batch is the last in the immediate queue. Without batch 3 in early Week 3 we hit the wall on fresh creative around Week 5.</p>
+      <h4 style="margin-bottom:8px;font-size:10px;">Mitigation</h4>
+      <p style="font-size:12px;color:var(--muted);">Brief batch 3 by Tuesday Week 3. Identify the strongest TikTok angles in your archive now. Pre-build hook variations on existing winners as a fallback.</p>
+    </div>
+    <div class="card warn">
+      <span class="badge high" style="margin-bottom:14px;"><span class="dot"></span>Risk 03</span>
+      <h3 style="font-size:18px;margin-bottom:10px;">Site CR doesn't recover</h3>
+      <p style="font-size:13px;margin-bottom:14px;">If site CR stays at 2.85% YTD level, every threshold needs significantly more ad spend, lengthening the timeline by 3 to 4 weeks.</p>
+      <h4 style="margin-bottom:8px;font-size:10px;">Mitigation</h4>
+      <p style="font-size:12px;color:var(--muted);">CRO conversation with whoever owns the storefront. Audit product pages, checkout, mobile experience. Even a 0.5% CR lift compounds across all paid channels.</p>
+    </div>
+    <div class="card amber">
+      <span class="badge medium" style="margin-bottom:14px;"><span class="dot"></span>Risk 04</span>
+      <h3 style="font-size:18px;margin-bottom:10px;">Mother's Day demand front-loads</h3>
+      <p style="font-size:13px;margin-bottom:14px;">If the bulk of Mother's Day demand comes in Week 1 and Week 2 fades hard, the inflection check on May 13 reads softer than the underlying account efficiency.</p>
+      <h4 style="margin-bottom:8px;font-size:10px;">Mitigation</h4>
+      <p style="font-size:12px;color:var(--muted);">Look at non-Mother's-Day creative and audience segments separately for the inflection read. Mother's Day uplift is a tailwind, not the foundation of the assessment.</p>
+    </div>
+    <div class="card amber">
+      <span class="badge medium" style="margin-bottom:14px;"><span class="dot"></span>Risk 05</span>
+      <h3 style="font-size:18px;margin-bottom:10px;">Memorial Day offer underperforms</h3>
+      <p style="font-size:13px;margin-bottom:14px;">If the value-stacked offer doesn't lift weekly revenue 25 to 40% inside the window, Week 3 momentum stalls.</p>
+      <h4 style="margin-bottom:8px;font-size:10px;">Mitigation</h4>
+      <p style="font-size:12px;color:var(--muted);">Test the offer copy against control in the first 24 hours. If signals are weak, swap the headline angle by Day 2. Don't ride a flat offer for 4 days hoping it improves.</p>
+    </div>
+    <div class="card amber">
+      <span class="badge medium" style="margin-bottom:14px;"><span class="dot"></span>Risk 06</span>
+      <h3 style="font-size:18px;margin-bottom:10px;">Inventory or fulfillment constraint</h3>
+      <p style="font-size:13px;margin-bottom:14px;">At $5K to $8K daily, order volume increases substantially. Custom box flavour availability or shipping capacity could constrain the run.</p>
+      <h4 style="margin-bottom:8px;font-size:10px;">Mitigation</h4>
+      <p style="font-size:12px;color:var(--muted);">Confirm inventory and fulfillment headroom for May before Week 2 step-up. Pause specific flavour ads if we're tight on stock rather than risk customer experience.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <h4>Gate structure</h4>
+  <div class="grid-3" style="margin-top:14px;">
+    <div class="card dark">
+      <div style="font-family:'DM Serif Display',serif;font-size:42px;color:var(--amber);font-style:italic;line-height:0.9;margin-bottom:10px;">Gate 1</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:8px;">May 13 · End Week 1</div>
+      <p style="font-size:13px;">LAL audiences absorbing at planned spend. Blended ROAS recovering to 2.0x or above. Pass = Week 2 step-up. Fail = hold and diagnose.</p>
+    </div>
+    <div class="card dark">
+      <div style="font-family:'DM Serif Display',serif;font-size:42px;color:var(--amber);font-style:italic;line-height:0.9;margin-bottom:10px;">Gate 2</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:8px;">May 20 · End Week 2</div>
+      <p style="font-size:13px;">Mother's Day cleared, blended ROAS holding 2.5x for full week. Pass = Memorial Day full investment. Fail = scale-back, focus on Memorial Day at protected spend.</p>
+    </div>
+    <div class="card dark">
+      <div style="font-family:'DM Serif Display',serif;font-size:42px;color:var(--amber);font-style:italic;line-height:0.9;margin-bottom:10px;">Gate 3</div>
+      <div style="font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:8px;">May 31 · End Week 4</div>
+      <p style="font-size:13px;">$5K daily Meta revenue achieved for 4 consecutive days. Pass = $6K target locks for June. Fail = full strategic review, separate conversation about timeline.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 15 — WHAT WE NEED FROM NATHANIEL -->
+<!-- ============================================== -->
+<section class="slide" id="slide-asks">
+  <div class="atmosphere"></div>
+  <span class="slide-label">What we need from you</span>
+  <span class="slide-num">Slide <em>15</em> / 16</span>
+
+  <div class="eyebrow">Direct asks</div>
+  <h2>Five things from your side<br>that <em>compress the timeline.</em></h2>
+
+  <div style="margin-top:30px;display:flex;flex-direction:column;gap:18px;">
+    <div class="card">
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="font-family:'DM Serif Display',serif;font-size:54px;color:var(--amber);opacity:0.4;font-style:italic;line-height:0.9;min-width:60px;">01</div>
+        <div style="flex:1;">
+          <h4 style="margin-bottom:8px;">TikTok video links · 8 to 12 per month</h4>
+          <p style="font-size:14px;line-height:1.65;">The single most leveraged thing you can do is keep the raw video pipeline running. Send links to anything strong from TikTok creators, customers, or your own posts. We cut, test, kill losers, scale winners. Cadence beats quality on input — we'd rather receive 10 average links and find 2 winners than receive 2 polished ones and find 0.</p>
+          <span class="badge medium" style="margin-top:12px;"><span class="dot"></span>Ongoing · Weekly</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="font-family:'DM Serif Display',serif;font-size:54px;color:var(--amber);opacity:0.4;font-style:italic;line-height:0.9;min-width:60px;">02</div>
+        <div style="flex:1;">
+          <h4 style="margin-bottom:8px;">Site CR investigation</h4>
+          <p style="font-size:14px;line-height:1.65;">Open a focused conversation with whoever manages the storefront. Worth checking: product page changes since last year, checkout flow friction, mobile experience, any new pop-ups or apps installed, AOV mix shift. Even a 0.5% CR lift compounds across all paid spend immediately.</p>
+          <span class="badge high" style="margin-top:12px;"><span class="dot"></span>This Week</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="font-family:'DM Serif Display',serif;font-size:54px;color:var(--amber);opacity:0.4;font-style:italic;line-height:0.9;min-width:60px;">03</div>
+        <div style="flex:1;">
+          <h4 style="margin-bottom:8px;">Memorial Day offer sign-off · By Wednesday May 7</h4>
+          <p style="font-size:14px;line-height:1.65;">Brief landing in your inbox Wednesday with the full value-stacked offer construction, ad copy, landing page outline, and email partner alignment. Sign-off needed by Thursday for May 19 launch with proper test window. Pure approval, no deep edits required.</p>
+          <span class="badge critical" style="margin-top:12px;"><span class="dot"></span>Wed May 7</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="font-family:'DM Serif Display',serif;font-size:54px;color:var(--amber);opacity:0.4;font-style:italic;line-height:0.9;min-width:60px;">04</div>
+        <div style="flex:1;">
+          <h4 style="margin-bottom:8px;">Inventory and fulfillment confirmation at $5K to $8K daily</h4>
+          <p style="font-size:14px;line-height:1.65;">Order volume at scale increases significantly. Confirm there are no fulfillment constraints on Custom Box variants and no flavour shortages that could stall the campaign. Better to identify constraints in Week 1 than discover them at peak Memorial Day demand.</p>
+          <span class="badge high" style="margin-top:12px;"><span class="dot"></span>This Week</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;gap:24px;align-items:flex-start;">
+        <div style="font-family:'DM Serif Display',serif;font-size:54px;color:var(--amber);opacity:0.4;font-style:italic;line-height:0.9;min-width:60px;">05</div>
+        <div style="flex:1;">
+          <h4 style="margin-bottom:8px;">Email + SMS alignment with Georgie</h4>
+          <p style="font-size:14px;line-height:1.65;">$45K of the monthly gap to $400K sits in the email and SMS layer. Worth a structured 30-minute review of current flows, segmentation, post-purchase sequences, and abandoned cart performance. We can sit in to align the paid and owned channels around the same Memorial Day push and ongoing creative angles.</p>
+          <span class="badge medium" style="margin-top:12px;"><span class="dot"></span>Within 2 Weeks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- SLIDE 16 — CLOSING -->
+<!-- ============================================== -->
+<section class="slide" id="slide-close">
+  <div class="atmosphere"></div>
+  <div class="bg-watermark" style="left:-50px;bottom:-80px;font-size:clamp(280px,40vw,560px);">UBF</div>
+  <span class="slide-label">Closing</span>
+  <span class="slide-num">Slide <em>16</em> / 16</span>
+
+  <div style="position:relative;z-index:2;max-width:900px;">
+    <div class="eyebrow">The honest commitment</div>
+    <h1 style="font-size:clamp(48px,6vw,80px);margin-bottom:30px;">Real momentum.<br><em>Disciplined pace.</em></h1>
+
+    <p style="font-size:17px;line-height:1.75;margin-bottom:24px;">$400K monthly is a real target, not a slogan. The path runs through Meta clearing 2.5x at $3K daily sustained, Amazon scaling SB and SD on top of stable SP, the value-stacked Memorial Day push protecting margin, and the email layer working alongside paid. None of that is theoretical. The account has hit each component before. The job in May is to line them up at the same time.</p>
+
+    <p style="font-size:17px;line-height:1.75;margin-bottom:24px;">There is no switch to flip. Meta scales by audience absorption and creative supply, both with hard physical limits. Pushing $4K daily into a saturated audience tomorrow gets us $5K revenue at 1.3x and forces another rebuild. That is the pattern that has cost accounts years of work and we will not do it to yours.</p>
+
+    <p style="font-size:17px;line-height:1.75;margin-bottom:36px;">Two-week read by May 13. If Meta clears 2.5x blended for a full week and Amazon holds 3.5x plus, the path is real and the conversation becomes how fast we scale, not whether we can. If the inflection stalls, you'll know inside the same window with the same honesty as today, and we'll diagnose properly before pushing further.</p>
+
+    <div class="card amber" style="padding:32px 36px;">
+      <h4 style="margin-bottom:14px;">The ask is simple</h4>
+      <p style="font-size:15px;line-height:1.75;color:var(--text);">Hold steady on the four-week plan. Send the video links. Look at the site CR with whoever owns it. Sign off on Memorial Day by Wednesday. Let the gates do their job at the end of each week. The rest sits with us, and we will earn it.</p>
+    </div>
+
+    <div class="cover-meta" style="margin-top:50px;">
+      <div class="cover-meta-item"><span class="cover-meta-label">Charles Piper</span><span class="cover-meta-val">Account Manager · YMP</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Available</span><span class="cover-meta-val">Direct line for any question</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Next Update</span><span class="cover-meta-val">Friday May 9 · Week 1 wrap</span></div>
+      <div class="cover-meta-item"><span class="cover-meta-label">Inflection Check</span><span class="cover-meta-val">Tuesday May 13 · Two-week read</span></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+// Build dot navigation
+const slides = document.querySelectorAll('.slide');
+const dotrail = document.getElementById('dotrail');
+const navCounter = document.getElementById('navcurrent');
+
+slides.forEach((slide, idx) => {
+  const btn = document.createElement('button');
+  btn.className = 'nav-dot';
+  btn.title = 'Slide ' + (idx + 1);
+  btn.addEventListener('click', () => {
+    slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  dotrail.appendChild(btn);
+});
+
+const dots = document.querySelectorAll('.nav-dot');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = Array.from(slides).indexOf(entry.target);
+      dots.forEach(d => d.classList.remove('active'));
+      if (dots[idx]) dots[idx].classList.add('active');
+      navCounter.textContent = String(idx + 1).padStart(2, '0');
+    }
+  });
+}, { rootMargin: '-40% 0px -50% 0px' });
+
+slides.forEach(s => observer.observe(s));
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  const current = document.querySelector('.nav-dot.active');
+  if (!current) return;
+  const currentIdx = Array.from(dots).indexOf(current);
+
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+    e.preventDefault();
+    if (currentIdx < slides.length - 1) {
+      slides[currentIdx + 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') {
+    e.preventDefault();
+    if (currentIdx > 0) {
+      slides[currentIdx - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    slides[0].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    slides[slides.length - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+});
+</script>
+</body>
+</html>
