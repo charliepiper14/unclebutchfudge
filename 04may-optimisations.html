@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UBF — Mother's Day Surge Optimisation Checklist | Your Marketing Partners</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --amber: #e8820a;
+  --amber-light: #f4a236;
+  --amber-dim: rgba(232,130,10,0.12);
+  --amber-border: rgba(232,130,10,0.22);
+  --bg: #0d0805;
+  --bg2: #120b06;
+  --surface: #181008;
+  --surface2: #1e1409;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.1);
+  --text: #ede8e0;
+  --muted: #8a7060;
+  --muted2: #5a4535;
+  --red: #e84c3c;
+  --warn: #e8a020;
+  --green: #27c87a;
+  --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
+
+@media print {
+  body { background: var(--bg) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .top-nav, .side-rail { display: none !important; }
+  .section { page-break-inside: avoid; }
+}
+
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: rgba(13,8,5,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; }
+.nav-diamond {
+  width: 18px; height: 18px;
+  background: var(--amber);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.nav-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nav-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.nav-counter {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--muted2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-counter .countdown {
+  background: rgba(232,76,60,0.15);
+  color: var(--red);
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.page { padding-top: 56px; max-width: 1280px; margin: 0 auto; padding-left: 60px; padding-right: 60px; padding-bottom: 100px; }
+
+.section { padding: 60px 0; border-bottom: 1px solid var(--border); position: relative; }
+.section:last-child { border-bottom: none; }
+
+.eyebrow {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--amber);
+  flex-shrink: 0;
+}
+
+h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.1; }
+h1 { font-size: clamp(48px, 6vw, 80px); color: var(--white); letter-spacing: -0.02em; }
+h1 em { color: var(--amber); font-style: italic; }
+h2 { font-size: clamp(32px, 4vw, 48px); color: var(--white); margin-bottom: 28px; line-height: 1.05; letter-spacing: -0.01em; }
+h2 em { color: var(--amber); font-style: italic; }
+h3 { font-size: 22px; color: var(--white); margin-bottom: 14px; }
+h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+p { color: var(--muted); line-height: 1.8; font-size: 15px; }
+strong { color: var(--text); font-weight: 600; }
+
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+.atmosphere::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232,130,10,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,130,10,0.022) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+#cover {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.bg-watermark {
+  position: absolute;
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(220px, 32vw, 460px);
+  color: rgba(232,130,10,0.04);
+  line-height: 0.85;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.04em;
+  font-style: italic;
+  right: -50px;
+  bottom: -60px;
+  z-index: -1;
+}
+
+.cover-meta {
+  display: flex;
+  gap: 50px;
+  margin-top: 50px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.cover-meta-label { font-family: 'Syne', sans-serif; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted2); font-weight: 700; }
+.cover-meta-val { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; color: var(--text); }
+
+.status-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.badge.critical { background: rgba(232,76,60,0.15); color: var(--red); }
+.badge.high { background: rgba(232,160,32,0.15); color: var(--warn); }
+.badge.medium { background: rgba(232,130,10,0.12); color: var(--amber); }
+.badge.good { background: rgba(39,200,122,0.12); color: var(--green); }
+.badge.dim { background: var(--surface); color: var(--muted); }
+.badge .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.badge.pulse .dot { animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.alert-banner {
+  background: rgba(232,76,60,0.06);
+  border: 1px solid rgba(232,76,60,0.25);
+  border-left: 3px solid var(--red);
+  border-radius: 10px;
+  padding: 22px 28px;
+  margin: 24px 0;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+.alert-banner.amber {
+  background: rgba(232,130,10,0.05);
+  border: 1px solid var(--amber-border);
+  border-left: 3px solid var(--amber);
+}
+.alert-banner.green {
+  background: rgba(39,200,122,0.04);
+  border: 1px solid rgba(39,200,122,0.2);
+  border-left: 3px solid var(--green);
+}
+.alert-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(232,76,60,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red);
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 22px;
+}
+.alert-banner.amber .alert-icon { background: rgba(232,130,10,0.15); color: var(--amber); }
+.alert-banner.green .alert-icon { background: rgba(39,200,122,0.15); color: var(--green); }
+.alert-body h4 { color: var(--red); margin-bottom: 8px; }
+.alert-banner.amber .alert-body h4 { color: var(--amber); }
+.alert-banner.green .alert-body h4 { color: var(--green); }
+.alert-body p { color: var(--text); font-size: 14px; }
+
+.platform-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.platform-marker.amazon {
+  background: rgba(232,130,10,0.08);
+  color: var(--amber);
+  border: 1px solid var(--amber-border);
+}
+.platform-marker.meta {
+  background: rgba(232,76,60,0.08);
+  color: var(--red);
+  border: 1px solid rgba(232,76,60,0.22);
+}
+.platform-marker .marker-icon {
+  width: 8px; height: 8px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+/* Checklist items */
+.checklist {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.checklist-header {
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--bg2);
+}
+.checklist-header-left { display: flex; align-items: center; gap: 16px; }
+.checklist-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  color: var(--amber);
+  font-style: italic;
+  line-height: 1;
+  opacity: 0.4;
+  letter-spacing: -0.02em;
+}
+.checklist-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.checklist-meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.task {
+  display: flex;
+  gap: 18px;
+  padding: 18px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  align-items: flex-start;
+}
+.task:last-child { border-bottom: none; }
+.task:hover { background: rgba(232,130,10,0.025); }
+
+.task-check {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--muted2);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  background: transparent;
+}
+.task-check:hover { border-color: var(--amber); }
+.task-check.checked { background: var(--amber); border-color: var(--amber); }
+.task-check.checked::after {
+  content: '';
+  position: absolute;
+  left: 4px; top: 1px;
+  width: 5px; height: 9px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.task-body { flex: 1; }
+.task-priority {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 8px;
+  margin-right: 8px;
+}
+.task-priority.critical { background: rgba(232,76,60,0.15); color: var(--red); }
+.task-priority.now { background: rgba(232,130,10,0.15); color: var(--amber); }
+.task-priority.today { background: rgba(232,160,32,0.15); color: var(--warn); }
+.task-priority.daily { background: rgba(39,200,122,0.12); color: var(--green); }
+
+.task-deadline {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  display: inline-block;
+}
+
+.task-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+.task-detail {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.task-detail strong { color: var(--text); }
+.task-detail .data {
+  color: var(--amber);
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.task-tag {
+  display: inline-block;
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.04);
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+
+.stat-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 24px;
+}
+.stat-val {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.stat-val.t { color: var(--amber); }
+.stat-val.r { color: var(--red); }
+.stat-val.a { color: var(--warn); }
+.stat-val.g { color: var(--green); }
+.stat-val em { font-style: italic; color: var(--amber); }
+.stat-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stat-sub { font-size: 12px; color: var(--muted2); margin-top: 6px; line-height: 1.5; }
+
+.timeline-bar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+.timeline-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0;
+  margin-top: 18px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.timeline-day {
+  padding: 16px 12px;
+  text-align: center;
+  border-right: 1px solid var(--border2);
+  position: relative;
+}
+.timeline-day:last-child { border-right: none; }
+.timeline-day.live { background: rgba(232,130,10,0.08); }
+.timeline-day.peak { background: rgba(232,76,60,0.08); }
+.timeline-day.cutoff { background: rgba(232,160,32,0.06); }
+.timeline-day.holiday { background: rgba(39,200,122,0.04); }
+.tl-date {
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 4px;
+}
+.tl-day {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+  font-style: italic;
+}
+.tl-event {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.4;
+  font-weight: 500;
+}
+.tl-day.peak-num { color: var(--red); }
+.tl-day.cutoff-num { color: var(--warn); }
+.tl-day.holiday-num { color: var(--green); }
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--amber) 50%, transparent 100%);
+  margin: 30px 0;
+  opacity: 0.4;
+}
+
+.summary-row {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.summary-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 44px;
+  color: var(--amber);
+  font-style: italic;
+  line-height: 1;
+  opacity: 0.5;
+  min-width: 56px;
+}
+.summary-text {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.summary-text strong { color: var(--text); }
+
+ul.bullet {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+ul.bullet li {
+  padding-left: 22px;
+  position: relative;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+ul.bullet li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 12px;
+  height: 1px;
+  background: var(--amber);
+}
+ul.bullet li strong { color: var(--text); }
+
+.kpi-track {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px 26px;
+}
+.kpi-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+  align-items: center;
+}
+.kpi-row:last-child { border-bottom: none; }
+.kpi-row.head {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border2);
+}
+.kpi-row .name { color: var(--text); font-weight: 500; }
+.kpi-row .target { color: var(--green); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; }
+.kpi-row .current { color: var(--amber); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; }
+.kpi-row .gap { color: var(--muted); font-family: 'Syne', sans-serif; font-size: 12px; }
+
+@media (max-width: 1100px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+  .timeline-strip { grid-template-columns: repeat(7, minmax(80px, 1fr)); overflow-x: auto; }
+  .page { padding-left: 30px; padding-right: 30px; }
+  .top-nav { padding: 0 24px; }
+}
+@media (max-width: 700px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .top-nav .nav-title { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="nav-brand">
+    <div class="nav-diamond"></div>
+    <span class="nav-name">Your Marketing Partners</span>
+  </div>
+  <span class="nav-title">UBF · Mother's Day Surge Optimisation</span>
+  <span class="nav-counter">Mother's Day · <span class="countdown">6 DAYS</span></span>
+</nav>
+
+<div class="page">
+
+<!-- ============================================== -->
+<!-- COVER -->
+<!-- ============================================== -->
+<section class="section" id="cover" style="border-bottom:1px solid var(--border);">
+  <div class="atmosphere"></div>
+  <div class="bg-watermark">M-Day</div>
+
+  <div class="eyebrow">Surge Window · May 4 to 9, 2026</div>
+  <h1>Mother's Day<br><em>Optimisation Checklist.</em></h1>
+  <p style="font-size:18px;margin-top:24px;color:var(--muted);max-width:780px;">A complete tactical playbook for the next 6 days. Amazon goes aggressive to capture the surge while delivery is still guaranteed. Meta pauses Mother's Day specific creative now and pivots to evergreen. Both platforms operate to a single coordinated cadence.</p>
+
+  <div class="status-row">
+    <span class="badge critical pulse"><span class="dot"></span>Meta Mother's Day Creative · Pause Today</span>
+    <span class="badge medium pulse"><span class="dot"></span>Amazon Bid Push · Live Today</span>
+    <span class="badge high"><span class="dot"></span>Last Order Day Amazon · May 7</span>
+    <span class="badge good"><span class="dot"></span>Mother's Day · May 10</span>
+  </div>
+
+  <div class="cover-meta">
+    <div class="cover-meta-item"><span class="cover-meta-label">Prepared For</span><span class="cover-meta-val">Nathaniel · Owner, UBF</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Prepared By</span><span class="cover-meta-val">Charles Piper · YMP</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Date Issued</span><span class="cover-meta-val">May 4, 2026</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Window</span><span class="cover-meta-val">May 4 to May 11</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Status</span><span class="cover-meta-val">Live · Execute Today</span></div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- TIMELINE -->
+<!-- ============================================== -->
+<section class="section">
+  <div class="eyebrow">The 7-day window</div>
+  <h2>The clock that <em>both platforms</em><br>are running to.</h2>
+
+  <div class="timeline-bar">
+    <p style="margin-bottom:8px;">Surge dynamics by day. Mother's Day demand peaks Wed May 6 to Thu May 7 as Amazon delivery guarantees tighten. Last orders accepted by UBF close Tue May 5. After May 8 the window collapses fast.</p>
+
+    <div class="timeline-strip">
+      <div class="timeline-day live">
+        <div class="tl-date">Mon</div>
+        <div class="tl-day">04</div>
+        <div class="tl-event">Live · All optimisations execute</div>
+      </div>
+      <div class="timeline-day cutoff">
+        <div class="tl-date">Tue</div>
+        <div class="tl-day cutoff-num">05</div>
+        <div class="tl-event">UBF order cutoff · Last day</div>
+      </div>
+      <div class="timeline-day peak">
+        <div class="tl-date">Wed</div>
+        <div class="tl-day peak-num">06</div>
+        <div class="tl-event">Amazon peak · Bid maximum</div>
+      </div>
+      <div class="timeline-day peak">
+        <div class="tl-date">Thu</div>
+        <div class="tl-day peak-num">07</div>
+        <div class="tl-event">Surge crest · Last guaranteed</div>
+      </div>
+      <div class="timeline-day live">
+        <div class="tl-date">Fri</div>
+        <div class="tl-day">08</div>
+        <div class="tl-event">Tail · Demand softens</div>
+      </div>
+      <div class="timeline-day">
+        <div class="tl-date">Sat</div>
+        <div class="tl-day">09</div>
+        <div class="tl-event">Wind down · Reset bids</div>
+      </div>
+      <div class="timeline-day holiday">
+        <div class="tl-date">Sun</div>
+        <div class="tl-day holiday-num">10</div>
+        <div class="tl-event">Mother's Day · Holiday</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-banner">
+    <div class="alert-icon">!</div>
+    <div class="alert-body">
+      <h4>Critical · Meta Mother's Day creative paused today</h4>
+      <p>Delivery is no longer guaranteed before May 10 for Meta-driven Shopify orders. Continuing to run Mother's Day specific creative wastes spend on disappointed buyers and risks customer service backlash. Pivot to evergreen creative immediately. Memorial Day (May 25) is the next paid push window.</p>
+    </div>
+  </div>
+
+  <div class="alert-banner amber">
+    <div class="alert-icon">$</div>
+    <div class="alert-body">
+      <h4>Amazon goes aggressive · Surge window is open</h4>
+      <p>Amazon delivery continues to show on-time arrival through May 7 to 8. Last year May 7 single-day revenue hit $6,600 versus a $2,500 baseline. Competitors begin showing out-of-stock as the week progresses. The play is to be the brand bidding hardest while we are still a viable delivery option.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- AMAZON SECTION -->
+<!-- ============================================== -->
+<section class="section">
+  <div class="platform-marker amazon"><span class="marker-icon"></span>Amazon · Surge Capture</div>
+  <h2>Amazon optimisations.<br>The next <em>six days.</em></h2>
+
+  <p style="margin-bottom:30px;max-width:780px;">Eight workstreams executed in priority order. All bid lifts go live today. Budget headroom doubled to prevent cap-outs. Mother's Day relevance pushed across listings, keywords, and creative. Daily monitoring cadence set for the surge window.</p>
+
+  <div class="grid-3" style="margin-bottom:32px;">
+    <div class="stat-box">
+      <div class="stat-val a">+30 to 50%</div>
+      <div class="stat-label">Custom Box Bid Lift</div>
+      <div class="stat-sub">Across all Custom Box family campaigns. Live today.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val t">2x</div>
+      <div class="stat-label">Daily Budget Headroom</div>
+      <div class="stat-sub">No cap-outs during the peak window May 6 to 7.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val g">19%</div>
+      <div class="stat-label">TACOS Ceiling · Surge Only</div>
+      <div class="stat-sub">Lifted from 15% target. Reverts post May 11.</div>
+    </div>
+  </div>
+
+  <!-- BIDS -->
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-header-left">
+        <div class="checklist-num">01</div>
+        <div>
+          <div class="checklist-title">Bids · Aggressive Lift Today</div>
+          <div class="checklist-meta">Live by end of day Monday May 4 · 7 actions</div>
+        </div>
+      </div>
+      <span class="badge critical"><span class="dot"></span>Critical · Today</span>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Lift Custom Box family SP bids 30 to 50%</div>
+        <div class="task-detail">Custom Box 4 Flavors, Custom Box 6 Flavors, Custom Box 8 Flavors across all match types. <span class="data">Currently winning at 3 to 5x ROAS on tight bids</span>, surge auctions need 30 to 50% bid lift to maintain placement against competitors bidding harder. Accept temporary ROAS compression in exchange for impression share defence.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Push Custom Box Branded TOS 100 bids harder</div>
+        <div class="task-detail">Currently <span class="data">8.78x ROAS on $150 weekly</span>, the cleanest scaling lever. Bid lift 25 to 35% to dominate top of search on branded queries during the surge. Mother's Day searchers buying gifts will likely search the brand directly, this is where we capture them.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Switch all SP campaigns to Dynamic Bids · Up and Down</div>
+        <div class="task-detail">Currently several campaigns sit on Dynamic Bids Down Only which prevents Amazon from bidding higher even when conversion probability is high. Switching to Up and Down lets Amazon's algorithm capture the high-intent gifting traffic during the surge. <span class="data">Single biggest auction unlock available today.</span></div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Lift PAT Defensive bids on own ASIN pages</div>
+        <div class="task-detail">PAT Defensive currently at <span class="data">13 to 19x ROAS on small spend</span>. During the surge, competitor ads on our own product pages cost us shoppers. Lift bids 40% to lock placement and prevent competitor PAT campaigns from stealing browse traffic from our listings.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Lift generic "fudge" exact match bids 20 to 30%</div>
+        <div class="task-detail">Currently <span class="data">$568 weekly at 2.84x ROAS</span> on generic fudge exact. During the surge, this term feeds high-intent gifting traffic. Accept ROAS dip toward 2.5x temporarily for volume. Reverts to discipline target post May 11.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Top of Search placement adjustment lifted to +75 to 100%</div>
+        <div class="task-detail">Top of search placement modifier currently around +25 to 50% on most campaigns. Lift to +75 to 100% on Custom Box family and branded campaigns. TOS placements convert at 2 to 3x rest-of-search rates and capture the urgent gifting buyer at the moment of intent.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Product page placement adjustment lifted to +30 to 50%</div>
+        <div class="task-detail">Product page placement is where browse-and-discover shoppers convert. During gifting peaks, these placements show especially high relevance. Lift on Custom Box family and bestseller individual flavour campaigns.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUDGETS -->
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-header-left">
+        <div class="checklist-num">02</div>
+        <div>
+          <div class="checklist-title">Budgets · Double the Headroom</div>
+          <div class="checklist-meta">Prevent cap-outs during peak window · 4 actions</div>
+        </div>
+      </div>
+      <span class="badge critical"><span class="dot"></span>Critical · Today</span>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Double daily budgets across Custom Box SP campaigns</div>
+        <div class="task-detail">Surge auction volume doubles to triples normal daily levels. Current budgets cap out by mid-afternoon during peak. Doubling daily limit ensures full-day delivery on May 6 and 7. <span class="data">Better to have unspent budget at end of day than to cap out at noon.</span></div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Sponsored Brands daily budget lifted to $50</div>
+        <div class="task-detail">Currently $20 daily, ROAS at <span class="data">8.18x two-week average</span>. Push to $50 daily through the surge. SB drives the brand search awareness layer that captures gifting buyers searching for known brands during peak demand.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">SD campaigns budget lifted on the proven performers</div>
+        <div class="task-detail">Custom Box 4 Flavors PAT Defensive at <span class="data">19.34x</span> and Custom Box PAT Defensive at <span class="data">15.82x</span> last week. Push budgets 50 to 75% on these specifically. Leave the paused Custom Box 8 Flavors SD campaigns paused, do not reactivate during surge.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Set portfolio caps if applicable</div>
+        <div class="task-detail">If any portfolio level caps exist that limit individual campaign spending, lift them. Confirm no parent budget rule prevents campaigns from spending full daily budget during surge.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYWORDS -->
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-header-left">
+        <div class="checklist-num">03</div>
+        <div>
+          <div class="checklist-title">Keywords · Mother's Day Specific Layer</div>
+          <div class="checklist-meta">Capture high-intent gifting search terms · 5 actions</div>
+        </div>
+      </div>
+      <span class="badge medium"><span class="dot"></span>Today</span>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Add Mother's Day exact and phrase keywords</div>
+        <div class="task-detail">Add to Custom Box and gift box campaigns: <strong>"mothers day gift", "mom gift", "gift for mom", "mothers day fudge", "gift for mother", "mom birthday gift", "mothers day gift basket", "mothers day chocolate"</strong>. Bid these aggressively, intent quality is exceptional during the surge window.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Add gifting modifier keywords across bestseller flavours</div>
+        <div class="task-detail">Top selling individual flavours (Chocolate Walnut, Strawberry Cheesecake, Lemon Meringue) get gifting modifier keywords. <strong>"chocolate walnut fudge gift", "strawberry cheesecake fudge gift box", "fudge gift box for mom"</strong>. These convert exceptionally well during surge weeks.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Negative match exclusion sweep</div>
+        <div class="task-detail">Add negatives to surge campaigns: <strong>"cheap", "free shipping only", "discount", "wholesale", "samples"</strong>. Filter out low-intent terms that consume budget without converting. Specifically check generic exact reports for irrelevant search terms catching paid clicks.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Activate broad match research campaigns at low bids</div>
+        <div class="task-detail">If any broad match keyword research campaigns exist, lift bids 15 to 20% with low daily budgets ($10 to $15) to capture surge-period query terms we have not seen before. Mine the search term reports daily for new exact match opportunities to graduate.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">PAT competitor campaign keyword review</div>
+        <div class="task-detail">Identify the top 3 to 5 competitor brands appearing in fudge category bestsellers (Valley Fudge, Gardners, Betsys are confirmed in the bestseller carousel). Add their ASINs to PAT competitor campaigns at lifted bids. Capture browse traffic from competitor pages during the surge.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTING & CONTENT -->
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-header-left">
+        <div class="checklist-num">04</div>
+        <div>
+          <div class="checklist-title">Listings & Inventory · Surge Readiness</div>
+          <div class="checklist-meta">Ensure listings convert and stock holds · 5 actions</div>
+        </div>
+      </div>
+      <span class="badge high"><span class="dot"></span>Today</span>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Inventory check across Custom Box family and best sellers</div>
+        <div class="task-detail">Confirm stock levels can support 2 to 3x normal daily order volume through May 7. Going out of stock during the surge cuts off all paid revenue immediately and damages organic rank for weeks. <strong>Inventory is the single hardest constraint to fix mid-surge.</strong></div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Verify Custom Box and gift box A+ content shows gifting use case</div>
+        <div class="task-detail">Visual check that the A+ content modules on Custom Box, gift box variants, and bestseller individual flavours include gift packaging visuals, lifestyle gifting images, and gift-message copy. If gifting visuals are buried below the fold, push them up.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Title and bullet keyword check</div>
+        <div class="task-detail">Confirm "gift", "for mom", "Mother's Day" appear naturally in titles and bullets where applicable on Custom Box and gift box ASINs. Even small keyword density lifts during surge weeks improve organic relevance for gifting queries.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Coupon offer activation on best sellers</div>
+        <div class="task-detail">Activate small percentage coupons (5 to 8%) on Custom Box bestsellers to drive click-through rate from search results. Coupons display visually on the listing card and lift CTR materially without eroding margin meaningfully. Scarcity-friendly framing for the surge.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Subscribe & Save discount visibility check</div>
+        <div class="task-detail">Confirm Subscribe & Save discount is visible on Custom Box and bestseller listings. Even gift buyers convert better when seeing additional value signals. No additional cost, just a visibility check.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAILY MONITORING -->
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-header-left">
+        <div class="checklist-num">05</div>
+        <div>
+          <div class="checklist-title">Daily Monitoring Cadence</div>
+          <div class="checklist-meta">Twice-daily checks through the surge window · 6 actions</div>
+        </div>
+      </div>
+      <span class="badge good"><span class="dot"></span>Daily May 4 to 9</span>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority daily">Daily · 11AM EST</span>
+        <div class="task-title">Budget cap-out check</div>
+        <div class="task-detail">Identify any campaign that has already spent 60 to 70% of daily budget by 11AM EST. Budget extension within 30 minutes if so. Cap-outs lose afternoon and evening surge traffic which is when gifting buyers convert most heavily.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority daily">Daily · 4PM EST</span>
+        <div class="task-title">Mid-afternoon bid and placement check</div>
+        <div class="task-detail">Pull placement reports, identify any campaign losing impression share. Check buy box percentage. Confirm SP, SB, SD pacing toward target spend. Any campaign tracking under budget or losing impression share gets a bid bump same hour.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority daily">Daily</span>
+        <div class="task-title">Stock level check</div>
+        <div class="task-detail">Daily verification that no SKU is at risk of stocking out within 24 hours. Pause specific flavour ads if stock drops below 48-hour cover at current sell-through rate. Better to lose paid clicks than to lose listings to "currently unavailable" status which damages organic rank.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority daily">Daily</span>
+        <div class="task-title">Search term report mining</div>
+        <div class="task-detail">Daily review of search term reports on broad and phrase campaigns. Graduate any high-converting new term to its own exact match campaign within 24 hours. The surge surfaces new query patterns we will not see again until next year.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority daily">Daily</span>
+        <div class="task-title">Competitor monitoring · Bestseller carousel</div>
+        <div class="task-detail">Daily check of fudge category bestseller positions. Track which competitors stock out, which lose ranking, and which add aggressive bids. Adjust PAT competitor campaigns same day to capture browse traffic from struggling competitors.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority daily">Daily</span>
+        <div class="task-title">Ad copy and creative health check</div>
+        <div class="task-detail">SB video creative, SD ad creative, all imagery loading correctly. Any rejection or pending review flags get cleared the same day. Lost impressions during the surge from creative pending review are lost forever.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST-SURGE WIND DOWN -->
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-header-left">
+        <div class="checklist-num">06</div>
+        <div>
+          <div class="checklist-title">Post-Surge Wind Down · May 8 to 11</div>
+          <div class="checklist-meta">Reset bids and protect efficiency · 4 actions</div>
+        </div>
+      </div>
+      <span class="badge dim"><span class="dot"></span>May 8 onwards</span>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Fri May 8</span>
+        <div class="task-title">Reduce bid lifts back toward baseline</div>
+        <div class="task-detail">Bring all surge bid increases back down 50% by Saturday May 9. Demand softens fast post Mother's Day delivery cutoff and holding inflated bids burns budget at low conversion rates. Revert to standard bidding by May 11.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Sat May 9</span>
+        <div class="task-title">Pause Mother's Day specific keyword sets</div>
+        <div class="task-detail">Mother's Day exact and phrase keywords go to paused state by Saturday end of day. They will sit dormant until prep for next year. Keep them in the account structure, do not delete.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Mon May 11</span>
+        <div class="task-title">Daily budgets reset to standard levels</div>
+        <div class="task-detail">All daily budgets back to pre-surge levels by Monday May 11. TACOS ceiling reverts from 19% surge target to 15% standard target. Standard bid discipline resumes.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Tue May 12</span>
+        <div class="task-title">Surge performance post-mortem</div>
+        <div class="task-detail">Full reporting cut on the May 4 to 10 window. Document spend, sales, ROAS, TACOS, top-performing keywords, top-performing creatives, competitor moves observed. Locks the playbook for Father's Day and December.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-banner amber">
+    <div class="alert-icon">$</div>
+    <div class="alert-body">
+      <h4>Amazon target for the surge window</h4>
+      <p>Expected outcome: $8K to $11K business revenue across May 6 to 8 alone. Last year same window delivered $14,500 across the three days. Closing 60 to 75% of that gap puts us on the path Nathaniel flagged for true Amazon recovery, not just sequential improvement. The bid lifts and budget headroom are what makes that possible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- META SECTION -->
+<!-- ============================================== -->
+<section class="section">
+  <div class="platform-marker meta"><span class="marker-icon"></span>Meta · Pivot to Evergreen</div>
+  <h2>Meta optimisations.<br>Pause, <em>pivot, scale.</em></h2>
+
+  <p style="margin-bottom:30px;max-width:780px;">Mother's Day specific creative on Meta is paused today. Delivery cannot be guaranteed before May 10, so continued spend on Mother's Day messaging wastes budget on disappointed buyers. Pivot to evergreen angles, hold the audience expansion plan, push toward the Memorial Day window which now becomes the next major paid push.</p>
+
+  <div class="grid-3" style="margin-bottom:32px;">
+    <div class="stat-box">
+      <div class="stat-val r">8</div>
+      <div class="stat-label">Mother's Day Reels Paused</div>
+      <div class="stat-sub">All paused today. Returned to library for Mother's Day 2027.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val a">May 6</div>
+      <div class="stat-label">LAL Audiences Live</div>
+      <div class="stat-sub">1% and 3% value-based, plan unchanged from prior week.</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val g">May 25</div>
+      <div class="stat-label">Memorial Day Window</div>
+      <div class="stat-sub">Next major paid push. Brief locks Wednesday for sign-off.</div>
+    </div>
+  </div>
+
+  <!-- IMMEDIATE PAUSE -->
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-header-left">
+        <div class="checklist-num">01</div>
+        <div>
+          <div class="checklist-title">Immediate Pause Actions</div>
+          <div class="checklist-meta">Mother's Day creative offline today · 5 actions</div>
+        </div>
+      </div>
+      <span class="badge critical"><span class="dot"></span>Critical · Today</span>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Pause all 8 Mother's Day reels in active campaigns</div>
+        <div class="task-detail">NewReel Candy or Dessert, Fathers Name, Trio OMG, Better Homemade, Christmas Lost, plus the others currently in TOF Reels Mother's Day Push ad set. Pause status, do not delete. They return to library for next year. <span class="data">Continued spend wastes budget on disappointed buyers.</span></div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Pause TOF Reels Mother's Day Push ad set entirely</div>
+        <div class="task-detail">Ad set goes paused. Budget reallocated to the 1% and 3% LAL ad sets launching Tuesday May 6. The structure stays in place for reactivation against Mother's Day 2027 campaigns.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Audit all live ad copy for Mother's Day language</div>
+        <div class="task-detail">Manual review of every active ad's primary text, headline, and description. Any reference to "give Mom", "Mother's Day", "Order by [date] for Mother's Day arrival", "perfect gift for Mom" gets paused or rewritten. Even one ad still serving Mother's Day urgency creates customer service problems.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · AM</span>
+        <div class="task-title">Pause Mother's Day specific Advantage+ creative variations</div>
+        <div class="task-detail">Advantage+ campaigns with Mother's Day creative variants get those variants paused. Other variants (evergreen, branded, flavour-specific) remain live. Standard A+ functioning continues uninterrupted.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Update any Mother's Day landing page redirects</div>
+        <div class="task-detail">If any campaign URLs point to Mother's Day specific landing pages or include Mother's Day query string parameters, update to evergreen variety box page or relevant flavour pages. Brief check to ensure no orphan URLs continue serving expired Mother's Day promotions.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EVERGREEN PIVOT -->
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-header-left">
+        <div class="checklist-num">02</div>
+        <div>
+          <div class="checklist-title">Evergreen Creative Pivot</div>
+          <div class="checklist-meta">Replace paused volume with evergreen angles · 5 actions</div>
+        </div>
+      </div>
+      <span class="badge medium"><span class="dot"></span>This Week</span>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Reactivate top performing evergreen reels at lifted budgets</div>
+        <div class="task-detail">SOC Ad7, Vid27 VBox Unboxing, AD 2B Shipping Reassurance Copy. Each gets a 30 to 40% budget lift to absorb the spend freed from the paused Mother's Day reels. These are validated performers, no algorithm risk in a single budget lift.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Build 2 to 3 quick evergreen reel variants</div>
+        <div class="task-detail">Take the strongest Mother's Day reels (Candy or Dessert at 5.76x, Fathers Name at 4.21x) and rebuild as evergreen with universal hooks. Replace "Mother's Day" with "anytime", "treat yourself", or "the perfect gift" framing. Same visuals, broader applicability. 24-hour edit cycle.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Tue May 5</span>
+        <div class="task-title">Implement intent-matched landing page routing</div>
+        <div class="task-detail">From the LP CR data: flavour-specific reels route to that flavour's product page (3 to 6% CR), best seller carousels route to <strong>/collections/best-sellers</strong> (6.01% CR), generic UGC stays on variety box. Ad-by-ad audit list landing in your inbox tonight for sign off.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Wed May 7</span>
+        <div class="task-title">Mock up 2 variety box LP variants for split testing</div>
+        <div class="task-detail">Variety box page CR sits at 1.50% on the highest-volume traffic in the account. Subtle variants only: hero headline tightening, social proof above the fold, urgency anchor near the CTA. Test starts post-Mother's-Day window so the data is not contaminated by surge dynamics.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Wed May 7</span>
+        <div class="task-title">Memorial Day creative brief locked for Wednesday sign-off</div>
+        <div class="task-detail">Value-stacked offer at full margin. Bonus stack (handwritten card, guaranteed delivery, free Thank You mini box, lifetime 10% loyalty code, giveaway entry). Risk reversal guarantee. Scarcity claim (500 boxes hand-poured). Hard order-by deadline. Brief in your inbox Wednesday for Thursday approval, Memorial Day live May 19.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIENCE EXPANSION -->
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-header-left">
+        <div class="checklist-num">03</div>
+        <div>
+          <div class="checklist-title">Audience Expansion · The Tuesday Launch</div>
+          <div class="checklist-meta">1% and 3% LAL audiences go live · 4 actions</div>
+        </div>
+      </div>
+      <span class="badge high"><span class="dot"></span>Tue May 6</span>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Tue May 6 · AM</span>
+        <div class="task-title">1% value-based LAL audience live</div>
+        <div class="task-detail">Built off the value-based purchaser seed. Vid27 VBox, SOC Ad7, and the rebuilt evergreen reels duplicated into the new ad set at $150 daily. This is the priority that slipped last week and gates everything that follows.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority critical">Critical</span><span class="task-deadline">Tue May 6 · AM</span>
+        <div class="task-title">3% value-based LAL audience live</div>
+        <div class="task-detail">Same creative stack as 1% LAL at $150 daily. The 3% LAL captures broader prospecting reach, the 1% LAL captures higher intent. Run both simultaneously to triangulate the optimal audience width for this account.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Tue May 6 · PM</span>
+        <div class="task-title">L8 5% LAL throttled to $300 daily</div>
+        <div class="task-detail">Frequency hit 4.19 last week, audience pool exhausted. Throttling lets the algorithm reset while the new LAL audiences absorb fresh impressions. The creative is still strong, the audience just needs rest.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Wed May 7</span>
+        <div class="task-title">Engagement-based LAL ad set built and ready</div>
+        <div class="task-detail">Build (do not yet launch) a 1% LAL based on Instagram and Facebook page engagers as a third audience pool. Holds in reserve for Week 2 if the value-based LALs absorb cleanly. Adds a fourth prospecting audience to the matrix without disrupting the current test.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUDIT & QUALITY -->
+  <div class="checklist">
+    <div class="checklist-header">
+      <div class="checklist-header-left">
+        <div class="checklist-num">04</div>
+        <div>
+          <div class="checklist-title">Account Hygiene · Audience Quality Audit</div>
+          <div class="checklist-meta">Address Nathaniel's audience hypothesis · 4 actions</div>
+        </div>
+      </div>
+      <span class="badge medium"><span class="dot"></span>This Week</span>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority now">Now</span><span class="task-deadline">Mon May 4 · PM</span>
+        <div class="task-title">Audit every active ad set for legacy custom audiences</div>
+        <div class="task-detail">Check for Shopify Plus trial audiences, dormant lookalikes built from old seeds, any audience left over from the Connor era that could be feeding low-intent traffic. Anything stale gets removed from active ad sets today. <strong>Likely root cause of the Meta CR gap Nathaniel flagged.</strong></div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Wed May 7</span>
+        <div class="task-title">Build clean Advantage+ campaign as control</div>
+        <div class="task-detail">Build a parallel Advantage+ campaign with broad fully-automated targeting at $100 daily. Run the same evergreen creative against this audience as against the new 1% and 3% LALs. Side-by-side comparison isolates which audience source delivers the cleanest converting traffic.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">This Week</span>
+        <div class="task-title">Pixel and tracking integrity check</div>
+        <div class="task-detail">Verify Meta pixel firing correctly on all key events (PageView, AddToCart, InitiateCheckout, Purchase). Check Conversions API integration. Confirm value parameter passing through. Tracking gaps would directly explain the Meta-attributed CR gap independent of audience quality.</div>
+      </div>
+    </div>
+
+    <div class="task">
+      <div class="task-check"></div>
+      <div class="task-body">
+        <span class="task-priority today">Today</span><span class="task-deadline">Fri May 8</span>
+        <div class="task-title">Friday read · Audience CPP comparison</div>
+        <div class="task-detail">First clean read on the new LAL audiences. Target CPP within 15% of L8 historical. Anything tighter is the green light to scale into Week 2. Anything wider triggers diagnostic review on creative-audience match before pushing further spend through.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- KPI TRACKING -->
+<!-- ============================================== -->
+<section class="section">
+  <div class="eyebrow">KPI Tracking</div>
+  <h2>What we are <em>measuring against.</em></h2>
+
+  <p style="margin-bottom:30px;max-width:780px;">Every action above maps to a measurable outcome inside the next 7 days. Daily check-ins on the Amazon side. Friday gate read on the Meta side. Surge-period reporting separated from underlying account efficiency to keep the inflection check on May 13 clean.</p>
+
+  <div class="grid-2">
+    <div class="kpi-track">
+      <div class="platform-marker amazon" style="margin-bottom:14px;font-size:9px;padding:5px 12px;"><span class="marker-icon"></span>Amazon · Surge Window KPIs</div>
+      <div class="kpi-row head">
+        <div>Metric</div>
+        <div>Target</div>
+        <div>Now</div>
+        <div>Surge</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">Daily Business Revenue</div>
+        <div class="target">$3K to $4K</div>
+        <div class="current">$1.6K</div>
+        <div class="gap">May 6 to 7</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">Total Surge Revenue</div>
+        <div class="target">$10K+</div>
+        <div class="current">—</div>
+        <div class="gap">May 5 to 8</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">Blended ROAS</div>
+        <div class="target">3.5x+</div>
+        <div class="current">3.87x</div>
+        <div class="gap">Hold</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">TACOS · Surge Allowance</div>
+        <div class="target">≤19%</div>
+        <div class="current">14.8%</div>
+        <div class="gap">Headroom</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">Daily Impressions · SP</div>
+        <div class="target">35K+</div>
+        <div class="current">21K</div>
+        <div class="gap">+67%</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">Bestseller Rank</div>
+        <div class="target">Top 5</div>
+        <div class="current">Falling</div>
+        <div class="gap">Recover</div>
+      </div>
+    </div>
+
+    <div class="kpi-track">
+      <div class="platform-marker meta" style="margin-bottom:14px;font-size:9px;padding:5px 12px;"><span class="marker-icon"></span>Meta · This Week KPIs</div>
+      <div class="kpi-row head">
+        <div>Metric</div>
+        <div>Target</div>
+        <div>Now</div>
+        <div>By</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">Blended ROAS Recovery</div>
+        <div class="target">2.0x+</div>
+        <div class="current">1.87x</div>
+        <div class="gap">Fri May 9</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">Daily Spend</div>
+        <div class="target">$1.8K</div>
+        <div class="current">$1.65K</div>
+        <div class="gap">Fri May 9</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">New LAL CPP vs L8 Historical</div>
+        <div class="target">Within 15%</div>
+        <div class="current">—</div>
+        <div class="gap">Fri May 9</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">CPP</div>
+        <div class="target">$22 or below</div>
+        <div class="current">$23.36</div>
+        <div class="gap">Fri May 9</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">Variety Box LP CR</div>
+        <div class="target">2.5%+</div>
+        <div class="current">1.50%</div>
+        <div class="gap">2 weeks</div>
+      </div>
+      <div class="kpi-row">
+        <div class="name">Inflection Check</div>
+        <div class="target">2.5x sustained</div>
+        <div class="current">—</div>
+        <div class="gap">Tue May 13</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert-banner green" style="margin-top:30px;">
+    <div class="alert-icon">✓</div>
+    <div class="alert-body">
+      <h4>Reporting separation</h4>
+      <p>The Amazon surge window May 5 to 11 is excluded from week-over-week and trajectory baseline reads. The Meta inflection check on May 13 reads against non-surge-period efficiency. Both decisions ensure we are evaluating underlying account performance honestly, not riding a holiday tail.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- DAILY EXECUTION SUMMARY -->
+<!-- ============================================== -->
+<section class="section">
+  <div class="eyebrow">Daily execution summary</div>
+  <h2>What happens <em>each day.</em></h2>
+
+  <div class="summary-row">
+    <div class="summary-num">04</div>
+    <div class="summary-text"><strong>Mon May 4 · Today.</strong> Amazon bid lifts and budget doubling live. Meta Mother's Day reels and ad sets paused. Audience legacy audit. Evergreen creative reactivated at lifted budgets. Memorial Day creative brief drafted. Routing audit list compiled.</div>
+  </div>
+  <div class="summary-row">
+    <div class="summary-num">05</div>
+    <div class="summary-text"><strong>Tue May 5.</strong> 1% and 3% LAL audiences live on Meta with evergreen creative stack. Routing changes implemented per signed-off list. UBF order cutoff for Mother's Day delivery. Amazon search term reports begin daily mining cadence. Inventory levels confirmed for surge window.</div>
+  </div>
+  <div class="summary-row">
+    <div class="summary-num">06</div>
+    <div class="summary-text"><strong>Wed May 6 · Amazon peak begins.</strong> Twice-daily Amazon monitoring starts. Memorial Day brief locked and in your inbox for sign-off. New evergreen reel variants in production. L8 5% LAL throttled. Engagement-based LAL ad set built ready for Week 2.</div>
+  </div>
+  <div class="summary-row">
+    <div class="summary-num">07</div>
+    <div class="summary-text"><strong>Thu May 7 · Surge crest.</strong> Last day of guaranteed Amazon delivery for Mother's Day. Maximum bid pressure. Memorial Day creative approved. Variety box LP variants ready for split test. Mid-week Meta read informally checked.</div>
+  </div>
+  <div class="summary-row">
+    <div class="summary-num">08</div>
+    <div class="summary-text"><strong>Fri May 8 · Wind down begins.</strong> Amazon bids reduced 50% from peak levels. Meta Friday read · audience CPP comparison vs L8 historical. Creative test pipeline status check. Variety box LP split test live (post surge).</div>
+  </div>
+  <div class="summary-row">
+    <div class="summary-num">09</div>
+    <div class="summary-text"><strong>Sat May 9 to Sun May 10.</strong> Amazon Mother's Day specific keywords paused. Standard bid discipline returning. Meta weekend monitoring only, no major changes. Mother's Day · holiday observed.</div>
+  </div>
+  <div class="summary-row">
+    <div class="summary-num">11</div>
+    <div class="summary-text"><strong>Mon May 11.</strong> All Amazon settings reset to standard pre-surge levels. TACOS ceiling reverts to 15%. Surge post-mortem reporting begins. Meta Week 2 step-up evaluation if Friday read cleared 2.5x.</div>
+  </div>
+  <div class="summary-row">
+    <div class="summary-num">13</div>
+    <div class="summary-text"><strong>Tue May 13 · Inflection check.</strong> Two-week Meta read with surge period excluded. Pass = first 20% spend step on validated 2.5x+ ad sets. Fail = hold spend, diagnose audience-creative match, separate honest conversation about timeline.</div>
+  </div>
+</section>
+
+<!-- ============================================== -->
+<!-- CLOSING -->
+<!-- ============================================== -->
+<section class="section">
+  <div class="eyebrow">Closing</div>
+  <h2>Coordinated execution.<br><em>Same week, two platforms.</em></h2>
+
+  <p style="font-size:16px;line-height:1.75;margin-bottom:24px;max-width:780px;">Amazon is in surge mode through Thursday May 7. Maximum bid pressure, doubled budget headroom, gifting keyword expansion, daily monitoring twice a day. Last year May 7 hit $6,600. The structure now in place is built to capture that and more this year.</p>
+
+  <p style="font-size:16px;line-height:1.75;margin-bottom:24px;max-width:780px;">Meta is in pivot mode. Mother's Day creative paused today because we cannot guarantee delivery. Evergreen creative reactivated at lifted budgets. New 1% and 3% LAL audiences launching Tuesday with the corrected landing page routing. Memorial Day push prepared for May 19, the next major paid push window.</p>
+
+  <p style="font-size:16px;line-height:1.75;margin-bottom:32px;max-width:780px;">Both platforms running to a single coordinated cadence. Both reporting cleanly with the surge isolated from the underlying trend. The inflection check on May 13 reads honestly. The path to the targets you have set holds, paced by what the data confirms each week.</p>
+
+  <div class="alert-banner amber">
+    <div class="alert-icon">→</div>
+    <div class="alert-body">
+      <h4>What I need from you in the next 24 hours</h4>
+      <p style="margin-top:6px;">Confirmation that inventory holds across Custom Box family and bestsellers through May 8. Sign-off on the Meta routing list landing in your inbox tonight. Memorial Day offer details review by Wednesday for Thursday approval.</p>
+    </div>
+  </div>
+
+  <div class="cover-meta" style="margin-top:50px;">
+    <div class="cover-meta-item"><span class="cover-meta-label">Charles Piper</span><span class="cover-meta-val">Account Manager · YMP</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Status</span><span class="cover-meta-val">Live · Executing Today</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Next Update</span><span class="cover-meta-val">Wed May 6 · Mid-surge check</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Inflection Gate</span><span class="cover-meta-val">Tue May 13 · Two-week read</span></div>
+  </div>
+</section>
+
+</div>
+
+<script>
+// Make checkboxes interactive
+document.querySelectorAll('.task-check').forEach(cb => {
+  cb.addEventListener('click', () => {
+    cb.classList.toggle('checked');
+  });
+});
+</script>
+</body>
+</html>
